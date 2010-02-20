@@ -1,0 +1,1470 @@
+------------------------------------------------------
+BIOS infos
+------------------------------------------------------
+System Manufacturer: ECS
+System Model: 915-M5
+System S/N: 00000000
+Machine Type: Desktop
+BIOS Manufacturer: American Megatrends Inc.
+BIOS Version: A M I  - 3000530;915-M5 Ver 1.1D 03/30/2005- SMBiosVersion: 080011
+BIOS Date: N/A
+
+Bios Hash: 8D72352C90979E908052862EFBB7E22EDBE31FB4
+
+------------------------------------------------------
+Processors infos
+------------------------------------------------------
+Number of Processors: 1
+Processor name: Intel(R) Pentium(R) 4 CPU 2.66GHz
+Processor speed: 2659
+
+------------------------------------------------------
+Memory Slots infos
+------------------------------------------------------
+Caption: Physical Memory
+Description: DIMM0 (No ECC)
+Capacity: 512 KB
+Usage: System Memory
+Type: SDRAM
+Speed: N/A MHz
+Slot Number: 1
+
+Caption: Physical Memory
+Description: DIMM1 (No ECC)
+Capacity: 256 KB
+Usage: System Memory
+Type: SDRAM
+Speed: N/A MHz
+Slot Number: 2
+
+Caption: Physical Memory Array
+Description: Physical Memory Array
+Capacity: 0 KB
+Usage: System Memory
+Type: Empty slot
+Speed: N/A MHz
+Slot Number: 3
+
+Caption: Physical Memory Array
+Description: Physical Memory Array
+Capacity: 0 KB
+Usage: System Memory
+Type: Empty slot
+Speed: N/A MHz
+Slot Number: 4
+
+Memory Slots Hash: 5BB4295765932ECA88B0FC9FAA319CC82C844EB0
+
+------------------------------------------------------
+Video Controlers infos
+------------------------------------------------------
+Name: Intel(R) 82915G/GV/910GL Express Chipset Family
+Chipset: Intel(R) 82915G/GV/910GL Express Chipset Controller
+Memory: 128 MB
+Resolution: 1152 x 864
+
+Video Controlers Hash: 75C0B6DF1917FABFF77C649BE4775FF402B8EF7E
+
+------------------------------------------------------
+Desktop Monitors infos
+------------------------------------------------------
+Manufacturer: NEC Technologies, Inc.
+Caption: NEC FE771SB
+Description: NEC.61D6.01010101 (28/2002)
+Type: RGB color
+S/N: 2756391YA
+
+Monitors Hash: 55825D7AB1F993EF1088396A1BCF6762BAFAE5EB
+
+------------------------------------------------------
+Sound Devices infos
+------------------------------------------------------
+Manufacturer: Realtek
+Name: Realtek High Definition Audio
+Description: Realtek High Definition Audio
+
+Sound Devices Hash: 795E6B55908F37E1E4D9687C36AF372DF8DC9999
+
+------------------------------------------------------
+System Slots infos
+------------------------------------------------------
+
+System Slots Hash: DA39A3EE5E6B4B0D3255BFEF95601890AFD80709
+
+------------------------------------------------------
+System Port infos
+------------------------------------------------------
+Type: Serial
+Name: Communications Port (COM1)
+Caption: Communications Port (COM1)
+Description: Communications Port
+
+Type: Serial
+Name: Communications Port (COM2)
+Caption: Communications Port (COM2)
+Description: Communications Port
+
+Type: Parallel
+Name: LPT1
+Caption: LPT1
+Description: LPT1
+
+System Ports Hash: AC8BF75214BBF6CCCF700EBABF11F28350857D7D
+
+------------------------------------------------------
+Input Devices infos
+------------------------------------------------------
+Type: Keyboard
+Manufacturer: 
+Caption: Enhanced (101- or 102-key)
+Description: Standard 101/102-Key or Microsoft Natural PS/2 Keyboard
+PointingType: N/A
+Pointing Interface: N/A
+
+Type: Pointing
+Manufacturer: (Standard system devices)
+Caption: USB Human Interface Device
+Description: USB Human Interface Device
+PointingType: N/A
+Pointing Interface: USB
+
+Input Devices Hash: 09413A9D21DCEBE33EAE445498D32248BD23E2F2
+
+------------------------------------------------------
+System Controlers infos
+------------------------------------------------------
+Type: IDE Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB Ultra ATA Storage Controllers - 2651
+Caption: Intel(R) 82801FB Ultra ATA Storage Controllers - 2651
+Description: Intel(R) 82801FB Ultra ATA Storage Controllers - 2651
+HW version: N/A
+
+Type: IDE Controller
+Manufacturer: (Standard IDE ATA/ATAPI controllers)
+Name: Primary IDE Channel
+Caption: Primary IDE Channel
+Description: Primary IDE Channel
+HW version: N/A
+
+Type: IDE Controller
+Manufacturer: (Standard IDE ATA/ATAPI controllers)
+Name: Secondary IDE Channel
+Caption: Secondary IDE Channel
+Description: Secondary IDE Channel
+HW version: N/A
+
+Type: SCSI Controller
+Manufacturer: (Standard mass storage controllers)
+Name: A66UI13V IDE Controller
+Caption: A66UI13V IDE Controller
+Description: A66UI13V IDE Controller
+HW version: 
+
+Type: SCSI Controller
+Manufacturer: (Generic)
+Name: FVDSCSI (2003) SCSI Host Adapter
+Caption: FVDSCSI (2003) SCSI Host Adapter
+Description: FVDSCSI (2003) SCSI Host Adapter
+HW version: 
+
+Type: USB Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB/FBM USB Universal Host Controller - 2658
+Caption: Intel(R) 82801FB/FBM USB Universal Host Controller - 2658
+Description: Intel(R) 82801FB/FBM USB Universal Host Controller - 2658
+HW version: N/A
+
+Type: USB Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB/FBM USB Universal Host Controller - 2659
+Caption: Intel(R) 82801FB/FBM USB Universal Host Controller - 2659
+Description: Intel(R) 82801FB/FBM USB Universal Host Controller - 2659
+HW version: N/A
+
+Type: USB Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB/FBM USB Universal Host Controller - 265A
+Caption: Intel(R) 82801FB/FBM USB Universal Host Controller - 265A
+Description: Intel(R) 82801FB/FBM USB Universal Host Controller - 265A
+HW version: N/A
+
+Type: USB Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB/FBM USB Universal Host Controller - 265B
+Caption: Intel(R) 82801FB/FBM USB Universal Host Controller - 265B
+Description: Intel(R) 82801FB/FBM USB Universal Host Controller - 265B
+HW version: N/A
+
+Type: USB Controller
+Manufacturer: Intel
+Name: Intel(R) 82801FB/FBM USB2 Enhanced Host Controller - 265C
+Caption: Intel(R) 82801FB/FBM USB2 Enhanced Host Controller - 265C
+Description: Intel(R) 82801FB/FBM USB2 Enhanced Host Controller - 265C
+HW version: N/A
+
+System Controlers Hash: 44A717EF0AF4D2093E0A3C5E5F09BC4173B7C55E
+
+------------------------------------------------------
+Storage Peripherals infos
+------------------------------------------------------
+Type: Fixed	hard disk media
+Manufacturer: (Standard disk drives)
+Name: //./PHYSICALDRIVE0
+Model: HDS728080PLAT20
+Description: Disk drive
+Size: 78528 MB
+
+Type: CD-ROM
+Manufacturer: (Standard CD-ROM drives)
+Name: INW GX2Z8TUFW SCSI CdRom Device
+Model: INW GX2Z8TUFW SCSI CdRom Device
+Description: CD-ROM Drive
+Size: 0 MB
+
+Type: CD-ROM
+Manufacturer: (Standard CD-ROM drives)
+Name: FvF-Inc CDDVD-2003-200x SCSI CdRom Device
+Model: FvF-Inc CDDVD-2003-200x SCSI CdRom Device
+Description: CD-ROM Drive
+Size: 0 MB
+
+Storage Peripherals Hash: A80A0C6B7C6431D98121D71F9C01441BC1212A39
+
+------------------------------------------------------
+Network Adapters infos
+------------------------------------------------------
+Type: Ethernet
+Description: Realtek RTL8139 Family PCI Fast Ethernet NIC - Packet Scheduler Miniport
+Speed: 100 Mb/s
+MAC: 00:11:5B:AD:D4:7B
+IP @: 192.168.1.45
+IP mask: 255.255.255.0
+IP Gateway: 192.168.1.1
+DHCP Server: 255.255.255.255
+Status: Up
+MIB Type: ethernetCsmacd
+
+Network Adapters Hash: 198E37C88B987643C57D48200B9621F43638EB78
+
+------------------------------------------------------
+Telephony Modems infos
+------------------------------------------------------
+
+Telephony Modems Hash: DA39A3EE5E6B4B0D3255BFEF95601890AFD80709
+
+------------------------------------------------------
+Printers infos
+------------------------------------------------------
+
+Printers Hash: DA39A3EE5E6B4B0D3255BFEF95601890AFD80709
+
+------------------------------------------------------
+OS infos
+------------------------------------------------------
+Name: Microsoft Windows XP Professional
+Version: 5.1.2600
+Comment: Service Pack 3
+Description: 
+Windows Workstation
+Domain or Workgroup: WORKGROUP
+OS Registered Company: 
+OS Registered Owner: MSHOME
+OS Product ID : 76487-027-3261187-22801
+
+Device Hash: 226A3D129F4CD9B800581BC964EFB2AD9B32F8BF
+
+------------------------------------------------------
+Registered Applications infos
+------------------------------------------------------
+Publisher: N/A
+Name: 7-Zip 4.44 beta
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Adobe Systems Incorporated
+Name: Adobe Flash Player 10 ActiveX
+Version: 10.0.42.34
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Adobe Systems Incorporated
+Name: Adobe Flash Player 10 Plugin
+Version: 10.0.42.34
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Piriform
+Name: CCleaner (remove only)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: CPUID CPU-Z 1.53.1
+Version: N/A
+Folder: C:/Program Files/CPUID/CPU-Z/
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: DjVu Solo 3.1
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Martijn de Visser
+Name: FLV Player 2.0 (build 25)
+Version: 2.0 (build 25)
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Foxit Reader
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Garena Interactive Pte Ltd.
+Name: Garena
+Version: 3.2
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Git 1.6.5.1-preview20091022
+Version: 1.6.5.1-preview20091022
+Folder: C:/Program Files/Git/
+Comments: N/A
+Extracted from registry
+
+Publisher: Arobas Music
+Name: Guitar Pro 5.2
+Version: N/A
+Folder: C:/Program Files/Guitar Pro 5/
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Help Workshop
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Internet Download Manager
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Windows XP (KB898461)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB923561)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Windows Media Format 11 SDK (KB929399)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Windows Media Player 11 (KB939683)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB941569)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB950762)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB951066)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB951748)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB952004)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows Media Player (KB952069)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Windows XP (KB952287)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows Media Player 11 (KB954154)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB954459)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Windows XP (KB954550-v5)
+Version: 5
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB955069)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB956572)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB956802)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB956844)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB957097)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB958644)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB958687)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB960803)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB961501)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Windows XP (KB967715)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Windows XP (KB968389)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB969947)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB970238)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB971486)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB971633)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB971961)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB973354)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB973507)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB973525)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows Media Player (KB973540)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Windows XP (KB973687)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Windows XP (KB973815)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB973869)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB973904)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB974392)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB974571)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB975025)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Security Update for Windows XP (KB975467)
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: K-Lite Codec Pack 4.1.7 (Full)
+Version: 4.1.7
+Folder: C:/Program Files/K-Lite Codec Pack/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft .NET Framework 3.5 SP1
+Version: N/A
+Folder: C:/WINDOWS/Microsoft.NET/Framework/v3.5/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Document Explorer 2008
+Version: N/A
+Folder: C:/Program Files/Common Files/Microsoft Shared/Help 9/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server 2005
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual Studio 2005 Tools for Office Second Edition Runtime
+Version: N/A
+Folder: c:/Program Files/Common Files/Microsoft Shared/VSTO/8.0/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Visual Studio 2008 Professional Edition - ENU
+Version: N/A
+Folder: c:/Program Files/Microsoft Visual Studio 9.0/
+Comments: N/A
+Extracted from registry
+
+Publisher: Mozilla
+Name: Mozilla Firefox (3.5.8)
+Version: 3.5.8 (en-US)
+Folder: C:/Program Files/Mozilla Firefox
+Comments: Mozilla Firefox
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Compression Client Pack 1.0 for Windows XP
+Version: 1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: MSN
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Notepad++
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: OCS Inventory NG Team
+Name: OCS Inventory Agent 4.0.6.1
+Version: 4.0.6.1
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: OCS Inventory Team
+Name: OCS Inventory NG
+Version: 1.01
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: OpenRSM-Manager
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Photodex Presenter
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Project Professional 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office
+Comments: 
+Extracted from registry
+
+Publisher: Neuber GmbH
+Name: Security Task Manager 1.7
+Version: 1.7
+Folder: C:/Program Files/Security Task Manager/
+Comments: N/A
+Extracted from registry
+
+Publisher: Piriform
+Name: Speccy
+Version: 1.00
+Folder: C:/Program Files/Speccy
+Comments: N/A
+Extracted from registry
+
+Publisher: TeamViewer GmbH
+Name: TeamViewer 5
+Version: 5.0.7687
+Folder: C:/Program Files/TeamViewer/Version5
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Total Commander (Remove or Repair)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Pham Kim Long
+Name: UniKey 4.0 NT
+Version: 4.0 NT
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: VBConversions VB.Net to C# Converter Version 2.26
+Version: N/A
+Folder: C:/Program Files/VBConversions/VB.Net to C# Converter 2.26/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual Studio Tools for the Office system 3.0 Runtime
+Version: N/A
+Folder: C:/Program Files/Common Files/Microsoft Shared/VSTO/9.0/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Visual Studio Web Authoring Component
+Version: 12.0.4518.1066
+Folder: C:/Program Files/Microsoft Web Designer Tools
+Comments: 
+Extracted from registry
+
+Publisher: Visual Paradigm International Ltd.
+Name: VP Suite 4.2
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Windows Media Format 11 runtime
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Windows Media Player 11
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Windows Media Format 11 runtime
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Windows Media Player 11
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft User-Mode Driver Framework Feature Pack 1.0
+Version: N/A
+Folder: N/A
+Comments: Build Number 5716
+Extracted from registry
+
+Publisher: GnuWin32
+Name: GnuWin32: x86Info-1.21
+Version: 1.21
+Folder: C:/Program Files/GnuWin32/
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: XAMPP 1.5.5
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: XML Paper Specification Shared Components Pack 1.0
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Yahoo! Inc.
+Name: Yahoo! Messenger
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: N/A
+Name: Yahoo! Software Update
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Windows SDK for Visual Studio 2008 .NET Framework Tools - enu
+Version: 3.5.21022
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Compact 3.5 SP1 Design Tools English
+Version: 3.5.5692.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 x64 Runtime - (v9.0.30729)
+Version: 9.0.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 x64 Runtime - v9.0.30729.01
+Version: 9.0.30729.01
+Folder: N/A
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Management Studio Express
+Version: 9.00.3042.00
+Folder: C:/Program Files/Microsoft SQL Server/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 IA64 Runtime - (v9.0.30729)
+Version: 9.0.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 IA64 Runtime - v9.0.30729.01
+Version: 9.0.30729.01
+Folder: N/A
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Compact 3.5 for Devices ENU
+Version: 3.5.5386.0
+Folder: c:/Program Files/Microsoft SQL Server Compact Edition/v3.5/
+Comments: 
+Extracted from registry
+
+Publisher: Sun Microsystems, Inc.
+Name: Java(TM) 6 Update 13
+Version: 6.0.130
+Folder: C:/Program Files/Java/jre6/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server 2005 Tools Express Edition
+Version: 9.2.3042.00
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server 2005 Express Edition (SQLEXPRESS)
+Version: 9.2.3042.00
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Open Source
+Name: OpenSandra.NET
+Version: 1.0.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Symantec Corporation
+Name: MSRedist
+Version: 9.0.30729.4148
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Sun Microsystems, Inc.
+Name: Java(TM) SE Development Kit 6 Update 13
+Version: 1.6.0.130
+Folder: C:/Program Files/Java/jdk1.6.0_13/
+Comments: 
+Extracted from registry
+
+Publisher: Mobipocket.com
+Name: Mobipocket Reader 6.2
+Version: 6.2.608
+Folder: 
+Comments: eBook Reader
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: SQL Server System CLR Types
+Version: 10.0.1600.22
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Visual Studio 2005 Tools for Office Runtime
+Version: 8.0.60940.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: PC Drivers HeadQuarters
+Name: Driver Detective
+Version: 8.0.1
+Folder: C:/Program Files/PC Drivers HeadQuarters/Driver Detective/
+Comments: Driver Detective Installation
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Setup Support Files (English)
+Version: 9.00.4035.00
+Folder: C:/Program Files/Microsoft SQL Server/90/Setup Bootstrap/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Windows SDK for Visual Studio 2008 SDK Reference Assemblies and IntelliSense
+Version: 6.1.5288.17011
+Folder: 
+Comments: Update/Uninstall/Repair this SDK
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Document Explorer 2008
+Version: 9.0.21022
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Windows Mobile 5.0 SDK R2 for Pocket PC
+Version: 5.00.1700.5.14343.06
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Visual C++ 2005 Redistributable
+Version: 8.0.59193
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Windows SDK for Visual Studio 2008 Headers and Libraries
+Version: 6.1.5288.17011
+Folder: 
+Comments: Update/Uninstall/Repair this SDK
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Silverlight
+Version: 3.0.50106.0
+Folder: C:/Program Files/Microsoft Silverlight/
+Comments: 
+Extracted from registry
+
+Publisher: N/A
+Name: Intel(R) Graphics Media Accelerator Driver
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual Studio Tools for the Office system 3.0 Runtime
+Version: 9.0.21022
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Professional Edition 2003
+Version: 11.0.5614.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Proof (English) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Proof (French) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Proof (Spanish) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Compatibility Pack for the 2007 Office system
+Version: 12.0.6425.1000
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Visual Web Developer 2007
+Version: 12.0.4518.1066
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft
+Name: Security Update for Microsoft Office system 2007 (972581)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft
+Name: Update for 2007 Microsoft Office System (KB967642)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft
+Name: Update for Microsoft Visual Studio Web Authoring Component (KB945140)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft
+Name: Security Update for Microsoft Office system 2007 (KB974234)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Visual Web Developer MUI (English) 2007
+Version: 12.0.4518.1066
+Folder: C:/Program Files/Microsoft Web Designer Tools/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Proofing (English) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Shared MUI (English) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Web Designer Tools/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Project MUI (English) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Shared Setup Metadata MUI (English) 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Web Designer Tools/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Visio Professional 2003
+Version: 11.0.3216.5614
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Office Project Professional 2007
+Version: 12.0.4518.1014
+Folder: C:/Program Files/Microsoft Office/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft
+Name: Update for 2007 Microsoft Office System (KB967642)
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Windows Mobile 5.0 SDK R2 for Smartphone
+Version: 5.00.1700.5.14343.06
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: VirusSecureLab
+Name: Virus Effect Remover 3.1.3.10
+Version: 3.1.3
+Folder: 
+Comments: Virus Effect Remover
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft ActiveSync
+Version: 4.5.5096.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Sun Microsystems, Inc
+Name: Java DB 10.4.1.3
+Version: 10.4.1.3
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Database Publishing Wizard 1.3
+Version: 10.0.1600.22
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: TortoiseSVN
+Name: TortoiseSVN 1.6.6.17493 (32 bit)
+Version: 1.6.17493
+Folder: 
+Comments: Windows Shell Integration For SubVersion Source Control, v1.6.6.17493
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft .NET Framework 3.0 Service Pack 2
+Version: 3.2.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft ASP.NET MVC RC
+Version: 1.0.0.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: MSXML 6.0 Parser
+Version: 6.10.1129.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Hallinan Corporation
+Name: Another System Tool
+Version: 1.2
+Folder: C:/Program Files/Hallinan Corp/Another System Tool/
+Comments: Another Tool for Viewing Environment and System Information
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Windows SDK for Visual Studio 2008 SP1 Win32 Tools
+Version: 6.1.5294.17011
+Folder: 
+Comments: Update/Uninstall/Repair this SDK
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Device Emulator version 3.0 - ENU
+Version: 9.0.21022
+Folder: C:/Program Files/Microsoft Device Emulator/1.0/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Network Monitor 3.2
+Version: 3.2.1303.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: N/A
+Name: Microsoft Reader
+Version: N/A
+Folder: N/A
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Native Client
+Version: 9.00.4035.00
+Folder: C:/Program Files/Microsoft SQL Server/
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft .NET Framework 2.0 Service Pack 2
+Version: 2.2.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Windows SDK for Visual Studio 2008 SP1 Tools
+Version: 6.1.5294.17011
+Folder: 
+Comments: Update/Uninstall/Repair this SDK
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft .NET Framework 3.5 SP1
+Version: 3.5.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Microsoft .NET Framework 3.5 SP1 (KB953595)
+Version: 1
+Folder: N/A
+Comments: This hotfix is for Microsoft .NET Framework 3.5 SP1. If you later install a more recent service pack, this hotfix will be uninstalled automatically. For more information, visit http://support.microsoft.com/kb/953595.
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Microsoft .NET Framework 3.5 SP1 (KB963707)
+Version: 1
+Folder: N/A
+Comments: This update is for Microsoft .NET Framework 3.5 SP1. If you later install a more recent service pack, this update will be uninstalled automatically. For more information, visit http://support.microsoft.com/kb/963707.
+Extracted from registry
+
+Publisher: Skype Technologies S.A.
+Name: Skype™ 4.1
+Version: 4.1.179
+Folder: C:/Program Files/Skype/
+Comments: 
+Extracted from registry
+
+Publisher: FarStone Technology Inc.
+Name: VirtualDrive
+Version: 8.00
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Microsoft Visual Studio 2008 Professional Edition - ENU (KB971091)
+Version: 1
+Folder: N/A
+Comments: This hotfix is for Microsoft Visual Studio 2008 Professional Edition - ENU. If you later install a more recent service pack, this hotfix will be uninstalled automatically. For more information, visit http://support.microsoft.com/kb/971091.
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Update for Microsoft Visual Studio 2008 Professional Edition - ENU (KB972221)
+Version: 1
+Folder: N/A
+Comments: This update is for Microsoft Visual Studio 2008 Professional Edition - ENU. If you later install a more recent service pack, this update will be uninstalled automatically. For more information, visit http://support.microsoft.com/kb/972221.
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Hotfix for Microsoft Visual Studio 2008 Professional Edition - ENU (KB973674)
+Version: 1
+Folder: N/A
+Comments: This hotfix is for Microsoft Visual Studio 2008 Professional Edition - ENU. If you later install a more recent service pack, this hotfix will be uninstalled automatically. For more information, visit http://support.microsoft.com/kb/973674.
+Extracted from registry
+
+Publisher: NOS Microsystems Ltd.
+Name: Adobe Download Manager
+Version: 1.6.2.60
+Folder: C:/Program Files/NOS/bin
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server Compact 3.5 SP1 English
+Version: 3.5.5692.0
+Folder: C:/Program Files/Microsoft SQL Server Compact Edition/
+Comments: 
+Extracted from registry
+
+Publisher: Python Software Foundation
+Name: Python 2.6.4
+Version: 2.6.4150
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server VSS Writer
+Version: 9.00.3042.00
+Folder: c:/Program Files/Microsoft SQL Server/
+Comments: 
+Extracted from registry
+
+Publisher: Realtek Semiconductor Corp.
+Name: Realtek High Definition Audio Driver
+Version: 5.10.0.5324
+Folder: C:/Program Files/Realtek/InstallShield/
+Comments: N/A
+Extracted from registry
+
+Publisher: TortoiseSVN
+Name: TortoiseOverlays
+Version: 1.0.11886
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 x86 Runtime - (v9.0.30729)
+Version: 9.0.30729
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Visual C++ 2008 x86 Runtime - v9.0.30729.01
+Version: 9.0.30729.01
+Folder: N/A
+Comments: 
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft SQL Server 2008 Management Objects
+Version: 10.0.1600.22
+Folder: 
+Comments: 
+Extracted from registry
+
+Publisher: Realtek Semiconductor Corp.
+Name: Realtek AC''97 Audio
+Version: 5.30
+Folder: C:/Program Files/Realtek AC97/
+Comments: N/A
+Extracted from registry
+
+Publisher: Microsoft Corporation
+Name: Microsoft Network Monitor: Microsoft Parsers 3.2
+Version: 3.2.1303.0
+Folder: 
+Comments: 
+Extracted from registry
+
+Registered Applications Hash: 513D928A1110E70C8A717A832E6A21B34A4CE270
