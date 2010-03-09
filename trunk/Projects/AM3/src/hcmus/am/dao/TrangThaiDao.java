@@ -41,6 +41,39 @@ public class TrangThaiDao {
 		}		
 		return ent;		
 	}
-	
-	
+	public static int insert(TrangThaiEntity ent){		
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "insert into TRANG_THAI values(?)";
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, ent.Ten);
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;		
+	}
+	public static int delete(TrangThaiEntity ent){		
+		Connection conn = null;
+		Statement stmt = null;		
+		int rs = 0;
+		String  sql = "delete TRANG_THAI where idTrangThai = " + ent.IdTrangThai;
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();			
+			rs = stmt.executeUpdate(sql);			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;		
+	}
 }
