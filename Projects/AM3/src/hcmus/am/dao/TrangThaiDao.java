@@ -1,7 +1,7 @@
 package hcmus.am.dao;
 
 
-import hcmus.am.client.TrangThaiEntity;
+import hcmus.am.client.entity.TrangThaiEntity;
 import hcmus.am.utils.ConnectionUtil;
 
 import java.sql.Connection;

@@ -1,7 +1,7 @@
 package hcmus.am.server;
 
 
-import hcmus.am.client.TrangThaiEntity;
+import hcmus.am.client.entity.TrangThaiEntity;
 import hcmus.am.client.TrangThaiService;
 import hcmus.am.dao.TrangThaiDao;
 

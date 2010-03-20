@@ -1,6 +1,6 @@
 package hcmus.am.client;
 
-import hcmus.am.client.TrangThaiEntity;
+import hcmus.am.client.entity.TrangThaiEntity;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
