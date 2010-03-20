@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 import hcmus.am.dao.TrangThaiDao;
-import hcmus.am.client.TrangThaiEntity;
+import hcmus.am.client.entity.TrangThaiEntity;
 
 import org.junit.Test;
 
