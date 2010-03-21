@@ -96,8 +96,9 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,209,179,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,263,179,50,14
-    CTEXT           "TODO: Place dialog controls here.",IDC_STATIC,10,96,300,8
+    CTEXT           "",IDC_STATIC1,10,96,303,8
     PUSHBUTTON      "Button1",IDC_BUTTON1,55,50,50,14
+    PUSHBUTTON      "Button2",IDC_BUTTON2,19,20,50,14
 END
 
 

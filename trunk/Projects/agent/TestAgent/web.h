@@ -51,6 +51,7 @@ public:
 	string getScriptFile() const;
 	void sendRequest();
 	bool getResponse(char* buff,int sz);
+	string GetRequest();
 	unsigned long getBytesRead() { return m_lBytesRead; }
 	~WebForm();
 private:

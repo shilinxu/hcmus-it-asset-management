@@ -2264,3 +2264,580 @@ void CTestSysInfoDlg::OnDestroy()
 	m_List.ResetContent();
 }
 
+
+void CTestSysInfoDlg::OnSysInfo() 
+{
+	CWaitCursor		cWait;
+	CDeviceProperties myPC;
+	SysInfo			mySys;
+	CString			str;
+	POSITION		pos;
+	BOOL			bContinue;
+
+	remove( "c:\\TestSysInfo_trace.log");
+	OpenLog( "c:\\TestSysInfo_trace", "-DEBUG");
+	myPC.RetrieveHardwareAndOS( &mySys, _T( ""));
+	CloseLog();
+	m_List.ResetContent();
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "BIOS infos");
+	SysInfoLog( "------------------------------------------------------");
+	str.Format( "System Manufacturer: %s", myPC.m_BIOS.GetSystemManufacturer());
+	SysInfoLog( str);
+	str.Format( "System Model: %s", myPC.m_BIOS.GetSystemModel());
+	SysInfoLog( str);
+	str.Format( "System S/N: %s", myPC.m_BIOS.GetSystemSerialNumber());
+	SysInfoLog( str);
+	str.Format( "Machine Type: %s", myPC.m_BIOS.GetMachineType());
+	SysInfoLog( str);
+	str.Format( "BIOS Manufacturer: %s", myPC.m_BIOS.GetBiosManufacturer());
+	SysInfoLog( str);
+	str.Format( "BIOS Version: %s", myPC.m_BIOS.GetBiosVersion());
+	SysInfoLog( str);
+	str.Format( "BIOS Date: %s", myPC.m_BIOS.GetBiosDate());
+	SysInfoLog( str);
+	SysInfoLog( "");
+	str.Format( "Bios Hash: %s", myPC.m_BIOS.GetHash());
+	SysInfoLog( str);
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Processors infos");
+	SysInfoLog( "------------------------------------------------------");
+	str.Format( "Number of Processors: %u", myPC.GetNumberOfProcessors());
+	SysInfoLog( str);
+	str.Format( "Processor name: %s", myPC.GetProcessorType());
+	SysInfoLog( str);
+	str.Format( "Processor speed: %s", myPC.GetProcessorSpeed());
+	SysInfoLog( str);
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Memory Slots infos");
+	SysInfoLog( "------------------------------------------------------");
+	CMemorySlot myMemSlot;
+	pos = myPC.m_MemoryList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myMemSlot = myPC.m_MemoryList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Caption: %s", myMemSlot.GetCaption());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myMemSlot.GetDescription());
+		SysInfoLog( str);
+		str.Format( "Capacity: %s KB", myMemSlot.GetCapacity());
+		SysInfoLog( str);
+		str.Format( "Usage: %s", myMemSlot.GetUsage());
+		SysInfoLog( str);
+		str.Format( "Type: %s", myMemSlot.GetType());
+		SysInfoLog( str);
+		str.Format( "Speed: %s MHz", myMemSlot.GetSpeed());
+		SysInfoLog( str);
+		str.Format( "Slot Number: %u", myMemSlot.GetSlotNumber());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myMemSlot = myPC.m_MemoryList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Memory Slots Hash: %s", myPC.m_MemoryList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Video Controlers infos");
+	SysInfoLog( "------------------------------------------------------");
+	CVideoAdapter myVideo;
+	pos = myPC.m_VideoList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myVideo = myPC.m_VideoList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Name: %s", myVideo.GetName());
+		SysInfoLog( str);
+		str.Format( "Chipset: %s", myVideo.GetChipset());
+		SysInfoLog( str);
+		str.Format( "Memory: %s MB", myVideo.GetMemory());
+		SysInfoLog( str);
+		str.Format( "Resolution: %s", myVideo.GetScreenResolution());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myVideo = myPC.m_VideoList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Video Controlers Hash: %s", myPC.m_VideoList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Desktop Monitors infos");
+	SysInfoLog( "------------------------------------------------------");
+	CMonitor myMonitor;
+	pos = myPC.m_MonitorList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myMonitor = myPC.m_MonitorList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Manufacturer: %s", myMonitor.GetManufacturer());
+		SysInfoLog( str);
+		str.Format( "Caption: %s", myMonitor.GetCaption());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myMonitor.GetDescription());
+		SysInfoLog( str);
+		str.Format( "Type: %s", myMonitor.GetType());
+		SysInfoLog( str);
+		str.Format( "S/N: %s", myMonitor.GetSerial());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myMonitor = myPC.m_MonitorList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Monitors Hash: %s", myPC.m_MonitorList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Sound Devices infos");
+	SysInfoLog( "------------------------------------------------------");
+	CSoundDevice mySound;
+	pos = myPC.m_SoundList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		mySound = myPC.m_SoundList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Manufacturer: %s", mySound.GetManufacturer());
+		SysInfoLog( str);
+		str.Format( "Name: %s", mySound.GetName());
+		SysInfoLog( str);
+		str.Format( "Description: %s", mySound.GetDescription());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			mySound = myPC.m_SoundList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Sound Devices Hash: %s", myPC.m_SoundList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "System Slots infos");
+	SysInfoLog( "------------------------------------------------------");
+	CSystemSlot mySlot;
+	pos = myPC.m_SlotList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		mySlot = myPC.m_SlotList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Name: %s", mySlot.GetName());
+		SysInfoLog( str);
+		str.Format( "Description: %s", mySlot.GetDescription());
+		SysInfoLog( str);
+		str.Format( "Slot Designation: %s", mySlot.GetSlotDesignation());
+		SysInfoLog( str);
+		str.Format( "Usage: %s", mySlot.GetUsage());
+		SysInfoLog( str);
+		str.Format( "Status: %s", mySlot.GetStatus());
+		SysInfoLog( str);
+		str.Format( "Is shared: %s", mySlot.IsShared() ? "TRUE" : "FALSE");
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			mySlot = myPC.m_SlotList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "System Slots Hash: %s", myPC.m_SlotList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "System Port infos");
+	SysInfoLog( "------------------------------------------------------");
+	CSystemPort myPort;
+	pos = myPC.m_PortList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myPort = myPC.m_PortList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myPort.GetType());
+		SysInfoLog( str);
+		str.Format( "Name: %s", myPort.GetName());
+		SysInfoLog( str);
+		str.Format( "Caption: %s", myPort.GetCaption());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myPort.GetDescription());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myPort = myPC.m_PortList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "System Ports Hash: %s", myPC.m_PortList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Input Devices infos");
+	SysInfoLog( "------------------------------------------------------");
+	CInputDevice myInput;
+	pos = myPC.m_InputList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myInput = myPC.m_InputList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myInput.GetType());
+		SysInfoLog( str);
+		str.Format( "Manufacturer: %s", myInput.GetManufacturer());
+		SysInfoLog( str);
+		str.Format( "Caption: %s", myInput.GetCaption());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myInput.GetDescription());
+		SysInfoLog( str);
+		str.Format( "PointingType: %s", myInput.GetPointingType());
+		SysInfoLog( str);
+		str.Format( "Pointing Interface: %s", myInput.GetPointingInterface());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myInput = myPC.m_InputList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Input Devices Hash: %s", myPC.m_InputList.GetHash());
+	SysInfoLog( str);
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "System Controlers infos");
+	SysInfoLog( "------------------------------------------------------");
+	CSystemController myController;
+	pos = myPC.m_SystemControllerList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myController = myPC.m_SystemControllerList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myController.GetType());
+		SysInfoLog( str);
+		str.Format( "Manufacturer: %s", myController.GetManufacturer());
+		SysInfoLog( str);
+		str.Format( "Name: %s", myController.GetName());
+		SysInfoLog( str);
+		str.Format( "Caption: %s", myController.GetCaption());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myController.GetDescription());
+		SysInfoLog( str);
+		str.Format( "HW version: %s", myController.GetHardwareVersion());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myController = myPC.m_SystemControllerList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "System Controlers Hash: %s", myPC.m_SystemControllerList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Storage Peripherals infos");
+	SysInfoLog( "------------------------------------------------------");
+	CStoragePeripheral myStorage;
+	pos = myPC.m_StorageList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myStorage = myPC.m_StorageList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myStorage.GetType());
+		SysInfoLog( str);
+		str.Format( "Manufacturer: %s", myStorage.GetManufacturer());
+		SysInfoLog( str);
+		str.Format( "Name: %s", myStorage.GetName());
+		SysInfoLog( str);
+		str.Format( "Model: %s", myStorage.GetModel());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myStorage.GetDescription());
+		SysInfoLog( str);
+		str.Format( "Size: %I64u MB", myStorage.GetSize());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myStorage = myPC.m_StorageList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Storage Peripherals Hash: %s", myPC.m_StorageList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Network Adapters infos");
+	SysInfoLog( "------------------------------------------------------");
+	CNetworkAdapter myNetwork;
+	pos = myPC.m_NetworkList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myNetwork = myPC.m_NetworkList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myNetwork.GetType());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myNetwork.GetDescription());
+		SysInfoLog( str);
+		str.Format( "Speed: %s", myNetwork.GetSpeed());
+		SysInfoLog( str);
+		str.Format( "MAC: %s", myNetwork.GetMACAddress());
+		SysInfoLog( str);
+		str.Format( "IP @: %s", myNetwork.GetIPAddress());
+		SysInfoLog( str);
+		str.Format( "IP mask: %s", myNetwork.GetIPNetMask());
+		SysInfoLog( str);
+		str.Format( "IP Gateway: %s", myNetwork.GetGateway());
+		SysInfoLog( str);
+		str.Format( "DHCP Server: %s", myNetwork.GetDhcpServer());
+		SysInfoLog( str);
+		str.Format( "Status: %s", myNetwork.GetOperationalStatus());
+		SysInfoLog( str);
+		str.Format( "MIB Type: %s", myNetwork.GetTypeMIB());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myNetwork = myPC.m_NetworkList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Network Adapters Hash: %s", myPC.m_NetworkList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Telephony Modems infos");
+	SysInfoLog( "------------------------------------------------------");
+	CModem myModem;
+	pos = myPC.m_ModemList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myModem = myPC.m_ModemList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Type: %s", myModem.GetType());
+		SysInfoLog( str);
+		str.Format( "Name: %s", myModem.GetName());
+		SysInfoLog( str);
+		str.Format( "Model: %s", myModem.GetModel());
+		SysInfoLog( str);
+		str.Format( "Description: %s", myModem.GetDescription());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myModem = myPC.m_ModemList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Telephony Modems Hash: %s", myPC.m_ModemList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Printers infos");
+	SysInfoLog( "------------------------------------------------------");
+	CPrinter myPrinter;
+	pos = myPC.m_PrinterList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myPrinter = myPC.m_PrinterList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Name: %s", myPrinter.GetName());
+		SysInfoLog( str);
+		str.Format( "Driver: %s", myPrinter.GetDriver());
+		SysInfoLog( str);
+		str.Format( "Port: %s", myPrinter.GetPort());
+		SysInfoLog( str);
+		if (pos != NULL)
+		{
+			myPrinter = myPC.m_PrinterList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Printers Hash: %s", myPC.m_PrinterList.GetHash());
+	SysInfoLog( str);
+
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "OS infos");
+	SysInfoLog( "------------------------------------------------------");
+	str.Format( "Name: %s", myPC.GetOSName());
+	SysInfoLog( str);
+	str.Format( "Version: %s", myPC.GetOSVersion());
+	SysInfoLog( str);
+	str.Format( "Comment: %s", myPC.GetOSComment());
+	SysInfoLog( str);
+	str.Format( "Description: %s", myPC.GetDescription());
+	SysInfoLog( str);
+	switch (myPC.GetDeviceType())
+	{
+	case WINDOWS_SERVER:
+		str = _T( "Windows Server");
+		break;
+	case WINDOWS_NOTEBOOK:
+		str = _T( "Windows Notebook");
+		break;
+	default:
+		str = _T( "Windows Workstation");
+		break;
+	}
+	SysInfoLog( str);
+	str.Format( "Domain or Workgroup: %s", myPC.GetDomainOrWorkgroup());
+	SysInfoLog( str);
+	str.Format( "OS Registered Company: %s", myPC.GetWindowsRegisteredCompany());
+	SysInfoLog( str);
+	str.Format( "OS Registered Owner: %s", myPC.GetWindowsRegisteredOwner());
+	SysInfoLog( str);
+	str.Format( "OS Product ID : %s", myPC.GetWindowsProductID());
+	SysInfoLog( str);
+	SysInfoLog( "");
+	str.Format( "Device Hash: %s", myPC.GetHash());
+	SysInfoLog( str);
+
+	SysInfoLog( "");
+	SysInfoLog( "------------------------------------------------------");
+	SysInfoLog( "Registered Applications infos");
+	SysInfoLog( "------------------------------------------------------");
+	CSoftware myApp;
+	pos = myPC.m_SoftwareList.GetHeadPosition();
+	bContinue = (pos != NULL);
+	if (bContinue)
+		// There is one record => get the first
+		myApp = myPC.m_SoftwareList.GetNext( pos);
+	while (bContinue)
+	{
+		bContinue = (pos != NULL);
+		str.Format( "Publisher: %s", myApp.GetPublisher());
+		SysInfoLog( str);
+		str.Format( "Name: %s", myApp.GetName());
+		SysInfoLog( str);
+		str.Format( "Version: %s", myApp.GetVersion());
+		SysInfoLog( str);
+		str.Format( "Folder: %s", myApp.GetFolder());
+		SysInfoLog( str);
+		str.Format( "Comments: %s", myApp.GetComments());
+		SysInfoLog( str);
+		if (myApp.IsFromRegistry())
+			SysInfoLog( "Extracted from registry");
+		else
+			SysInfoLog( "Find on disk");
+		if (pos != NULL)
+		{
+			myApp = myPC.m_SoftwareList.GetNext( pos);
+			SysInfoLog( "");
+		}
+	}
+	SysInfoLog( "");
+	str.Format( "Registered Applications Hash: %s", myPC.m_SoftwareList.GetHash());
+	SysInfoLog( str);
+
+	m_List.AddString( "");
+	m_List.AddString( "------------------------------------------------------");
+	m_List.AddString( "Checking all registry values for key HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup");
+	m_List.AddString( "------------------------------------------------------");
+	CRegistryValue myRegVal;
+	CRegistryValueList myRegList;
+	CRegistry myReg;
+	myReg.GetRegistryMultipleValues( myPC.GetDeviceID(), "Windows Setup", HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", &myRegList);
+	pos = myRegList.GetHeadPosition();
+	while (pos)
+	{
+		myRegVal = myRegList.GetNext( pos);
+		m_List.AddString( myRegVal.GetValue());
+	}
+	m_List.AddString( "");
+
+	m_List.AddString( "");
+	m_List.AddString( "------------------------------------------------------");
+	m_List.AddString( "Checking some registry value on key HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup");
+	m_List.AddString( "------------------------------------------------------");
+	CString csValue;
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", "CDInstall", csValue);
+	str.Format( "REG_DWORD CDInstall=%s", csValue);
+	m_List.AddString( str);
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\", "InstallDate", csValue);
+	str.Format( "REG_DWORD Windows NT InstallDate=%s", csValue);
+	m_List.AddString( str);
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", "BootDir", csValue);
+	str.Format( "REG_SZ BootDir=%s", csValue);
+	m_List.AddString( str);
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", "DriverCachePath", csValue);
+	str.Format( "REG_EXPAND_SZ DriverCachePath=%s", csValue);
+	m_List.AddString( str);
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", "Installation Sources", csValue);
+	str.Format( "REG_MULTI_SZ Installation Sources=%s", csValue);
+	m_List.AddString( str);
+	myReg.GetRegistryValue( HKLM_TREE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup", "PrivateHash", csValue);
+	str.Format( "REG_BINARY PrivateHash=%s", csValue);
+	m_List.AddString( str);
+	CloseLog();
+}
