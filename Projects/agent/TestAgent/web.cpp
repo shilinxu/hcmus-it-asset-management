@@ -161,6 +161,25 @@ string WebForm::getScriptFile() const {
 	return m_strScriptFile;
 }
 
+string WebForm::GetRequest() {
+		string host = m_strHostName;
+	string form_action = host + m_strScriptFile + "?";
+	int sz = m_vctVars.size();
+	for(int i=0;i<sz;i++) {
+		string var = m_vctVars[i];
+	    string enc_var = URLEncoder::encode(var);
+	    string val = m_vctVals[i];
+	    string enc_val = URLEncoder::encode(val);
+	    form_action = form_action + enc_var;
+	    form_action = form_action + "=";
+	    form_action = form_action + enc_val;
+	    if(i != (sz-1)) {
+		    form_action = form_action + "&";
+		}
+    }   
+	return form_action;
+}
+
 void WebForm::sendRequest() {
 	string host = m_strHostName;
 	string form_action = host + m_strScriptFile + "?";
