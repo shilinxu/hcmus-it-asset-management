@@ -164,22 +164,27 @@ void CTestAgentDlg::OnBnClickedButton1()
 	POSITION		pos;
 	BOOL			bContinue;
 
-	myPC.RetrieveHardwareAndOS( &mySys, _T( ""));
+	if (true == myPC.RetrieveHardwareAndOS( &mySys, _T( "")))
+	{
+		MessageBox("chan");
+	} else
+		MessageBox("chan");
 	try {	
 		WebForm wf;
 		wf.setHost("http://nghdiep.appspot.com");
 		wf.setScriptFile("/simple");	
-		wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
-		char temp[1024];
-		_itoa(myPC.GetNumberOfProcessors(), temp, 10);
-		wf.putVariable("NumberOfProcessors", temp);
 
-		wf.putVariable("IPAdress", myPC.GetIPAddress());
-		wf.putVariable("OS", myPC.GetOSName());
-		wf.putVariable("Speed", myPC.GetProcessorSpeed());
-		wf.putVariable("BiosManufacturer", myPC.m_BIOS.GetBiosManufacturer());
-		wf.putVariable("SystemManufacturer", myPC.m_BIOS.GetSystemManufacturer());
-		
+		//wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
+		//char temp[1024];
+		//_itoa(myPC.GetNumberOfProcessors(), temp, 10);
+		//wf.putVariable("NumberOfProcessors", temp);
+
+		//wf.putVariable("IPAdress", myPC.GetIPAddress());
+		//wf.putVariable("OS", myPC.GetOSName());
+		//wf.putVariable("Speed", myPC.GetProcessorSpeed());
+		//wf.putVariable("BiosManufacturer", myPC.m_BIOS.GetBiosManufacturer());
+		//wf.putVariable("SystemManufacturer", myPC.m_BIOS.GetSystemManufacturer());
+		//
 
 		//wf.putVariable("MOUSE", myPC.m_MemoryList.GetAt(0).GetDeviceName());
 		//CMemorySlotList* lst = new CMemorySlotList();
@@ -206,7 +211,7 @@ void CTestAgentDlg::OnBnClickedButton1()
 }
 
 void CTestAgentDlg::OnSysInfo() 
-{
+{MessageBox("sap HardwareAndOS");
 	CWaitCursor		cWait;
 	CDeviceProperties myPC;
 	SysInfo			mySys;
@@ -216,12 +221,13 @@ void CTestAgentDlg::OnSysInfo()
 
 	/*remove( "c:\\TestSysInfo_trace.log");
 	OpenLog( "c:\\TestSysInfo_trace", "-DEBUG");*/
-	myPC.RetrieveHardwareAndOS( &mySys, _T( ""));
+	myPC.RetrieveHardwareAndOS( &mySys, _T( ""));	
 	try {	
+		MessageBox("da vo try");
 		WebForm wf;
 		wf.setHost("http://nghdiep.appspot.com");
 		wf.setScriptFile("/simple");	
-		wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
+		//wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
 		char temp[1024];
 		_itoa(myPC.GetNumberOfProcessors(), temp, 10);
 
@@ -242,7 +248,9 @@ void CTestAgentDlg::OnSysInfo()
 	/*	SysInfoLog( "------------------------------------------------------");
 		SysInfoLog( "BIOS infos");
 		SysInfoLog( "------------------------------------------------------");*/
-		//wf.putVariable("System Manufacturer: %s", myPC.m_BIOS.GetSystemManufacturer());
+		//wf.putVariable("System Manufacturer: %s", myPC.m_BIOS.GetSystemManufacturer());		
+		wf.putVariable("MAINBOARD", "1");
+
 		wf.putVariable("MAINBOARD_0_MANUFACTORER", myPC.m_BIOS.GetSystemManufacturer());
 		
 		//wf.putVariable("System Model: %s", myPC.m_BIOS.GetSystemModel());
@@ -260,7 +268,7 @@ void CTestAgentDlg::OnSysInfo()
 		SysInfoLog( "Processors infos");
 		SysInfoLog( "------------------------------------------------------");*/
 		//wf.putVariable("Number of Processors: %u", myPC.GetNumberOfProcessors());
-		
+		wf.putVariable("CPU", "1");
 		wf.putVariable("CPU_0_NAME", myPC.GetProcessorType());		
 		wf.putVariable("CPU_0_SPEED", myPC.GetProcessorSpeed());
 
@@ -306,6 +314,8 @@ void CTestAgentDlg::OnSysInfo()
 				myMemSlot = myPC.m_MemoryList.GetNext( pos);				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("RAM",temp);
 		count = 0;
 		//wf.putVariable("Memory Slots Hash: %s", myPC.m_MemoryList.GetHash());
 				
@@ -340,6 +350,8 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("GPU",temp);
 		count = 0;
 		
 		//wf.putVariable("Video Controlers Hash: %s", myPC.m_VideoList.GetHash());
@@ -380,6 +392,8 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("MONITOR",temp);
 		count = 0;
 		
 		//wf.putVariable("Monitors Hash: %s", myPC.m_MonitorList.GetHash());
@@ -409,6 +423,8 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("SOUNDCARD",temp);
 		count = 0;
 		//IMPORTANT: delete System Port infos// System Slots infos
 
@@ -457,8 +473,13 @@ void CTestAgentDlg::OnSysInfo()
 				myInput = myPC.m_InputList.GetNext( pos);
 			}
 		}
+		_itoa(mouseNo, temp, 10);
+		wf.putVariable("MOUSE",temp);
+		_itoa(keyboardNo, temp, 10);
+		wf.putVariable("KEYBOARD",temp);
+		
 
-		wf.putVariable("Input Devices Hash: %s", myPC.m_InputList.GetHash());
+		//wf.putVariable("Input Devices Hash: %s", myPC.m_InputList.GetHash());
 
 		//** IMPORTANT: delete System Controlers infos
 		/*SysInfoLog( "------------------------------------------------------");
@@ -507,7 +528,10 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
-		
+		_itoa(hardDiskNo, temp, 10);
+		wf.putVariable("HARDDISK",temp);
+		_itoa(CDNo, temp, 10);
+		wf.putVariable("CD,DVD",temp);
 		//wf.putVariable("Storage Peripherals Hash: %s", myPC.m_StorageList.GetHash());
 		
 
@@ -555,6 +579,8 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("NETWORKADAPTER", temp);
 		count = 0;
 		//wf.putVariable("Network Adapters Hash: %s", myPC.m_NetworkList.GetHash());
 		
@@ -592,6 +618,8 @@ void CTestAgentDlg::OnSysInfo()
 				
 			}
 		}
+		_itoa(count, temp, 10);
+		wf.putVariable("PRINTER", temp);
 		count = 0;
 		
 		//wf.putVariable("Printers Hash: %s", myPC.m_PrinterList.GetHash());
@@ -608,6 +636,7 @@ void CTestAgentDlg::OnSysInfo()
 		
 		wf.putVariable("OS_0_COMMENT", myPC.GetOSComment());
 
+		wf.putVariable("OS", "1");
 		/*switch (myPC.GetDeviceType())
 		{
 		case WINDOWS_SERVER:
@@ -653,6 +682,7 @@ void CTestAgentDlg::OnSysInfo()
 }
 void CTestAgentDlg::OnBnClickedButton2()
 {
+	MessageBox("123");
 	OnSysInfo();
 	// TODO: Add your control notification handler code here
 }
