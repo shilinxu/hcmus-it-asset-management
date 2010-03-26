@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import hcmus.am.client.entity.TrangThaiEntity;
 import hcmus.am.dao.TrangThaiDao;
 
@@ -12,7 +12,7 @@ public class Test_TrangThaiDAO_Insert {
 		TrangThaiEntity ent = new TrangThaiEntity();
 		ent.Ten = "test";
 		int rs = TrangThaiDao.insert(ent);
-		assert(rs == 1);
+		assertTrue(rs == 1);
 	}
 
 }

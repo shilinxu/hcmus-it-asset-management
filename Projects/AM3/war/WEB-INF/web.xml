@@ -24,8 +24,18 @@
   <servlet-mapping>
     <servlet-name>trangthai</servlet-name>
     <url-pattern>/am3/trangthai</url-pattern>
+  </servlet-mapping>  
+
+    <servlet>
+    <servlet-name>ComputerInfoCollection</servlet-name>
+    <servlet-class>hcmus.am.ComputerInfoCollection</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>ComputerInfoCollection</servlet-name>
+    <url-pattern>/ComputerInfoCollection</url-pattern>
   </servlet-mapping>
   
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>AM3.html</welcome-file>

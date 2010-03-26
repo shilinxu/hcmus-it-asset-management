@@ -13,7 +13,7 @@ public class LoaiThietBiDao {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select * from LOAI_THIET_BI where Ten = '" + Name + "'";
+		String  sql = "select IdLoaiThietBi, Ten, MoTa from LOAI_THIET_BI where LOWER(Ten) ='" + Name.toLowerCase() + "'";
 		try {
 			
 			conn = ConnectionUtil.getConnection();

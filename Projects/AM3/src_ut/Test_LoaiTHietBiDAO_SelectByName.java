@@ -9,8 +9,8 @@ public class Test_LoaiTHietBiDAO_SelectByName {
 
 	@Test
 	public void testSelectByName() {
-		LoaiThietBiEntity ent = LoaiThietBiDao.selectByName("RAM");
-		assertTrue (ent.IdLoaiThietBi == 5);
+		LoaiThietBiEntity ent = LoaiThietBiDao.selectByName("DESKTOP");
+		assertTrue (ent.IdLoaiThietBi == 1);
 	}
 
 }

@@ -17,7 +17,7 @@ public class ThongSoThietBiDao {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;		
-		String  sql = "insert into THONG_SO_THIET_BI values(?,?,?)";
+		String  sql = "insert into THONG_SO_THIET_BI(IdThongSoLoaiThietBi, IdThietBi, GiaTri) values(?,?,?)";
 		try {			
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
