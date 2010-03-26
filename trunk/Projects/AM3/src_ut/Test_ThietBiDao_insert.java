@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class Test_ThietBiDao_insert {
 
-	@Test
+	//@Test
 	public void testInsert() {
 		ThietBiEntity ent = new ThietBiEntity();
 		ent.IdLoaiThietBi = 3;
@@ -20,5 +20,18 @@ public class Test_ThietBiDao_insert {
 		System.out.println(ID);
 		assertTrue(ID > 1);
 	}
+	@Test
+	public void testGetIdDesktopByMACAddress() {
+		Integer i = ThietBiDao.GetIdDesktopByMACAddress("00:11:5B:AD:D4:7B");
+		assertTrue(i == 3);
+	}
+	
+	@Test
+	public void testSelect() {
+		ThietBiEntity ent = ThietBiDao.Select(3);
+		assertTrue(ent.IdThietBi == 3);
+		
+	}
+	
 
 }

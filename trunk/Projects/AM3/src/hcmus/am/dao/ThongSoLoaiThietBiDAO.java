@@ -18,7 +18,7 @@ public class ThongSoLoaiThietBiDAO {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = 	"select * from " +
+		String  sql = 	"select IdThongSoLoaiThietBi, IdLoaiThietBi, Name, Meaning, beUsedForChecking from " +
 						"THONG_SO_LOAI_THIET_BI " +
 						"where IdLoaiThietBi = " + IdLoaiThietBi.toString() +" and Name = '" + thongso + "'";
 		try {
@@ -42,5 +42,33 @@ public class ThongSoLoaiThietBiDAO {
 		}		
 		return ent;	
 		
+	}
+	/***
+	 * 
+	 * @return
+	 * 	-1: if fail.
+	 *   0: if successful.
+	 */
+	public static int SelectIdThongSoMACAdress() {
+		int id = -1;
+		Connection conn = null;
+		Statement stmt = null;		
+		ResultSet rs = null;
+		String  sql = 	"select IdThongSoLoaiThietBi from Thong_SO_LOAI_THIET_BI where name = 'MAC'";
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);			
+			if (rs.next()) {
+				id = rs.getInt("IdThongSoLoaiThietBi");
+			}			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return id;
 	}
 }

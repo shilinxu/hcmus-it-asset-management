@@ -2,7 +2,7 @@ package hcmus.am.client.entity;
 
 public class ThietBiEntity {
 //	[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
-//	Integer IdThietBi;
+	public Integer IdThietBi;
 //	[IdLoaiThietBi] [bigint] NOT NULL,
 	public Integer IdLoaiThietBi;
 //	[Name] [nvarchar](max) NULL,
@@ -15,4 +15,8 @@ public class ThietBiEntity {
 	public String Manufacturer;
 //	[Price] [int] NULL,
 	public Integer Price;
+//	[IdThietBiCha] [bigint] NULL,
+	public Integer IdThietBiCha;
+//	[IdThietBiGoc] [bigint] NULL,
+	public Integer IdThietBiGoc;
 }

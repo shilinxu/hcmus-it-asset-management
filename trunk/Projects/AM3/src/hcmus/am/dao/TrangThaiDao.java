@@ -20,7 +20,7 @@ public class TrangThaiDao {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select * from TRANG_THAI where IdTrangThai = " + IDDeThi.toString();
+		String  sql = "select IdTrangThai, Ten from TRANG_THAI where IdTrangThai = " + IDDeThi.toString();
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -41,11 +41,11 @@ public class TrangThaiDao {
 		}		
 		return ent;		
 	}
-	public static int insert(TrangThaiEntity ent){		
+	public static int insert(TrangThaiEntity ent){
 		Connection conn = null;
 		PreparedStatement stmt = null;		
 		int rs = 0;
-		String  sql = "insert into TRANG_THAI values(?)";
+		String  sql = "insert into TRANG_THAI(Ten) values(?)";
 		try {			
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(sql);

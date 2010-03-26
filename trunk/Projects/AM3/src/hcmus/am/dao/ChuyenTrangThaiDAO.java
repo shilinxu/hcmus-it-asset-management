@@ -14,7 +14,8 @@ public class ChuyenTrangThaiDAO {
 		Connection conn = null;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String sql = "Select * from CHUYEN_TRANG_THAI where TrangThai1 = " + IDTrangThai1.toString();
+		String sql = "Select IdChuyenTrangThai, TrangThai1, TrangThai2, ManHinh, MoTa " +
+				"from CHUYEN_TRANG_THAI where TrangThai1 = " + IDTrangThai1.toString();
 		
 		try {
 			conn = ConnectionUtil.getConnection();

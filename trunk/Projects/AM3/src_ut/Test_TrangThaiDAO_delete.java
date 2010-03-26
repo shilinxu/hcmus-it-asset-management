@@ -10,9 +10,9 @@ public class Test_TrangThaiDAO_delete {
 	@Test
 	public void testDelete() {
 		TrangThaiEntity ent = new TrangThaiEntity();
-		ent.IdTrangThai = 26;
+		ent.IdTrangThai = 27;
 		int rs = TrangThaiDao.delete(ent);
-		assert(rs == 1);
+		assertTrue(rs == 1);
 		
 	}
 
