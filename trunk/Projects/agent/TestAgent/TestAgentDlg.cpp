@@ -171,8 +171,8 @@ void CTestAgentDlg::OnBnClickedButton1()
 		MessageBox("chan");
 	try {	
 		WebForm wf;
-		wf.setHost("http://nghdiep.appspot.com");
-		wf.setScriptFile("/simple");	
+		wf.setHost("http://localhost:8888");
+		wf.setScriptFile("/ComputerInfoCollection");	
 
 		//wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
 		//char temp[1024];
@@ -225,8 +225,8 @@ void CTestAgentDlg::OnSysInfo()
 	try {	
 		MessageBox("da vo try");
 		WebForm wf;
-		wf.setHost("http://nghdiep.appspot.com");
-		wf.setScriptFile("/simple");	
+		wf.setHost("http://localhost:8888");
+		wf.setScriptFile("/ComputerInfoCollection");	
 		//wf.putVariable("Mainboard", myPC.m_BIOS.GetDeviceName());
 		char temp[1024];
 		_itoa(myPC.GetNumberOfProcessors(), temp, 10);
@@ -251,7 +251,7 @@ void CTestAgentDlg::OnSysInfo()
 		//wf.putVariable("System Manufacturer: %s", myPC.m_BIOS.GetSystemManufacturer());		
 		wf.putVariable("MAINBOARD", "1");
 
-		wf.putVariable("MAINBOARD_0_MANUFACTORER", myPC.m_BIOS.GetSystemManufacturer());
+		wf.putVariable("MAINBOARD_0_MANUFACTURER", myPC.m_BIOS.GetSystemManufacturer());
 		
 		//wf.putVariable("System Model: %s", myPC.m_BIOS.GetSystemModel());
 		wf.putVariable("MAINBOARD_0_MODEL", myPC.m_BIOS.GetSystemModel());
@@ -336,7 +336,7 @@ void CTestAgentDlg::OnSysInfo()
 			wf.putVariable(str, myVideo.GetName());
 			
 			str.Format("GPU_%d_CHIPSET", count);
-			wf.putVariable("Chipset: %s", myVideo.GetChipset());
+			wf.putVariable(str, myVideo.GetChipset());
 			
 			str.Format("GPU_%d_MEMORY", count);
 			wf.putVariable(str, myVideo.GetMemory());
@@ -411,11 +411,11 @@ void CTestAgentDlg::OnSysInfo()
 		{
 			bContinue = (pos != NULL);
 			str.Format("SOUNDCARD_%d_MANUFACTURER", count);
-			wf.putVariable("Manufacturer: %s", mySound.GetManufacturer());
+			wf.putVariable(str, mySound.GetManufacturer());
 			str.Format("SOUNDCARD_%d_NAME", count);
-			wf.putVariable("Name: %s", mySound.GetName());
+			wf.putVariable(str, mySound.GetName());
 			str.Format("SOUNDCARD_%d_DESCRIPTION", count);
-			wf.putVariable("Description: %s", mySound.GetDescription());
+			wf.putVariable(str, mySound.GetDescription());
 			count++;
 			if (pos != NULL)
 			{
@@ -510,13 +510,13 @@ void CTestAgentDlg::OnSysInfo()
 				wf.putVariable(str, myStorage.GetManufacturer());
 
 				str.Format("%sNAME", prefix);
-				wf.putVariable("Name: %s", myStorage.GetName());
+				wf.putVariable(str, myStorage.GetName());
 				
 				str.Format("%sMODEL", prefix);
-				wf.putVariable("Model: %s", myStorage.GetModel());
+				wf.putVariable(str, myStorage.GetModel());
 
 				str.Format("%sDESCRIPTION", prefix);
-				wf.putVariable("Description: %s", myStorage.GetDescription());
+				wf.putVariable(str, myStorage.GetDescription());
 				
 				str.Format("%sSIZE", prefix);
 				_itoa(myStorage.GetSize(),temp, 10);
@@ -555,13 +555,13 @@ void CTestAgentDlg::OnSysInfo()
 			bContinue = (pos != NULL);
 
 			//wf.putVariable(str, myNetwork.GetType());
-			str.Format("NETWORKADAPTER_0_DESCRIPTION", count);
+			str.Format("NETWORKADAPTER_%d_DESCRIPTION", count);
 			wf.putVariable(str, myNetwork.GetDescription());
 			
-			str.Format("NETWORKADAPTER_0_SPEED", count);
+			str.Format("NETWORKADAPTER_%d_SPEED", count);
 			wf.putVariable(str, myNetwork.GetSpeed());
 			
-			str.Format("NETWORKADAPTER_0_MAC", count);
+			str.Format("NETWORKADAPTER_%d_MAC", count);
 			wf.putVariable(str, myNetwork.GetMACAddress());
 
 			str.Format("NETWORKADAPTER_%d_IP", count);
