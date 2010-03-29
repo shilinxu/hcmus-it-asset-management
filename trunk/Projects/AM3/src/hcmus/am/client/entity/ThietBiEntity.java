@@ -1,6 +1,8 @@
 package hcmus.am.client.entity;
 
-public class ThietBiEntity {
+import java.io.Serializable;
+
+public class ThietBiEntity  implements Serializable {
 //	[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
 	public Integer IdThietBi;
 //	[IdLoaiThietBi] [bigint] NOT NULL,
@@ -19,4 +21,12 @@ public class ThietBiEntity {
 	public Integer IdThietBiCha;
 //	[IdThietBiGoc] [bigint] NULL,
 	public Integer IdThietBiGoc;
+	
+	public ThietBiEntity() {	
+		IdThietBi = null;
+		IdLoaiThietBi = null;
+		Price = null;
+		IdThietBiCha = null;
+		IdThietBiGoc = null;
+	}
 }

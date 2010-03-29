@@ -1,6 +1,7 @@
 package hcmus.am;
 
 import hcmus.am.client.entity.ThietBiEntity;
+import hcmus.am.client.entity.ThongSoLoaiThietBiEntity;
 import hcmus.am.client.entity.ThongSoThietBiEntity;
 import hcmus.am.dao.LoaiThietBiDao;
 import hcmus.am.dao.ThietBiDao;
@@ -105,7 +106,7 @@ public class ComputerInfoCollection extends HttpServlet {
 			if (szNumberThietBi == null || szNumberThietBi.equals("")) {
 				numberOfThietBi = 0;
 			} else {
-				Integer.parseInt(szNumberThietBi);
+				numberOfThietBi = Integer.parseInt(szNumberThietBi);
 			}
 			
 			for (int iThietBi = 0; iThietBi < numberOfThietBi; iThietBi++ ) {				
@@ -119,37 +120,42 @@ public class ComputerInfoCollection extends HttpServlet {
 				ent.Name = request.getParameter(prefix + "NAME");				
 				ent.IdThietBi = ThietBiDao.Insert(ent);
 
-				for (int iThongSo = 1; iThongSo < ThongSo[iThietBi].length; iThongSo++) {					
+				for (int iThongSo = 1; iThongSo < ThongSo[iLoaiThietBi].length; iThongSo++) {					
 					//szThongSo = ThongSo[iThietBi][iThongSo].replace('0',(char)('0'+ numberOfThietBi));					
 					szThongSo = (String)request.getParameter(prefix + ThongSo[iLoaiThietBi][iThongSo]);
-					int IdThongSoThietBi = ThongSoLoaiThietBiDAO.selectByName(ent.IdLoaiThietBi, ThongSo[iLoaiThietBi][iThongSo]).IdThongSoLoaiThietBi;
+					ThongSoLoaiThietBiEntity ts = ThongSoLoaiThietBiDAO.selectByName(ent.IdLoaiThietBi, ThongSo[iLoaiThietBi][iThongSo]);					
+					if ( ts == null) { // truong hop 1: khong tim thay loai thong so.
+						System.out.println(prefix + ThongSo[iLoaiThietBi][iThongSo]);
+						continue;
+					}
 					ThongSoThietBiEntity thongsoEnt = new ThongSoThietBiEntity();
 					thongsoEnt.IdThietBi = ent.IdThietBi;
-					thongsoEnt.IdThongSoLoaiThietBi = IdThongSoThietBi;
+					thongsoEnt.IdThongSoLoaiThietBi = ts.IdThongSoLoaiThietBi;
 					thongsoEnt.GiaTri = szThongSo;
 					if (1 == ThongSoThietBiDao.insert(thongsoEnt)) { //chen thanh cong.
 						//TODO: just debug, will delete it.
 						response.getWriter().println(prefix + ThongSo[iLoaiThietBi][iThongSo] + "  " + szThongSo);						
+					} else {
+						System.out.println(prefix + ThongSo[iLoaiThietBi][iThongSo]);
 					}
 				}
 				//TODO: chen xong 1 thiet bi cua desktop, add thiet bi nay nhu la mot thiet bi con cua desktop.				
-			}
-			
-			Integer IdDesktop = ThietBiDao.GetIdDesktopByMACAddress(request.getParameter("NETWORKADAPTER_0_MAC"));
-			//TODO: do het cac NETWORKADAPTER De tim ra duoc MAC ADDRESS. 
-			//ThietBiEntity DesktopEnt = ThietBiDao.
-		
-			ThietBiEntity orginalDesktopEnt = null;
-			if (IdDesktop != 0) {
-				orginalDesktopEnt = ThietBiDao.Select(IdDesktop);
-				//delete tat cac cac the hien truoc do.
-				ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);
-			} else {
-				//danh dau la thiet bi moi.
-				desktopEnt.Description = "new "; //blab blab blab...				
-			}
-			ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);			
+			}	
 		}
+		Integer IdDesktop = ThietBiDao.GetIdDesktopByMACAddress(request.getParameter("NETWORKADAPTER_0_MAC"));
+		//TODO: do het cac NETWORKADAPTER De tim ra duoc MAC ADDRESS. 
+		//ThietBiEntity DesktopEnt = ThietBiDao.
+	
+		ThietBiEntity orginalDesktopEnt = null;
+		if (IdDesktop != 0) {
+			orginalDesktopEnt = ThietBiDao.Select(IdDesktop);
+			//delete tat cac cac the hien truoc do.
+			ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);
+		} else {
+			//danh dau la thiet bi moi.
+			desktopEnt.Description = "new "; //blab blab blab...				
+		}
+		ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);			
 	}
 
 	/**
