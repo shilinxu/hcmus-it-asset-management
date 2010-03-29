@@ -30,7 +30,11 @@ public class ThietBiDao {
 			stmt.setString(3, ent.Caption);
 			stmt.setString(4, ent.Description);			
 			stmt.setString(5, ent.Manufacturer);
-			stmt.setInt(6, ent.Price);
+			//stmt.setInt(6, ent.Price);
+			if (ent.Price == null) 
+				stmt.setNull(6, java.sql.Types.NUMERIC); 
+			else					
+				stmt.setInt(6, ent.Price);
 			stmt.execute();	
 			int iUpdCount = stmt.getUpdateCount();
 			if (iUpdCount != 1) { //if ko insert thanh cong.
