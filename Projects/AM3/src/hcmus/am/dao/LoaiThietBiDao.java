@@ -1,13 +1,29 @@
 package hcmus.am.dao;
 
+import hcmus.am.client.entity.LoaiNguoiDungEntity;
+import hcmus.am.client.entity.LoaiThietBiEntity;
+import hcmus.am.utils.ConnectionUtil;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import hcmus.am.client.entity.LoaiThietBiEntity;
-import hcmus.am.utils.ConnectionUtil;
-
 public class LoaiThietBiDao {
+	public static LoaiNguoiDungEntity selectById(Integer Id ) {
+		return null;
+	}
+	
+	public static Integer insert(LoaiThietBiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer update(LoaiThietBiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer delete(LoaiThietBiEntity ent ) {
+		return 0;
+	}
 	public static LoaiThietBiEntity selectByName(String Name) {		
 		LoaiThietBiEntity ent = null;
 		Connection conn = null;

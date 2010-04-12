@@ -1,10 +1,3 @@
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import hcmus.am.dao.ChuyenTrangThaiDAO;
-import hcmus.am.client.entity.ChuyenTrangThaiEntity;
-
 import org.junit.Test;
 
 

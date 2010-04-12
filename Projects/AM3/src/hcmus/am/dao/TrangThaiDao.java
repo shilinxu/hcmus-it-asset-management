@@ -10,12 +10,34 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TrangThaiDao {
+	public static Integer update(TrangThaiEntity ent ) {
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "update Trang_THAI " +
+				"set Ten = ? " +
+				"where IdTrangThai= ? ";
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, ent.Ten);
+			stmt.setInt(2, ent.IdTrangThai);
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
+	}
+
 	/**
 	 * select de thi tu co so du lieu.
 	 * @param IDDeThi IDDeThi = -1 thi se phat sinh de ngau nhien.
 	 * @return
 	 */
-	public static TrangThaiEntity select(Integer IDDeThi){
+	public static TrangThaiEntity selectById(Integer IDDeThi){
 		TrangThaiEntity ent = null;
 		Connection conn = null;
 		Statement stmt = null;		

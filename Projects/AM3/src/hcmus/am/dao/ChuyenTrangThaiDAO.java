@@ -9,6 +9,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ChuyenTrangThaiDAO {
+	public static ChuyenTrangThaiEntity selectById(Integer Id ) {
+		return null;
+	}
+	
+	public static Integer insert(ChuyenTrangThaiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer update(ChuyenTrangThaiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer delete(ChuyenTrangThaiEntity ent ) {
+		return 0;
+	}
 	public static ArrayList<ChuyenTrangThaiEntity> selectAllChuyenTrangThaiFrom(Integer IDTrangThai1) {
 		ArrayList<ChuyenTrangThaiEntity> lst = new ArrayList<ChuyenTrangThaiEntity>();
 		Connection conn = null;
