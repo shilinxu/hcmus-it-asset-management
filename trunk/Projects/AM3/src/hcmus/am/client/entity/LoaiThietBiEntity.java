@@ -9,8 +9,4 @@ public class LoaiThietBiEntity  implements Serializable {
 	public String Ten;
 //	[MoTa] [nvarchar](max) NULL,
 	public String MoTa;
-	
-	public LoaiThietBiEntity() {
-		IdLoaiThietBi = null;
-	}
 }

@@ -91,7 +91,7 @@ public class ComputerInfoCollection extends HttpServlet {
 
 		desktopEnt.IdLoaiThietBi = LoaiThietBiDao.selectByName("DESKTOP").IdLoaiThietBi;
 		desktopEnt.Name = "New"; //name of may tinh.
-		desktopEnt.IdThietBi = ThietBiDao.Insert(desktopEnt);
+		desktopEnt.IdThietBi = ThietBiDao.insert(desktopEnt);
 
 		if (desktopEnt.IdThietBi == -1 )
 		{
@@ -118,7 +118,7 @@ public class ComputerInfoCollection extends HttpServlet {
 				ent.Description = request.getParameter(prefix + "DESCRIPTION");
 				ent.Manufacturer = request.getParameter(prefix + "MANUFACTURER");
 				ent.Name = request.getParameter(prefix + "NAME");				
-				ent.IdThietBi = ThietBiDao.Insert(ent);
+				ent.IdThietBi = ThietBiDao.insert(ent);
 
 				for (int iThongSo = 1; iThongSo < ThongSo[iLoaiThietBi].length; iThongSo++) {					
 					//szThongSo = ThongSo[iThietBi][iThongSo].replace('0',(char)('0'+ numberOfThietBi));					
@@ -148,7 +148,7 @@ public class ComputerInfoCollection extends HttpServlet {
 	
 		ThietBiEntity orginalDesktopEnt = null;
 		if (IdDesktop != 0) {
-			orginalDesktopEnt = ThietBiDao.Select(IdDesktop);
+			orginalDesktopEnt = ThietBiDao.selectById(IdDesktop);
 			//delete tat cac cac the hien truoc do.
 			ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);
 		} else {

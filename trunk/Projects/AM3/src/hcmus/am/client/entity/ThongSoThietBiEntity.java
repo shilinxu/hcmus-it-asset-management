@@ -7,14 +7,8 @@ public class ThongSoThietBiEntity  implements Serializable {
 	public Integer IdThongSoThietBi;
 //	[IdThongSoLoaiThietBi] [bigint] NOT NULL,
 	public Integer IdThongSoLoaiThietBi;
-//	[IdThietBi] [bigint] NOT NULL,
-	public Integer IdThietBi;
+//	[IdTheHienThietBi] [bigint] NOT NULL,
+	public Integer IdTheHienThietBi;
 //	[GiaTri] [nvarchar](max) NOT NULL,
-	public String GiaTri;
-	
-	public ThongSoThietBiEntity() {
-		IdThietBi = null;
-		IdThongSoLoaiThietBi = null;
-		IdThietBi = null;
-	}
+	public String GiaTri;	
 }

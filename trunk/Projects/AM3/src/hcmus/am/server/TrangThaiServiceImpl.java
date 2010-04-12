@@ -18,7 +18,7 @@ public class TrangThaiServiceImpl  extends RemoteServiceServlet implements Trang
 	@Override
 	public TrangThaiEntity select(Integer idTrangThai) {
 		// TODO Auto-generated method stub
-		return TrangThaiDao.select(idTrangThai);
+		return TrangThaiDao.selectById(idTrangThai);
 	}
 
 }

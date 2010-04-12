@@ -20,11 +20,21 @@
     <servlet-name>trangthai</servlet-name>
     <servlet-class>hcmus.am.server.TrangThaiServiceImpl</servlet-class>
   </servlet>
-  
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>trangthai</servlet-name>
     <url-pattern>/am3/trangthai</url-pattern>
   </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>thietbi</servlet-name>
+    <servlet-class>hcmus.am.server.ThietBiServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>thietbi</servlet-name>
+    <url-pattern>/am3/thietbi</url-pattern>
+  </servlet-mapping>  
+  
+  
 
     <servlet>
     <servlet-name>ComputerInfoCollection</servlet-name>

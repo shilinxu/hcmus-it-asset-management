@@ -5,8 +5,4 @@ import java.io.Serializable;
 public class TrangThaiEntity implements Serializable {
 	public Integer IdTrangThai;
 	public String Ten;
-	
-	public TrangThaiEntity() {
-		IdTrangThai = null;
-	}
 }

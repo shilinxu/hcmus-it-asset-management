@@ -2,6 +2,7 @@ package hcmus.am.client.entity;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class ChuyenTrangThaiEntity  implements Serializable {	
 //	[IdChuyenTrangThai] [int] IDENTITY(1,1) NOT NULL,
 	public Integer IdChuyenTrangThai;
@@ -17,10 +18,5 @@ public class ChuyenTrangThaiEntity  implements Serializable {
 	
 //	[MoTa] [nvarchar](max) NULL,
 	public String Mota;
-	
-	public ChuyenTrangThaiEntity(){
-		IdChuyenTrangThai = null;
-		TrangThai1 = null;
-		TrangThai2 = null;
-	}
+
 }

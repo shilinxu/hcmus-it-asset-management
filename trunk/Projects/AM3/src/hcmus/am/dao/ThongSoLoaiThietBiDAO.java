@@ -1,14 +1,30 @@
 package hcmus.am.dao;
 
+import hcmus.am.client.entity.LoaiNguoiDungEntity;
+import hcmus.am.client.entity.ThongSoLoaiThietBiEntity;
+import hcmus.am.utils.ConnectionUtil;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import hcmus.am.client.entity.ThongSoLoaiThietBiEntity;
-import hcmus.am.utils.ConnectionUtil;
-
 public class ThongSoLoaiThietBiDAO {
+	public static LoaiNguoiDungEntity selectById(Integer Id ) {
+		return null;
+	}
+	
+	public static Integer insert(ThongSoLoaiThietBiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer update(ThongSoLoaiThietBiEntity ent ) {
+		return 0;
+	}
+	
+	public static Integer delete(ThongSoLoaiThietBiEntity ent ) {
+		return 0;
+	}
 	public static ArrayList<ThongSoLoaiThietBiEntity> selectAllThongSoOfThietBi(Integer IdLoaiThietBi) {
 		return null;
 	
@@ -27,11 +43,21 @@ public class ThongSoLoaiThietBiDAO {
 			rs = stmt.executeQuery(sql);			
 			if (rs.next()) {
 				ent = new ThongSoLoaiThietBiEntity();
+				
+//				[IdThongSoLoaiThietBi] [bigint] IDENTITY(1,1) NOT NULL,
 				ent.IdThongSoLoaiThietBi= rs.getInt("IdThongSoLoaiThietBi");
-				ent.IdLoaiThietBi = rs.getInt("IdLoaiThietBi");				
-				ent.Name = rs.getString("Name");
-				ent.Meaning = rs.getString("Meaning");
-				ent.beUsedForChecking = rs.getBoolean("beUsedForChecking");
+				
+//				[IdLoaiThietBi] [bigint] NOT NULL,
+				ent.IdLoaiThietBi= rs.getInt("IdLoaiThietBi");
+				
+//				[Ten] [nvarchar](50) NOT NULL,
+				ent.IdThongSoLoaiThietBi= rs.getInt("IdThongSoLoaiThietBi");
+				
+//				[YNghia] [nvarchar](max) NULL,
+				ent.Ten= rs.getString("Ten");
+				
+//				[SuDungDeKiemTraThietBi] [bit] NULL,
+				ent.SuDungDeKiemTraThietBi= rs.getBoolean("SuDungDeKiemTraThietBi");
 			}			
 		} catch (Exception exception) {
 			exception.printStackTrace();
