@@ -1,485 +1,333 @@
 package hcmus.am.client;
 
 
-import java.util.ArrayList;
-
+import hcmus.am.client.entity.NhomThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
-import hcmus.am.client.entity.TrangThaiEntity;
 
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.gwtext.client.core.EventObject;
-import com.gwtext.client.core.Margins;
-import com.gwtext.client.core.RegionPosition;
-import com.gwtext.client.core.XTemplate;
-import com.gwtext.client.data.ArrayReader;
-import com.gwtext.client.data.DateFieldDef;
-import com.gwtext.client.data.FieldDef;
-import com.gwtext.client.data.IntegerFieldDef;
-import com.gwtext.client.data.MemoryProxy;
-import com.gwtext.client.data.Record;
-import com.gwtext.client.data.RecordDef;
-import com.gwtext.client.data.Store;
-import com.gwtext.client.data.StringFieldDef;
-import com.gwtext.client.util.Format;
-import com.gwtext.client.widgets.DataView;
-import com.gwtext.client.widgets.Panel;
-import com.gwtext.client.widgets.TabPanel;
-import com.gwtext.client.widgets.Viewport;
-import com.gwtext.client.widgets.DataView.Data;
-import com.gwtext.client.widgets.event.DataViewListenerAdapter;
-import com.gwtext.client.widgets.layout.AccordionLayout;
-import com.gwtext.client.widgets.layout.BorderLayout;
-import com.gwtext.client.widgets.layout.BorderLayoutData;
-import com.gwtext.client.widgets.layout.FitLayout;
-import com.gwtext.client.widgets.tree.TreeNode;
-import com.gwtext.client.widgets.tree.TreePanel;
+import com.smartgwt.client.types.ListGridEditEvent;
+import com.smartgwt.client.types.TreeModelType;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.events.DrawEvent;
+import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.tree.Tree;
+import com.smartgwt.client.widgets.tree.TreeGrid;
+import com.smartgwt.client.widgets.tree.TreeGridField;
+import com.smartgwt.client.widgets.tree.TreeNode;
 
 
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class AM3 implements EntryPoint {
-	/*private final TrangThaiServiceAsync trangthaiService = GWT.create(TrangThaiService.class); 
-	@Override
-	public void onModuleLoad() {	
-		RootPanel root = RootPanel.get();
-		final Button b = new Button();
-		b.setText("Click to me");
-	//	Viewport v = new Viewport();
-		final HTML html = new HTML();
-		b.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				if (b.getText().equals("Click to me")) {
-					//b.setText();
-					trangthaiService.select(1, new AsyncCallback<TrangThaiEntity>() {
-						public void onSuccess(TrangThaiEntity result) {
-							if (result != null) {								
-								b.setText(result.Ten);
-							} else {
-								b.setText("NULL");
-							}
-						};
-						public void onFailure(Throwable caught) {
-							//b.setText(caught.getMessage());
-							html.setHTML(caught.getMessage());
-						}; 
-					});
-				} else {
-					b.setText("Click to me");
-				}
-			}
-		});
-		com.gwtext.client.widgets.Button  d = new com.gwtext.client.widgets.Button();
-		root.add(b);
-		root.add(d);
-		root.add(html);
-	}*/
+public class AM3 implements EntryPoint {	
 	private final TrangThaiServiceAsync trangthaiService = GWT.create(TrangThaiService.class);
 	private final ThietBiServiceAsync thietbiService = GWT.create(ThietBiService.class);
-	public void onModuleLoad() {  
-		//mot panel co layout thuoc loai FITLayout o ngoai cung.
-		Panel panel = new Panel();  
-		panel.setBorder(false);  
-		panel.setPaddings(15);  
-		panel.setLayout(new FitLayout());  
+	public void onModuleLoad() {
+		final Canvas canvas = new Canvas();
 
-		//Mot Panel CO layout Border
-		Panel borderPanel = new Panel();  
-		borderPanel.setLayout(new BorderLayout());  
+		final ListGrid countryGrid = new ListGrid();
+		countryGrid.setWidth(500);
+		countryGrid.setHeight(224);
+		countryGrid.setShowAllRecords(true);
+		countryGrid.setCanEdit(true);
+		countryGrid.setEditEvent(ListGridEditEvent.CLICK);
+		countryGrid.setModalEditing(true);
 
+		ListGridField nameField = new ListGridField("countryName", "Country");
+		ListGridField capitalField = new ListGridField("capital", "Capital");
+		ListGridField continentField = new ListGridField("continent", "Continent");
 
-		//add north panel vao panel border o mat NORTH.  
-		Panel northPanel = new Panel();  
-		northPanel.setHtml("<h2>Trường đại học KHOA HỌC TỰ NHIÊN HCM</h2><h2>Khoa CNTT</h2>" +
-		"<h2>Hcmus-Asset-Manager-v0.1  : Hệ thống giám sát & quản lý thiết bị khoa CNTT</h2>");  
-		northPanel.setHeight(80);  
-		northPanel.setBodyStyle("background-color:FFFF88");  
-		northPanel.setCollapsible(true);         
-		borderPanel.add(northPanel, new BorderLayoutData(RegionPosition.NORTH));  
+		countryGrid.setFields(new ListGridField[] {nameField, capitalField, continentField});
 
-		//add south panel  
-		Panel southPanel = new Panel();  
-		southPanel.setHtml(
-				"<h3>Copyright 2010 HCMUS</h3>" +
-		"<h3>Developed by diep.nguyenhong@gameloft.com & hung.hoanghai@gameloft.com<h3>");  
-		southPanel.setHeight(70);  
-		southPanel.setBodyStyle("background-color:CDEB8B");  
-		southPanel.setCollapsible(true);  
-		//southPanel.setTitle("South");  
+		final ListGrid thietBiGrid = new ListGrid(); 
+		thietBiGrid.setWidth(500);
+		thietBiGrid.setHeight(224);
+		thietBiGrid.setShowAllRecords(true);
+		thietBiGrid.setCanEdit(true);
+		thietBiGrid.setEditEvent(ListGridEditEvent.CLICK);
+		thietBiGrid.setModalEditing(true);
 
-		BorderLayoutData southData = new BorderLayoutData(RegionPosition.SOUTH);  
-		southData.setMinSize(100);  
-		southData.setMaxSize(200);  
-		southData.setMargins(new Margins(0, 0, 0, 0));  
-		southData.setSplit(true);  
-		borderPanel.add(southPanel, southData);  
+		ListGridField idThietBiField = new ListGridField("IdThietBi","thiet bi");
+		ListGridField idLoaiThietBiField = new ListGridField("IdLoaiThietBi","loai thiet bi");
 
-		//add east panel  
-		Panel eastPanel = new Panel();  
-		eastPanel.setHtml("<p>east panel</p>");  
-		eastPanel.setTitle("East Side");  
-		eastPanel.setCollapsible(true);  
-		eastPanel.setWidth(225);  
+		thietBiGrid.setFields((new ListGridField[] {idThietBiField, idLoaiThietBiField}));
 
-		BorderLayoutData eastData = new BorderLayoutData(RegionPosition.EAST);  
-		eastData.setSplit(true);  
-		eastData.setMinSize(175);  
-		eastData.setMaxSize(400);  
-		eastData.setMargins(new Margins(0, 0, 5, 0));  
+		/*thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>(	) {
 
-		borderPanel.add(eastPanel, eastData);  
-		/*Bat dau menu ben trai*/
-		Panel westPanel = new Panel();  
-		//westPanel.setHtml("<p>Danh mục chức năng</p>");  
-		westPanel.setTitle("Danh mục chức năng");  
-		westPanel.setBodyStyle("background-color:EEEEEE");  
-		westPanel.setCollapsible(true);  
-		westPanel.setWidth(200);  
-		westPanel.setLayout(new AccordionLayout(true));
+			@Override
+			public void onSuccess(ArrayList<ThietBiEntity> result) {
+				thietBiGrid.setData(getThietBi(result));
+				//  canvas.redraw();
+			}
 
-		BorderLayoutData westData = new BorderLayoutData(RegionPosition.WEST);
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("abc");
+			}
+		});*/
 
-		westData.setSplit(true);
-		westData.setMinSize(175);  
-		westData.setMaxSize(400);  
-		westData.setMargins(new Margins(0, 5, 0, 0));  
-
-		borderPanel.add(westPanel, westData);
-
-		//Them menu Nghiep vu
-		/*         Panel navigationPanel = new Panel();  
-         navigationPanel.setHtml("123");  
-         navigationPanel.setTitle("Nghiệp vụ");  
-         navigationPanel.setAutoScroll(true);  
-         navigationPanel.setBorder(false);  
-         navigationPanel.setIconCls("folder-icon");
-		 */
-		final TreePanel treePanel = new OutlookTreePanel();
-		treePanel.setTitle("Nghiệp vụ");  
-		treePanel.setAutoScroll(true);  
-		treePanel.setBorder(false);  
-		treePanel.setIconCls("folder-icon");
-		// navigationPanel.add(treePanel);
-		westPanel.add(treePanel);
-
-
-
-		//them menu setting.
-		TreePanel settingsPanel = new SettingTreePanel();
-		settingsPanel.setTitle("Cấu hình");  
-		settingsPanel.setAutoScroll(true);  
-		settingsPanel.setBorder(false);  
-		settingsPanel.setIconCls("settings-icon");  
-		westPanel.add(settingsPanel);  
-
-		/*Ket thuc menu*/
-
-		//center panel thuoc loai tab panel, tao them vai panel con roi at vo thang nay 
-		TabPanel centerPanel = new TabPanel();
-		centerPanel.setBodyStyle("background-color:C3D9FF");  
-		Panel tab0 = new Panel("Danh sách sản phẩm");
-		Panel tab1 = new Panel("Giới thiệu", "<span style=\"font-family: 'Lucida Grande',arial,tahoma,verdana,serif,'Courier New'; font-size: 13px; line-height: 20px;\" class=\"Apple-style-span\"><strong style=\"margin: 0px; padding: 0px; border-width: 0px; outline-width: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;\">Khoa Công Nghệ Thông Tin (CNTT) - Trường ĐH KHTN TP.HCM<span class=\"Apple-converted-space\">&nbsp;</span></strong>được thành lập vào tháng 2 năm 1995 trên cơ sở của Bộ môn Tin học của Khoa Toán Trường Đại học Tổng hợp TP.HCM.<br>" +
-		"	<br>	Trải qua 15 năm hoạt&nbsp; động, Khoa CNTT đã phát triển vững chắc và được chính phủ bảo trợ để trở thành một trong những khoa CNTT hàng đầu trong hệ thống giáo dục đại học của Việt Nam.</span>");
-		Panel tab2 = new Panel("Sa2wks2015", "<h2>Owner: Nguyễn Hồng Điệp</h2>");
-		Panel tab3 = new Panel("Sa2wks1043", "unknown");		
-
-		centerPanel.add(tab0);
-		centerPanel.add(tab1);
-		centerPanel.add(tab2);
-		centerPanel.add(tab3);
-		centerPanel.activate(0);
+		//  canvas.addChild(countryGrid);
+		canvas.addChild(thietBiGrid);
+		RootPanel.get().add(canvas);
+		//canvas.draw();
 		
-		final TextBox b = new TextBox();
-		{
-			//load test
+		final TreeGrid treeGrid = new TreeGrid();  
+		treeGrid.setWidth(300);  
+		treeGrid.setHeight(400);  
+
+		TreeGridField field = new TreeGridField("Name", "Tree from local data");  
+		field.setCanSort(false);  
+
+		treeGrid.setFields(field);  
+
+		final Tree tree = new Tree();  
+		tree.setModelType(TreeModelType.PARENT);  
+		tree.setNameProperty("name");  
+		tree.setIdField("id");  
+		tree.setParentIdField("parentId");  
+		tree.setShowRoot(true);  
+
+		thietbiService.selectRootMenu(new AsyncCallback<ArrayList<NhomThietBiEntity>>() {
 			
-			trangthaiService.select(1, new AsyncCallback<TrangThaiEntity>() {
-				public void onSuccess(TrangThaiEntity result) {
-					if (result != null) {								
-						b.setText(result.Ten);
-					} else {
-						b.setText("NULL");
-					}
-				};
-				public void onFailure(Throwable caught) {
-					//b.setText(caught.getMessage());
-					b.setText(caught.getMessage());
-				}; 
-			});
-			tab0.add(b);
-			//end load test
-		}
-		 MemoryProxy dataProxy = new MemoryProxy(getData());  
-         RecordDef recordDef = new RecordDef(new FieldDef[]{  
-                 new StringFieldDef("name"),  
-                 new IntegerFieldDef("size"),  
-                 new DateFieldDef("lastmod", "timestamp"),  
-                 new StringFieldDef("url")  
-         });  
-   
-        ArrayReader reader = new ArrayReader(recordDef);  
-        
-        final Store store = new Store(dataProxy, reader, true);  
-        store.load();  
-  
-        XTemplate template = new XTemplate(new String[]{  
-                "<tpl for='.'>",  
-                "<div class='thumb-wrap'>",  
-                "<div class='thumb'><img src='{url}' ext:qtip='{name}'></div>",  
-                "<span class='x-editable' ext:qtip='{name}'>{shortName}</span></div>",  
-                "</tpl>",  
-                "<div class='x-clear'></div>"  
-        });  
-  
-        Panel inner = new Panel();  
-       // inner.setWidth(535);  
-        inner.setId("images-view");  
-        inner.setFrame(true);  
-        inner.setAutoHeight(true);  
-        //inner.setCollapsible(true);  
-        inner.setLayout(new FitLayout());  
-       // inner.setTitle("Simple DataView");  
-  
-        DataView dataView = new DataView("div.thumb-wrap") {  
-            public void prepareData(Data data) {  
-                data.setProperty("shortName", Format.ellipsis(data.getProperty("name"), 15));  
-            }  
-        };  
-        dataView.setWidth(535);  
-  
-        dataView.addListener(new DataViewListenerAdapter() {  
-            public boolean doBeforeClick(DataView source, int index, Element node, EventObject e) {  
-  
-                System.out.println("doBeforeClick::" + getSelectedMovies(source));  
-                return true;  
-            }  
-  
-            public boolean doBeforeSelect(DataView source, Element node, Element[] selections) {  
-                System.out.println("doBeforeSelect::" + getSelectedMovies(source));  
-                return super.doBeforeSelect(source, node, selections);  
-            }  
-  
-            public void onClick(DataView source, int index, Element node, EventObject e) {  
-                System.out.println("onClick::" + getSelectedMovies(source));  
-                super.onClick(source, index, node, e);  
-                Window.alert("Da click");
-            }  
-  
-            public void onContainerClick(DataView source, EventObject e) {  
-                System.out.println("onContainerClick");  
-                super.onContainerClick(source, e);  
-            }  
-  
-            public void onContextMenu(DataView source, int index, Element node, EventObject e) {  
-                System.out.println("onContextMenu");  
-                super.onContextMenu(source, index, node, e);  
-            }  
-  
-            public void onDblClick(DataView source, int index, Element node, EventObject e) {  
-                System.out.println("onDblClick");  
-                super.onDblClick(source, index, node, e);  
-            }  
-  
-            public void onSelectionChange(DataView view, Element[] selections) {  
-                System.out.println("onSelectionChange");  
-                super.onSelectionChange(view, selections);  
-            }  
-        });  
-  
-        dataView.setStore(store);  
-        dataView.setTpl(template);  
-        dataView.setAutoHeight(true);  
-        dataView.setMultiSelect(true);  
-        dataView.setOverCls("x-view-over");  
-        dataView.setEmptyText("No Images to display");  
-  
-        inner.add(dataView);
-        tab0.add(inner);
-        
-        
-         
-		final TextBox c = new TextBox();
-		{
-			thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>() {
+			@Override
+			public void onSuccess(ArrayList<NhomThietBiEntity> result) {
+				// TODO Auto-generated method stub
+				TreeNode[] treeNodes = new TreeNode[result.size()];
 				
-				@Override
-				public void onSuccess(ArrayList<ThietBiEntity> result) {
-					c.setText(c.getText() + result.get(0).IdThietBi.toString());
-					//TODO: load grid.
-					
+				for (int i = 0; i < result.size(); i++) {					
+					treeNodes[i] = new NhomThietBiTreeNode(result.get(i));
 				}
+				tree.setData(treeNodes);
+				treeGrid.setData(tree);
+				RootPanel.get().add(treeGrid); 
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("ko the load menu");
 				
-				@Override
-				public void onFailure(Throwable caught) {
-					c.setText(caught.getMessage());
-					
-				}
-			});
-		}
-		tab0.add(c);
-		borderPanel.add(centerPanel, new BorderLayoutData(RegionPosition.CENTER));  
+			}
+		});
 
-		panel.add(borderPanel);  
+		treeGrid.addDrawHandler(new DrawHandler() {  
+			public void onDraw(DrawEvent event) {  
+				tree.openAll();  
+			}  
+		}); 
+	}
+	static class NhomThietBiTreeNode extends TreeNode {  
 
-		Viewport viewport = new Viewport(panel);  
-	}  
-	
-	class OutlookTreePanel extends TreePanel {  
+		public NhomThietBiTreeNode(NhomThietBiEntity ent) {  
+			setAttribute("id", ent.IdNhomThietBi);  
+			setAttribute("parentId", ent.IdNhomThietBiCha);  
+			setAttribute("name", ent.Ten);  
+		}  
 
-		public OutlookTreePanel() {  
+		public void setId(String value) {  
+			setAttribute("id", value);  
+		}  
 
-			TreeNode root = new TreeNode("Đề nghị");  
-			root.setIconCls("email-icon");  
-			root.setExpanded(true);  
+		public void setParentId(String value) {  
+			setAttribute("parentId", value);  
+		}  
 
-			TreeNode inbox = new TreeNode("Đề nghị thiết bị");  
-			inbox.setIconCls("inbox-icon");  
-			root.appendChild(inbox);  
-
-			TreeNode drafts = new TreeNode("Đề nghị thanh lý");  
-			drafts.setIconCls("drafts-icon");  
-			root.appendChild(drafts);  
-
-			TreeNode sent = new TreeNode("Đề nghị sửa");  
-			sent.setIconCls("sent-icon");  
-			root.appendChild(sent);  
-
-			/* TreeNode junk = new TreeNode("Spam");  
-    		 junk.setIconCls("spam-icon");  
-    		 root.appendChild(junk);  
-
-    		 TreeNode folders = new TreeNode("Folders");  
-    		 folders.setIconCls("folders-icon");  
-    		 folders.setExpanded(true);  
-
-    		 TreeNode todo = new TreeNode("ToDo");  
-    		 todo.setIconCls("folders-icon");  
-    		 folders.appendChild(todo);  
-
-    		 TreeNode resumes = new TreeNode("Resumes");  
-    		 resumes.setIconCls("folders-icon");  
-    		 folders.appendChild(resumes);  
-
-    		 TreeNode sales = new TreeNode("Sales");  
-    		 sales.setIconCls("folders-icon");  
-    		 folders.appendChild(sales);  
-
-    		 root.appendChild(folders);  
-			 */
-			setTitle("E-Mail");  
-			setIconCls("email-icon");  
-			setWidth(200);  
-			setHeight(400);  
-			setEnableDD(true); 
-			setRootNode(root);    
-			setRootVisible(false);
-			//setHideParent(true);
+		public void setName(String name) {  
+			setAttribute("name", name);  
 		}  
 	}  
-	class SettingTreePanel extends TreePanel {  
+	public static ThietBiRecord[] getThietBi(ArrayList<ThietBiEntity> lst) {
+		ThietBiRecord[] lstRecord = new ThietBiRecord[lst.size()];
+		for (int i = 0; i < lst.size(); i++) {
+			lstRecord[i] = new ThietBiRecord(lst.get(i));
+		}
+		return lstRecord;
 
-		public SettingTreePanel() {  
+	}
+	public static CountryRecord[] getNewRecords() {  
+		return new CountryRecord[]{  
+				new CountryRecord("North America", "United States", "US", 9631420, 298444215, 12360, new Date(1776 - 1900, 6, 4), "federal republic", 2, "Washington, DC", true, "http://en.wikipedia.org/wiki/United_states", "Britain's American colonies broke with the mother country in 1776 and were recognized as the new nation of the United States of America following the Treaty of Paris in 1783. During the 19th and 20th centuries, 37 new states were added to the original 13 as the nation expanded across the North American continent and acquired a number of overseas possessions. The two most traumatic experiences in the nation's history were the Civil War (1861-65) and the Great Depression of the 1930s. Buoyed by victories in World Wars I and II and the end of the Cold War in 1991, the US remains the world's most powerful nation state. The economy is marked by steady growth, low unemployment and inflation, and rapid advances in technology."),  
+				new CountryRecord("Asia", "China", "CH", 9596960, 1313973713, 8859, null, "Communist state", 0, "Beijing", false, "http://en.wikipedia.org/wiki/China", "For centuries China stood as a leading civilization, outpacing the rest of the world in the arts and sciences, but in the 19th and early 20th centuries, the country was beset by civil unrest, major famines, military defeats, and foreign occupation. After World War II, the Communists under MAO Zedong established an autocratic socialist system that, while ensuring China's sovereignty, imposed strict controls over everyday life and cost the lives of tens of millions of people. After 1978, his successor DENG Xiaoping and other leaders focused on market-oriented economic development and by 2000 output had quadrupled. For much of the population, living standards have improved dramatically and the room for personal choice has expanded, yet political controls remain tight."),  
+				new CountryRecord("Asia", "Japan", "JA", 377835, 127463611, 4018, null, "constitutional monarchy with parliamentary government", 1, "Tokyo", true, "http://en.wikipedia.org/wiki/Japan", "In 1603, a Tokugawa shogunate (military dictatorship) ushered in a long period of isolation from foreign influence in order to secure its power. For 250 years this policy enabled Japan to enjoy stability and a flowering of its indigenous culture. Following the Treaty of Kanagawa with the US in 1854, Japan opened its ports and began to intensively modernize and industrialize. During the late 19th and early 20th centuries, Japan became a regional power that was able to defeat the forces of both China and Russia. It occupied Korea, Formosa (Taiwan), and southern Sakhalin Island. In 1931-32 Japan occupied Manchuria, and in 1937 it launched a full-scale invasion of China. Japan attacked US forces in 1941 - triggering America's entry into World War II - and soon occupied much of East and Southeast Asia. After its defeat in World War II, Japan recovered to become an economic power and a staunch ally of the US. While the emperor retains his throne as a symbol of national unity, actual power rests in networks of powerful politicians, bureaucrats, and business executives. The economy experienced a major slowdown starting in the 1990s following three decades of unprecedented growth, but Japan still remains a major economic power, both in Asia and globally. In 2005, Japan began a two-year term as a non-permanent member of the UN Security Council."),  
+				new CountryRecord("Asia", "India", "IN", 3287590, 1095351995, 3611, new Date(1947 - 1900, 7, 15), "federal republic", 2, "New Delhi", false, "http://en.wikipedia.org/wiki/India", "The Indus Valley civilization, one of the oldest in the world, dates back at least 5,000 years. Aryan tribes from the northwest infiltrated onto Indian lands about 1500 B.C.; their merger with the earlier Dravidian inhabitants created the classical Indian culture. Arab incursions starting in the 8th century and Turkish in the 12th were followed by those of European traders, beginning in the late 15th century. By the 19th century, Britain had assumed political control of virtually all Indian lands. Indian armed forces in the British army played a vital role in both World Wars. Nonviolent resistance to British colonialism led by Mohandas GANDHI and Jawaharlal NEHRU brought independence in 1947. The subcontinent was divided into the secular state of India and the smaller Muslim state of Pakistan. A third war between the two countries in 1971 resulted in East Pakistan becoming the separate nation of Bangladesh. Despite impressive gains in economic investment and output, India faces pressing problems such as the ongoing dispute with Pakistan over Kashmir, massive overpopulation, environmental degradation, extensive poverty, and ethnic and religious strife."),  
+				new CountryRecord("Europe", "Germany", "GM", 357021, 82422299, 2504, new Date(1871 - 1900, 0, 18), "federal republic", 2, "Berlin", true, "http://en.wikipedia.org/wiki/Germany", "As Europe's largest economy and second most populous nation, Germany remains a key member of the continent's economic, political, and defense organizations. European power struggles immersed Germany in two devastating World Wars in the first half of the 20th century and left the country occupied by the victorious Allied powers of the US, UK, France, and the Soviet Union in 1945. With the advent of the Cold War, two German states were formed in 1949: the western Federal Republic of Germany (FRG) and the eastern German Democratic Republic (GDR). The democratic FRG embedded itself in key Western economic and security organizations, the EC, which became the EU, and NATO, while the Communist GDR was on the front line of the Soviet-led Warsaw Pact. The decline of the USSR and the end of the Cold War allowed for German unification in 1990. Since then, Germany has expended considerable funds to bring Eastern productivity and wages up to Western standards. In January 1999, Germany and 10 other EU countries introduced a common European exchange currency, the euro."),  
+				new CountryRecord("Europe", "United Kingdom", "UK", 244820, 60609153, 1830, new Date(1801 - 1900, 0, 1), "constitutional monarchy", 1, "London", true, "http://en.wikipedia.org/wiki/United_kingdom", "Great Britain, the dominant industrial and maritime power of the 19th century, played a leading role in developing parliamentary democracy and in advancing literature and science. At its zenith, the British Empire stretched over one-fourth of the earth's surface. The first half of the 20th century saw the UK's strength seriously depleted in two World Wars. The second half witnessed the dismantling of the Empire and the UK rebuilding itself into a modern and prosperous European nation. As one of five permanent members of the UN Security Council, a founding member of NATO, and of the Commonwealth, the UK pursues a global approach to foreign policy; it currently is weighing the degree of its integration with continental Europe. A member of the EU, it chose to remain outside the Economic and Monetary Union for the time being. Constitutional reform is also a significant issue in the UK. The Scottish Parliament, the National Assembly for Wales, and the Northern Ireland Assembly were established in 1999, but the latter is suspended due to wrangling over the peace process."),  
+				new CountryRecord("Europe", "France", "FR", 547030, 60876136, 1816, null, "republic", 5, "Paris", true, "http://en.wikipedia.org/wiki/France", "Although ultimately a victor in World Wars I and II, France suffered extensive losses in its empire, wealth, manpower, and rank as a dominant nation-state. Nevertheless, France today is one of the most modern countries in the world and is a leader among European nations. Since 1958, it has constructed a presidential democracy resistant to the instabilities experienced in earlier parliamentary democracies. In recent years, its reconciliation and cooperation with Germany have proved central to the economic integration of Europe, including the introduction of a common exchange currency, the euro, in January 1999. At present, France is at the forefront of efforts to develop the EU's military capabilities to supplement progress toward an EU foreign policy."),  
+				new CountryRecord("Europe", "Italy", "IT", 301230, 58133509, 1698, new Date(1861 - 1900, 2, 17), "republic", 5, "Rome", true, "http://en.wikipedia.org/wiki/Italy", "Italy became a nation-state in 1861 when the regional states of the peninsula, along with Sardinia and Sicily, were united under King Victor EMMANUEL II. An era of parliamentary government came to a close in the early 1920s when Benito MUSSOLINI established a Fascist dictatorship. His disastrous alliance with Nazi Germany led to Italy's defeat in World War II. A democratic republic replaced the monarchy in 1946 and economic revival followed. Italy was a charter member of NATO and the European Economic Community (EEC). It has been at the forefront of European economic and political unification, joining the Economic and Monetary Union in 1999. Persistent problems include illegal immigration, organized crime, corruption, high unemployment, sluggish economic growth, and the low incomes and technical standards of southern Italy compared with the prosperous north."),  
+				new CountryRecord("Europe", "Russia", "RS", 17075200, 142893540, 1589, new Date(1991 - 1900, 7, 24), "federation", 3, "Moscow", true, "http://en.wikipedia.org/wiki/Russia", "Founded in the 12th century, the Principality of Muscovy, was able to emerge from over 200 years of Mongol domination (13th-15th centuries) and to gradually conquer and absorb surrounding principalities. In the early 17th century, a new Romanov Dynasty continued this policy of expansion across Siberia to the Pacific. Under PETER I (ruled 1682-1725), hegemony was extended to the Baltic Sea and the country was renamed the Russian Empire. During the 19th century, more territorial acquisitions were made in Europe and Asia. Repeated devastating defeats of the Russian army in World War I led to widespread rioting in the major cities of the Russian Empire and to the overthrow in 1917 of the imperial household. The Communists under Vladimir LENIN seized power soon after and formed the USSR. The brutal rule of Iosif STALIN (1928-53) strengthened communist rule and Russian dominance of the Soviet Union at a cost of tens of millions of lives. The Soviet economy and society stagnated in the following decades until General Secretary Mikhail GORBACHEV (1985-91) introduced glasnost (openness) and perestroika (restructuring) in an attempt to modernize Communism, but his initiatives inadvertently released forces that by December 1991 splintered the USSR into Russia and 14 other independent republics. Since then, Russia has struggled in its efforts to build a democratic political system and market economy to replace the strict social, political, and economic controls of the Communist period. While some progress has been made on the economic front, recent years have seen a recentralization of power under Vladimir PUTIN and the erosion of nascent democratic institutions. A determined guerrilla conflict still plagues Russia in Chechnya and threatens to destabilize the North Caucasus region."),  
+				new CountryRecord("South America", "Brazil", "BR", 8511965, 188078227, 1556, new Date(1822 - 1900, 8, 7), "federative republic", 3, "Brasilia", false, "http://en.wikipedia.org/wiki/Brazil", "Following three centuries under the rule of Portugal, Brazil became an independent nation in 1822 and a republic in 1889. By far the largest and most populous country in South America, Brazil overcame more than half a century of military intervention in the governance of the country when in 1985 the military regime peacefully ceded power to civilian rulers. Brazil continues to pursue industrial and agricultural growth and development of its interior. Exploiting vast natural resources and a large labor pool, it is today South America's leading economic power and a regional leader. Highly unequal income distribution remains a pressing problem."),  
+				new CountryRecord("North America", "Canada", "CA", 9984670, 33098932, 1114, new Date(1867 - 1900, 6, 1), "constitutional monarchy with parliamentary democracy and federation", 1, "Ottawa", true, "http://en.wikipedia.org/wiki/Canada", "A land of vast distances and rich natural resources, Canada became a self-governing dominion in 1867 while retaining ties to the British crown. Economically and technologically the nation has developed in parallel with the US, its neighbor to the south across an unfortified border. Canada's paramount political problem is meeting public demands for quality improvements in health care and education services after a decade of budget cuts. Canada also faces questions about integrity in government following revelations regarding a corruption scandal in the federal government that has helped revive the fortunes of separatists in predominantly francophone Quebec."),  
+				new CountryRecord("North America", "Mexico", "MX", 1972550, 107449525, 1067, new Date(1810 - 1900, 8, 16), "federal republic", 2, "Mexico (Distrito Federal)", false, "http://en.wikipedia.org/wiki/Mexico", "The site of advanced Amerindian civilizations, Mexico came under Spanish rule for three centuries before achieving independence early in the 19th century. A devaluation of the peso in late 1994 threw Mexico into economic turmoil, triggering the worst recession in over half a century. The nation continues to make an impressive recovery. Ongoing economic and social concerns include low real wages, underemployment for a large segment of the population, inequitable income distribution, and few advancement opportunities for the largely Amerindian population in the impoverished southern states. Elections held in July 2000 marked the first time since the 1910 Mexican Revolution that the opposition defeated the party in government, the Institutional Revolutionary Party (PRI). Vicente FOX of the National Action Party (PAN) was sworn in on 1 December 2000 as the first chief executive elected in free and fair elections."),  
+				new CountryRecord("Europe", "Spain", "SP", 504782, 40397842, 1029, new Date(1492 - 1900, 0, 1), "parliamentary monarchy", 4, "Madrid", false, "http://en.wikipedia.org/wiki/Spain", "Spain's powerful world empire of the 16th and 17th centuries ultimately yielded command of the seas to England. Subsequent failure to embrace the mercantile and industrial revolutions caused the country to fall behind Britain, France, and Germany in economic and political power. Spain remained neutral in World Wars I and II, but suffered through a devastating civil war (1936-39). A peaceful transition to democracy following the death of dictator Francisco FRANCO in 1975, and rapid economic modernization (Spain joined the EU in 1986), have given Spain one of the most dynamic economies in Europe and made it a global champion of freedom. Continuing challenges include Basque Fatherland and Liberty (ETA) terrorism and relatively high unemployment."),  
+				new CountryRecord("Asia", "South Korea", "KS", 98480, 48846823, 965.3, new Date(1945 - 1900, 7, 15), "republic", 5, "Seoul", false, "http://en.wikipedia.org/wiki/South_korea", "Korea was an independent kingdom for much of the past millennium. Following its victory in the Russo-Japanese War in 1905, Japan occupied Korea; five years later it formally annexed the entire peninsula. After World War II, a Republic of Korea (ROK) was set up in the southern half of the Korean Peninsula while a Communist-style government was installed in the north (the DPRK). During the Korean War (1950-53), US troops and UN forces fought alongside soldiers from the ROK to defend South Korea from DPRK attacks supported by China and the Soviet Union. An armistice was signed in 1953, splitting the peninsula along a demilitarized zone at about the 38th parallel. Thereafter, South Korea achieved rapid economic growth with per capita income rising to roughly 14 times the level of North Korea. In 1993, KIM Yo'ng-sam became South Korea's first civilian president following 32 years of military rule. South Korea today is a fully functioning modern democracy. In June 2000, a historic first North-South summit took place between the South's President KIM Tae-chung and the North's leader KIM Jong Il."),  
+				new CountryRecord("Asia", "Indonesia", "ID", 1919440, 245452739, 865.6, new Date(1945 - 1900, 7, 17), "republic", 5, "Jakarta", false, "http://en.wikipedia.org/wiki/Indonesia", "The Dutch began to colonize Indonesia in the early 17th century; the islands were occupied by Japan from 1942 to 1945. Indonesia declared its independence after Japan's surrender, but it required four years of intermittent negotiations, recurring hostilities, and UN mediation before the Netherlands agreed to relinquish its colony. Indonesia is the world's largest archipelagic state and home to the world's largest Muslim population. Current issues include: alleviating poverty, preventing terrorism, consolidating democracy after four decades of authoritarianism, implementing financial sector reforms, stemming corruption, and holding the military and police accountable for human rights violations. Indonesia was the nation worst hit by the December 2004 tsunami, which particularly affected Aceh province causing over 100,000 deaths and over $4 billion in damage. An additional earthquake in March 2005 created heavy destruction on the island of Nias. Reconstruction in these areas may take up to a decade. In 2005, Indonesia reached a historic peace agreement with armed separatists in Aceh, but it continues to face a low intensity separatist guerilla movement in Papua.")
 
-			TreeNode root = new TreeNode("Đề nghị");  
-			root.setIconCls("email-icon");  
-			root.setExpanded(true);  
+		};
+	}
+}
+class ThietBiRecord extends ListGridRecord {
+	public ThietBiRecord() {
 
-			TreeNode inbox = new TreeNode("Agent");  
-			inbox.setIconCls("inbox-icon");  
-			root.appendChild(inbox);  
+	}
+	public ThietBiRecord(ThietBiEntity ent) {
+		setAttribute("IdLoaiThietBi", ent.IdLoaiThietBi);
+		setAttribute("IdThietBi", ent.IdThietBi);		
+	}
+}
+class CountryRecord extends ListGridRecord {
 
-			TreeNode drafts = new TreeNode("Bảo mật");  
-			drafts.setIconCls("drafts-icon");  
-			root.appendChild(drafts);  
+	public CountryRecord() {
+	}
 
-			TreeNode sent = new TreeNode("Quy trình nghiệp vụ");  
-			sent.setIconCls("sent-icon");  
-			root.appendChild(sent);  
+	public CountryRecord(String countryCode, String countryName, String capital, String continent) {
+		setCountryCode(countryCode);
+		setCountryName(countryName);
+		setCapital(capital);
+		setContinent(continent);
+	}
 
-			/* TreeNode junk = new TreeNode("Spam");  
-    		 junk.setIconCls("spam-icon");  
-    		 root.appendChild(junk);  
 
-    		 TreeNode folders = new TreeNode("Folders");  
-    		 folders.setIconCls("folders-icon");  
-    		 folders.setExpanded(true);  
+	public CountryRecord(String countryCode, String countryName, int population) {
+		setCountryCode(countryCode);
+		setCountryName(countryName);
+		setPopulation(population);
+	}
 
-    		 TreeNode todo = new TreeNode("ToDo");  
-    		 todo.setIconCls("folders-icon");  
-    		 folders.appendChild(todo);  
+	public CountryRecord(String continent, String countryName, String countryCode, int area, int population, double gdp,
+			Date independence, String government, int governmentDesc, String capital, boolean memberG8, String article,
+			String background) {
 
-    		 TreeNode resumes = new TreeNode("Resumes");  
-    		 resumes.setIconCls("folders-icon");  
-    		 folders.appendChild(resumes);  
+		setContinent(continent);
+		setCountryName(countryName);
+		setCountryCode(countryCode);
+		setArea(area);
+		setPopulation(population);
+		setGdp(gdp);
+		setIndependence(independence);
+		setGovernment(government);
+		setGovernmentDesc(governmentDesc);
+		setCapital(capital);
+		setMemberG8(memberG8);
+		setArticle(article);
+		setBackground(background);
+	}
 
-    		 TreeNode sales = new TreeNode("Sales");  
-    		 sales.setIconCls("folders-icon");  
-    		 folders.appendChild(sales);  
+	public void setContinent(String continent) {
+		setAttribute("continent", continent);
+	}
 
-    		 root.appendChild(folders);  
-			 */
-			setTitle("E-Mail");  
-			setIconCls("email-icon");  
-			setWidth(200);  
-			setHeight(400);  
-			setEnableDD(true); 
-			setRootNode(root);    
-			setRootVisible(false);
-			//setHideParent(true);
-		}  
-	}  
-	private Object[][] getData() {  
-        return new Object[][]{  
-                new Object[]{"Pirates of the Caribbean", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/carribean.jpg"},  
-                new Object[]{"Resident Evil", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/resident_evil.jpg"},  
-                new Object[]{"Blood Diamond", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/blood_diamond.jpg"},  
-                new Object[]{"No Reservations", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/no_reservations.jpg"},  
-                new Object[]{"Casino Royale", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/casino_royale.jpg"},  
-                new Object[]{"Good Shepherd", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/good_shepherd.jpg"},  
-                new Object[]{"Ghost Rider", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/ghost_rider.jpg"},  
-                new Object[]{"Batman Begins", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/batman_begins.jpg"},  
-                new Object[]{"Last Samurai", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/last_samurai.jpg"},  
-                new Object[]{"Italian Job", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/italian_job.jpg"},  
-                new Object[]{"Mission Impossible III", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/mi3.jpg"},  
-                new Object[]{"Mr & Mrs Smith", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/smith.jpg"},  
-                new Object[]{"Inside Man", new Integer(2120),  
-                        new Long(1180231870000l), "images/view/inside_man.jpg"}
-        };  
-    }  
-	  private String getSelectedMovies(DataView view) {  
-	         Record[] records = view.getSelectedRecords();  
-	         String msg = "";  
-	         for (int i = 0; i < records.length; i++) {  
-	             Record record = records[i];  
-	             msg += record.getAsString("name") + " ";  
-	         }  
-	         return msg;  
-	     }  
-	   
+	public String getContinent() {
+		return getAttributeAsString("continent");
+	}
+
+	public void setCountryName(String countryName) {
+		setAttribute("countryName", countryName);
+	}
+
+	public String getCountryName() {
+		return getAttributeAsString("countryName");
+	}
+
+	public void setCountryCode(String countryCode) {
+		setAttribute("countryCode", countryCode);
+	}
+
+	public String getCountryCode() {
+		return getAttributeAsString("countryCode");
+	}
+
+	public void setArea(int area) {
+		setAttribute("area", area);
+	}
+
+	public int getArea() {
+		return getAttributeAsInt("area");
+	}
+
+	public void setPopulation(int population) {
+		setAttribute("population", population);
+	}
+
+	public int getPopulation() {
+		return getAttributeAsInt("population");
+	}
+
+	public void setGdp(double gdp) {
+		setAttribute("gdp", gdp);
+	}
+
+	public double getGdp() {
+		return getAttributeAsDouble("gdp");
+	}
+
+	public void setIndependence(Date independence) {
+		setAttribute("independence", independence);
+	}
+
+	public Date getIndependence() {
+		return getAttributeAsDate("independence");
+	}
+
+	public void setGovernment(String government) {
+		setAttribute("government", government);
+	}
+
+	public String getGovernment() {
+		return getAttributeAsString("government");
+	}
+
+	public void setGovernmentDesc(int governmentDesc) {
+		setAttribute("government_desc", governmentDesc);
+	}
+
+	public int getGovernmentDesc() {
+		return getAttributeAsInt("government_desc");
+	}
+
+	public void setCapital(String capital) {
+		setAttribute("capital", capital);
+	}
+
+	public String getCapital() {
+		return getAttributeAsString("capital");
+	}
+
+	public void setMemberG8(boolean memberG8) {
+		setAttribute("member_g8", memberG8);
+	}
+
+	public boolean getMemberG8() {
+		return getAttributeAsBoolean("member_g8");
+	}
+
+
+	public void setArticle(String article) {
+		setAttribute("article", article);
+	}
+
+	public String getArticle() {
+		return getAttributeAsString("article");
+	}
+
+	public void setBackground(String background) {
+		setAttribute("background", background);
+	}
+
+	public String getBackground() {
+		return getAttributeAsString("background");
+	}
+
+	public String getFieldValue(String field) {
+		return getAttributeAsString(field);
+	}
 }

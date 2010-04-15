@@ -81,7 +81,7 @@ public class ComputerInfoCollection extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO: Kiem tra MAC address de lay ID may tinh da ton tai hay chua. 
 		//		NEU da ton tai,  thi luu lai thong so nay, luu lai 1 cau hinh moi nhat, de sau nay so sanh.
 		//con neu ko thi them 1 may tinh moi, trang thai la moi phat hien.
@@ -157,7 +157,7 @@ public class ComputerInfoCollection extends HttpServlet {
 		}
 		ThietBiDao.SetThietBiGoc(desktopEnt, orginalDesktopEnt);			
 	}
-
+*/
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
