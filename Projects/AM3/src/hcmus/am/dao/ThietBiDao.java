@@ -30,16 +30,11 @@ public class ThietBiDao {
 		CallableStatement stmt = null;		
 		int ID = -1; // id of ThietBi.
 		ResultSet resultSet = null;
-		String  sql = "insert into THIET_BI(IdLoaiThietBi) values(?, ?);select @@IDENTITY  as ID;";
+		String  sql = "insert into THIET_BI(IdLoaiThietBi) values(?);select @@IDENTITY  as ID;";
 		try {			
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareCall(sql);
-			stmt.setInt("IdLoaiThietBi", ent.IdLoaiThietBi);
-			if (ent.IdLoaiThietBi == null) 
-				stmt.setNull(1, java.sql.Types.NUMERIC); 
-			else
-				stmt.setInt(1, ent.IdLoaiThietBi);
-			
+			stmt.setInt(1, ent.IdLoaiThietBi);		
 			stmt.execute();	
 			int iUpdCount = stmt.getUpdateCount();
 			if (iUpdCount != 1) { //if ko insert thanh cong.

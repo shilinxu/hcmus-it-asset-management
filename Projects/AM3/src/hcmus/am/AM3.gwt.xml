@@ -14,12 +14,6 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='hcmus.am.client.AM3'/>
-
-  <!-- Specify the paths for translatable code                    -->
-  <source path='client'/>
-  <stylesheet src="js/ext/resources/css/ext-all.css"/>
-  <script src="js/ext/adapter/ext/ext-base.js"/>
-  <script src="js/ext/ext-all.js"/>
-  <inherits name="com.gwtext.GwtExt"/>
+   <inherits name="com.smartgwt.SmartGwt"/>
 
 </module>

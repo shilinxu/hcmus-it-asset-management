@@ -8,10 +8,10 @@ import org.junit.Test;
 
 public class Test_ThietBiDao_insert {
 
-	//@Test
+	@Test
 	public void testInsert() {
 		ThietBiEntity ent = new ThietBiEntity();
-		ent.IdLoaiThietBi = 3;
+		ent.IdLoaiThietBi = 1;
 		int ID = ThietBiDao.insert(ent);
 		System.out.println(ID);
 		assertTrue(ID > 1);

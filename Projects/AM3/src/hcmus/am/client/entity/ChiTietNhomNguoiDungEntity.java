@@ -5,5 +5,4 @@ public class ChiTietNhomNguoiDungEntity {
 	public Integer IdNhomNguoiDung;
 	//[IdNguoiDung] [bigint] NOT NULL,
 	public Integer IdNguoiDung;
-
 }

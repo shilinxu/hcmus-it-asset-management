@@ -21,11 +21,16 @@ public class TheHienThietBiDao {
 		CallableStatement stmt = null;		
 		int ID = -1; // id of ThietBi.
 		ResultSet resultSet = null;
-		String  sql = "insert into THE_HIEN_THIET_BI(IdThietBi, IdTrangThai, LaTheHienCapNhatTuClient) values (?, ?, ?);select @@IDENTITY  as ID;";
+		String  sql = "insert into THE_HIEN_THIET_BI(IdThietBi,IdTrangThai,LaTheHienCapNhatTuClient,IdNhomThietBi,IdNguoiDung,IdNhomNguoiDung) values (?, ?, ?, ?, ?, ?);select @@IDENTITY  as ID;";
 		try {			
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareCall(sql);
-			stmt.setInt(1, ent.IdThietBi);
+			//1
+			if (ent.IdThietBi == null) 
+				stmt.setNull(1, java.sql.Types.NUMERIC); 
+			else
+				stmt.setInt(1, ent.IdThietBi);
+						
 			if (ent.IdTrangThai == null) 
 				stmt.setNull(2, java.sql.Types.NUMERIC); 
 			else
@@ -36,6 +41,21 @@ public class TheHienThietBiDao {
 			else
 				stmt.setBoolean(3, ent.LaTheHienCapNhatTuClient);
 
+			if (ent.IdNhomThietBi == null) 
+				stmt.setNull(4, java.sql.Types.NUMERIC); 
+			else
+				stmt.setInt(4, ent.IdNhomThietBi);
+			
+			if (ent.IdNguoiDung == null) 
+				stmt.setNull(5, java.sql.Types.NUMERIC); 
+			else
+				stmt.setInt(5, ent.IdNguoiDung);
+			
+			if (ent.IdNhomNguoiDung == null) 
+				stmt.setNull(6, java.sql.Types.NUMERIC); 
+			else
+				stmt.setInt(6, ent.IdNhomNguoiDung);
+			
 			stmt.execute();	
 			int iUpdCount = stmt.getUpdateCount();
 			if (iUpdCount != 1) { //if ko insert thanh cong.
@@ -80,6 +100,10 @@ public class TheHienThietBiDao {
 				
 //				[IdPhanCong] [bigint] NULL,
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
+				
+				ent.IdNguoiDung = rs.getInt("IdNguoiDung");
+				
+				ent.IdNhomNguoiDung = rs.getInt("IdNhomNguoiDung");
 			}
 		} catch (Exception exception) {
 			exception.printStackTrace();
