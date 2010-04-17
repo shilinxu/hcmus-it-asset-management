@@ -1,6 +1,5 @@
 package hcmus.am.dao;
 
-import hcmus.am.client.entity.LoaiNguoiDungEntity;
 import hcmus.am.client.entity.ThietBiEntity;
 import hcmus.am.utils.ConnectionUtil;
 

@@ -3,27 +3,30 @@ package hcmus.am.client;
 
 import hcmus.am.client.entity.NhomThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
+import hcmus.am.client.view.NhomThietBiTreeNode;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.TreeModelType;
-import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
-import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;
+import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.tile.TileGrid;
+import com.smartgwt.client.widgets.tile.TileRecord;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 
 
@@ -34,7 +37,7 @@ public class AM3 implements EntryPoint {
 	private final TrangThaiServiceAsync trangthaiService = GWT.create(TrangThaiService.class);
 	private final ThietBiServiceAsync thietbiService = GWT.create(ThietBiService.class);
 	public void onModuleLoad() {
-		final Canvas canvas = new Canvas();
+		/*		final Canvas canvas = new Canvas();
 
 		final ListGrid countryGrid = new ListGrid();
 		countryGrid.setWidth(500);
@@ -63,7 +66,7 @@ public class AM3 implements EntryPoint {
 
 		thietBiGrid.setFields((new ListGridField[] {idThietBiField, idLoaiThietBiField}));
 
-		/*thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>(	) {
+		thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>(	) {
 
 			@Override
 			public void onSuccess(ArrayList<ThietBiEntity> result) {
@@ -75,104 +78,126 @@ public class AM3 implements EntryPoint {
 			public void onFailure(Throwable caught) {
 				Window.alert("abc");
 			}
-		});*/
+		});
 
 		//  canvas.addChild(countryGrid);
 		canvas.addChild(thietBiGrid);
-		RootPanel.get().add(canvas);
+
 		//canvas.draw();
-		
+		 */
 		final TreeGrid treeGrid = new TreeGrid();  
 		treeGrid.setWidth(300);  
 		treeGrid.setHeight(400);  
 
-		TreeGridField field = new TreeGridField("Name", "Tree from local data");  
-		field.setCanSort(false);  
+		TreeGridField formattedField = new TreeGridField("Name");  
+		formattedField.setCellFormatter(new CellFormatter() {  
+			public String format(Object value, ListGridRecord record, int rowNum, int colNum) {  
+				return record.getAttributeAsString("Ten");
+			}  
+		});  
+		treeGrid.setFields(formattedField);	
+		treeGrid.addCellClickHandler(new CellClickHandler() {
 
-		treeGrid.setFields(field);  
-
+			@Override
+			public void onCellClick(CellClickEvent event) {
+				//Window.alert(Integer.toString(event.getRowNum()));
+				Integer a = event.getRecord().getAttributeAsInt("IdNhomThietBi");
+				if (a != null)
+					Window.alert(a.toString());
+				else
+					Window.alert("cho ma that");
+			}
+		});
 		final Tree tree = new Tree();  
 		tree.setModelType(TreeModelType.PARENT);  
-		tree.setNameProperty("name");  
-		tree.setIdField("id");  
-		tree.setParentIdField("parentId");  
-		tree.setShowRoot(true);  
-
-		thietbiService.selectRootMenu(new AsyncCallback<ArrayList<NhomThietBiEntity>>() {
-			
+		tree.setNameProperty("Ten");  
+		tree.setIdField("IdNhomThietBi");  
+		tree.setParentIdField("IdNhomThietBiCha");
+		
+		thietbiService.selectMenuNhomThietBi(new AsyncCallback<ArrayList<NhomThietBiEntity>>() {
 			@Override
 			public void onSuccess(ArrayList<NhomThietBiEntity> result) {
-				// TODO Auto-generated method stub
+				treeGrid.addDrawHandler(new DrawHandler() {  
+					public void onDraw(DrawEvent event) {  
+						tree.openAll();  
+					}  
+				}); 
 				TreeNode[] treeNodes = new TreeNode[result.size()];
-				
+
 				for (int i = 0; i < result.size(); i++) {					
 					treeNodes[i] = new NhomThietBiTreeNode(result.get(i));
 				}
 				tree.setData(treeNodes);
-				treeGrid.setData(tree);
-				RootPanel.get().add(treeGrid); 
+
+				treeGrid.setData(tree);  
+				//treeGrid.draw();	
 			}
-			
+
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("ko the load menu");
-				
+
 			}
 		});
+		TileGrid tileGrid = new TileGrid();  
+		tileGrid.setTileWidth(194);  
+		tileGrid.setTileHeight(165);  
+		tileGrid.setHeight(400);  
+		tileGrid.setWidth(800);  
+		tileGrid.setShowAllRecords(true);  
+		tileGrid.setData(getNewRecords());  
 
-		treeGrid.addDrawHandler(new DrawHandler() {  
-			public void onDraw(DrawEvent event) {  
-				tree.openAll();  
-			}  
-		}); 
+		DetailViewerField pictureField = new DetailViewerField("picture");  
+		pictureField.setType("image");  
+		pictureField.setImageURLPrefix("cars/");  
+		pictureField.setImageWidth(186);  
+		pictureField.setImageHeight(120);  
+
+		DetailViewerField nameField2 = new DetailViewerField("name");  
+		DetailViewerField priceField = new DetailViewerField("price");  
+
+		tileGrid.setFields(pictureField, nameField2, priceField);  
+
+		HLayout navLayout = new HLayout();  
+		navLayout.setMembers(treeGrid, tileGrid);  
+		RootPanel.get().add(navLayout);		
 	}
-	static class NhomThietBiTreeNode extends TreeNode {  
 
-		public NhomThietBiTreeNode(NhomThietBiEntity ent) {  
-			setAttribute("id", ent.IdNhomThietBi);  
-			setAttribute("parentId", ent.IdNhomThietBiCha);  
-			setAttribute("name", ent.Ten);  
-		}  
+	public static CarRecord[] getNewRecords() {  
+		return new CarRecord[]{  
+				new CarRecord("2006 Bugatti Veyron 16.4", "£839,285", "bugatti_veyron.jpg", "It's the most expensive production car in the world, but many would argue that the Veyron is still a bargain, being the most powerful and the fastest. Not only does the Bugatti have a top speed of 253mph but it would out accelerate an F1 car to 100mph. There are just too many astonishing facts and figures to take in; the 16-cylinder engine alone with its four turbochargers and 10 radiators is a marvel. But perhaps the most crucial figure is its mind-bending 1001bhp maximum power. Although the Veyron is unspeakably expensive, it cost the VW Group (which owns Bugatti) more to design and build than it's ever likely to return in profit. It's simply a magnificent engineering achievement."),  
+				new CarRecord("1931 Bugatti Royale Kellner Coupe", "£4.25 million at auction in 1987", "bugatti_royale.jpg", "In the beginning, Ettore Bugatti told the world that his cars would better those built by the likes of Rolls-Royce and Mercedes Benz. This Royale was his ultimate model and, as the name suggests, it was really only royalty of the day who could afford one. Just six were built, complete with 12.7 litre engines, but only four were sold during the 1930s. Bugatti kept the other two hidden on his French estate during World War II, safe from German invaders who would have had them requisitioned. In 1951, an American called Briggs Cunningham bought the two hidden Royales, exchanging them for cash and a couple of refrigerators. Both were displayed in Cunningham's California museum for 30 years. One was auctioned to an anonymous Japanese buyer at Christies in London in 1987 setting a new record for most valuable car, which hasn't been topped since."),  
+				new CarRecord("2006 Pagani Zonda C12 F ", "£450,000", "pagani.jpg", "The ultimate version of Pagani's mid-engined supercar, and also the most costly. The 'F' stands for Fangio, the Formula One legend who had a hand in the original Zonda's development. Powered by a mid-mounted Mercedes V12 engine, the Zonda F is lighter and tauter than previous models, with a top speed of 199mph. Buy one and you'll also get a pair of driving shoes hand made by the Pope's cobbler."),  
+				new CarRecord("2007 Shelby SSC Ultimate Aero TT", "£320,000", "shelby.jpg", "Built by Shelby as a direct rival for the Bugatti Veyron, the SSC has a top speed in excess of 250mph and a 0-60mph time of just 2.78 seconds. It recently set the official world record for fastest production car, after reaching 255mph on a timed run - although the Veyron is yet to attempt such a feat. Very occasionally you can even get a bargain on an SSC - one was sold recently on eBay for 'only' £210,000."),  
+				new CarRecord("2007 Saleen S7 Twin Turbo", "Price: £400,000", "saleen.jpg", "Another American-built hypercar with excessive power - the S7's got a twin-turbo V8 which pumps out 750bhp. It's made entirely from carbon fibre and is mid-engined but despite these credentials, the S7 has been criticised for its sloppy handling and questionable quality of finish. After all it is 'handbuilt' which can too often mean 'shoddy'. Still, while it may not seem like good value for money, the Saleen is still one of the most expensive cars on the market today."),  
+				new CarRecord("1929 Mercedes-Benz 8/250 SSK", " £3.6 million at auction in 2004", "benz-skk.jpg", "Race-bred SSKs dominated motorsport in the 1920s taking first, second and third place at the 1927 German Grand Prix and earning a reputation as the fastest sports cars in the world. It was the Bugatti Veyron of its day, hitting higher speeds and accelerating faster than had previously been thought possible of a motorcar. Most were destroyed during dramatic racing careers, making a mint SSK very rare now and pushing values up. Many have been rebuilt using some genuine parts from wrecked and rotten examples, but experts reckon there are only one or two original and perfect SSKs left in the world. This example, sold for £3.6 million was one of those rare cars."),  
+				new CarRecord("2007 Lamborghini Reventon", "£795,000", "lamborghini_reventon.jpg", "With looks inspired by the Stealth Bomber, the Reventon is the most expensive Lamborghini ever built. Although the styling and interior are all new, mechanically it's very similar to the Murcielago LP640 - it gets the same 6.5 litre V12 and has identical performance, hitting 62mph in 3.4 seconds - which has caused many commentators to question the validity of the Reventon's stratospheric price tag. Only 20 will ever be built though and plenty of collectors, particularly in America, have been impressed enough to part with the cash."),  
+				new CarRecord("1962 Ferrari 250 GTO", "£2.7 million at auction in 1991", "ferrari_gto.jpg", "It's the quintessential Italian supercar - front-engined, rear drive and stunningly beautiful. GTO stands for Gran Turismo Omologata (meaning homologation) because this 250 was built for GT racing, and manufacturers had to enter a race-spec version of a real production car. So the 250 GTO was designed to be as competitive on the track as it was accomplished on the road, and was also the last in a long line of Ferraris to use the classic 3.0 litre V12. Only 33 250 GTOs were ever built, even though the minimum for production car status was 100. The regulations were, as they so often have been, bent by the weight of Maranello. But it meant the 250 GTO is now not only a stunning, but also a rare performance car, which has only made it more valuable. Now most commentators reckon that, should one be sold again, the 250 GTO would be the most valuable Ferrari in the world."),  
+				new CarRecord("1937 Alfa-Romeo 8C-2900", "£2 million at auction in 1999", "alfa_romeo.jpg", "Many consider the original 8C to be the greatest pre-war sports car of them all and so it's extremely rare that one comes up for sale. This example of the roadster was auctioned in 1999, and has a proper racing heritage, finishing third at the Mille Miglia in 1939. The 8C-2900 is powered by an 8-cylinder 2.9 litre engine, which produced 180bhp in production form and 220bhp in race spec. There are even more valuable examples than this one, which have a special Mille Miglia bodystyling."),  
+				new CarRecord("2007 Rolls-Royce Phantom Drophead Coupe", "£305,500", "rolls_royce_phantom.jpg", "That's the starting price and for it, you'll have to do without the optional 'teak decking'. The Phantom is considered to be one of the finest cars in the world, but this convertible version is just a bit more flash. It's got a 6.5 litre V12 that's silky smooth in its power delivery and cossets all occupants from the moment they climb through its huge doors. A high price, but seen as worth every penny by some - Rolls-Royce sales are steadily creeping up."),  
+				new CarRecord("2007 McLaren-Mercedes SLR 722 GTR", "£334,300", "mclaren.jpg", "This is a racing version of the McLaren-Mercedes supercar, which owners could potentially race in the GT1 sports car championship if they were so inclined. Developed in secret, the 722 GTR popped up at a German dealership with a £450,000 price tag earlier this year. Only 21 of these stripped-down, track-prepared SLRs will be built and each sports a massive ring wing and front diffuser for extra downforce as well as a roll cage for added protection. The engine still produces 650bhp but the GTR is 300kg lighter, dramatically improving performance. So if you're mega-rich and want to be a McLaren racing driver, this is the car for you."),  
+				new CarRecord("1994 McLaren F1", "£540,000 new, upwards of £850.000 today", "mclaren-f1.jpg", "For many years this was the fastest production cars in the world, fabled for its 242mph top speed and its ability to change direction quicker than a Gordon Brown election plan. The F1 uses a BMW 6.1 litre V12 which was naturally aspirated at the insistence of the car's legendary chief designer Gordon Murray. It still produced 624bhp though, and was mid-mounted in the featherweight chassis. The materials used to build the F1 went some way towards justifying its high price. Carbon fibre was used extensively to keep the weight down and the most efficient heat reflector, gold lining, was used as a film to insulate the engine bay. The philosophy was light weight and efficiency. Now it's extremely rare to see an F1 on the road let alone for sale, but that means the McLaren has gone up in value (even after taking inflation into account) since it was first built in 1994."),  
+				new CarRecord("2007 Maybach 62 S", "£345,867", "maybach.jpg", "Luxurious and opulent, this is the world's greatest car according to Mercedes, which revived the Maybach brand back in 2001. Unfortunately, the rest of the world didn't agree. The Maybachs and their huge price tag are now seen as vulgar and ostentatious compared with the elegance of a Rolls-Royce Phantom or Bentley Arnarge. It's a car for 'new money' potential owners say, but that still makes it pricey enough for us - particularly when you consider the terrible residuals. Some owners have lost up to £150,000 in three years."),  
+				new CarRecord("2006 Koenigsegg CCR", "£400,000", "koenigsegg-ccr.jpg", "The most powerful version of the Swedish supercar and - before the arrival of the Veyron and SSC Aero - the CCR was the fastest production car in the world. It topped out at 240mph at the Nardo proving grounds - the first car to break the McLaren F1's previous record, which had stood for 10 years. Incredibly, Koenigsegg has managed to coax over 800bhp from a Ford V8 for this CCR, one of the reasons why it's the company's ultimate and most expensive model. It was even considered worthy of the 'ghost' fighter badge, worn only by the planes of Swedish Jet Fighter Squadron No.1."),  
+				new CarRecord("1953 GM Futurliner", "£2 million in 2006", "gm_futurliner.jpg", "A bit of an anomaly this - the Futurliner's value was thought to be more like £300,000 until it was auctioned. This was a concept vehicle that was paraded across America before the War as an example of General Motor's engineering prowess. Strong interest in pre-war prototypes like this, and one collectors' desire to own the oddity led to an unexpectedly high price."),  
+				new CarRecord("2005 Porsche Carrera GT", "£310,000", "carrera_gt.jpg", "A thoroughbred from Stuttgart, the production Carrera GT could trace its lineage back to the 911- GT1 98 and LMP1 race cars. The 5.5 litre V10 used by the GT was originally designed for a Footworks Formula One car before the project was canned, and powers this ultimate Porsche from 0-62mph in 3.6 seconds and on to 205mph. But the Carrerra GT was not only fast but comfortable true, with a bespoke leather interior and Bose sound system. It was the ultimate autobahn basher before the model was discontinued in 2006, having sold over 1000 examples.")  
+		}; 
+	}
 
-		public void setId(String value) {  
-			setAttribute("id", value);  
-		}  
-
-		public void setParentId(String value) {  
-			setAttribute("parentId", value);  
-		}  
-
-		public void setName(String name) {  
-			setAttribute("name", name);  
-		}  
-	}  
 	public static ThietBiRecord[] getThietBi(ArrayList<ThietBiEntity> lst) {
 		ThietBiRecord[] lstRecord = new ThietBiRecord[lst.size()];
 		for (int i = 0; i < lst.size(); i++) {
 			lstRecord[i] = new ThietBiRecord(lst.get(i));
 		}
 		return lstRecord;
-
 	}
-	public static CountryRecord[] getNewRecords() {  
-		return new CountryRecord[]{  
-				new CountryRecord("North America", "United States", "US", 9631420, 298444215, 12360, new Date(1776 - 1900, 6, 4), "federal republic", 2, "Washington, DC", true, "http://en.wikipedia.org/wiki/United_states", "Britain's American colonies broke with the mother country in 1776 and were recognized as the new nation of the United States of America following the Treaty of Paris in 1783. During the 19th and 20th centuries, 37 new states were added to the original 13 as the nation expanded across the North American continent and acquired a number of overseas possessions. The two most traumatic experiences in the nation's history were the Civil War (1861-65) and the Great Depression of the 1930s. Buoyed by victories in World Wars I and II and the end of the Cold War in 1991, the US remains the world's most powerful nation state. The economy is marked by steady growth, low unemployment and inflation, and rapid advances in technology."),  
-				new CountryRecord("Asia", "China", "CH", 9596960, 1313973713, 8859, null, "Communist state", 0, "Beijing", false, "http://en.wikipedia.org/wiki/China", "For centuries China stood as a leading civilization, outpacing the rest of the world in the arts and sciences, but in the 19th and early 20th centuries, the country was beset by civil unrest, major famines, military defeats, and foreign occupation. After World War II, the Communists under MAO Zedong established an autocratic socialist system that, while ensuring China's sovereignty, imposed strict controls over everyday life and cost the lives of tens of millions of people. After 1978, his successor DENG Xiaoping and other leaders focused on market-oriented economic development and by 2000 output had quadrupled. For much of the population, living standards have improved dramatically and the room for personal choice has expanded, yet political controls remain tight."),  
-				new CountryRecord("Asia", "Japan", "JA", 377835, 127463611, 4018, null, "constitutional monarchy with parliamentary government", 1, "Tokyo", true, "http://en.wikipedia.org/wiki/Japan", "In 1603, a Tokugawa shogunate (military dictatorship) ushered in a long period of isolation from foreign influence in order to secure its power. For 250 years this policy enabled Japan to enjoy stability and a flowering of its indigenous culture. Following the Treaty of Kanagawa with the US in 1854, Japan opened its ports and began to intensively modernize and industrialize. During the late 19th and early 20th centuries, Japan became a regional power that was able to defeat the forces of both China and Russia. It occupied Korea, Formosa (Taiwan), and southern Sakhalin Island. In 1931-32 Japan occupied Manchuria, and in 1937 it launched a full-scale invasion of China. Japan attacked US forces in 1941 - triggering America's entry into World War II - and soon occupied much of East and Southeast Asia. After its defeat in World War II, Japan recovered to become an economic power and a staunch ally of the US. While the emperor retains his throne as a symbol of national unity, actual power rests in networks of powerful politicians, bureaucrats, and business executives. The economy experienced a major slowdown starting in the 1990s following three decades of unprecedented growth, but Japan still remains a major economic power, both in Asia and globally. In 2005, Japan began a two-year term as a non-permanent member of the UN Security Council."),  
-				new CountryRecord("Asia", "India", "IN", 3287590, 1095351995, 3611, new Date(1947 - 1900, 7, 15), "federal republic", 2, "New Delhi", false, "http://en.wikipedia.org/wiki/India", "The Indus Valley civilization, one of the oldest in the world, dates back at least 5,000 years. Aryan tribes from the northwest infiltrated onto Indian lands about 1500 B.C.; their merger with the earlier Dravidian inhabitants created the classical Indian culture. Arab incursions starting in the 8th century and Turkish in the 12th were followed by those of European traders, beginning in the late 15th century. By the 19th century, Britain had assumed political control of virtually all Indian lands. Indian armed forces in the British army played a vital role in both World Wars. Nonviolent resistance to British colonialism led by Mohandas GANDHI and Jawaharlal NEHRU brought independence in 1947. The subcontinent was divided into the secular state of India and the smaller Muslim state of Pakistan. A third war between the two countries in 1971 resulted in East Pakistan becoming the separate nation of Bangladesh. Despite impressive gains in economic investment and output, India faces pressing problems such as the ongoing dispute with Pakistan over Kashmir, massive overpopulation, environmental degradation, extensive poverty, and ethnic and religious strife."),  
-				new CountryRecord("Europe", "Germany", "GM", 357021, 82422299, 2504, new Date(1871 - 1900, 0, 18), "federal republic", 2, "Berlin", true, "http://en.wikipedia.org/wiki/Germany", "As Europe's largest economy and second most populous nation, Germany remains a key member of the continent's economic, political, and defense organizations. European power struggles immersed Germany in two devastating World Wars in the first half of the 20th century and left the country occupied by the victorious Allied powers of the US, UK, France, and the Soviet Union in 1945. With the advent of the Cold War, two German states were formed in 1949: the western Federal Republic of Germany (FRG) and the eastern German Democratic Republic (GDR). The democratic FRG embedded itself in key Western economic and security organizations, the EC, which became the EU, and NATO, while the Communist GDR was on the front line of the Soviet-led Warsaw Pact. The decline of the USSR and the end of the Cold War allowed for German unification in 1990. Since then, Germany has expended considerable funds to bring Eastern productivity and wages up to Western standards. In January 1999, Germany and 10 other EU countries introduced a common European exchange currency, the euro."),  
-				new CountryRecord("Europe", "United Kingdom", "UK", 244820, 60609153, 1830, new Date(1801 - 1900, 0, 1), "constitutional monarchy", 1, "London", true, "http://en.wikipedia.org/wiki/United_kingdom", "Great Britain, the dominant industrial and maritime power of the 19th century, played a leading role in developing parliamentary democracy and in advancing literature and science. At its zenith, the British Empire stretched over one-fourth of the earth's surface. The first half of the 20th century saw the UK's strength seriously depleted in two World Wars. The second half witnessed the dismantling of the Empire and the UK rebuilding itself into a modern and prosperous European nation. As one of five permanent members of the UN Security Council, a founding member of NATO, and of the Commonwealth, the UK pursues a global approach to foreign policy; it currently is weighing the degree of its integration with continental Europe. A member of the EU, it chose to remain outside the Economic and Monetary Union for the time being. Constitutional reform is also a significant issue in the UK. The Scottish Parliament, the National Assembly for Wales, and the Northern Ireland Assembly were established in 1999, but the latter is suspended due to wrangling over the peace process."),  
-				new CountryRecord("Europe", "France", "FR", 547030, 60876136, 1816, null, "republic", 5, "Paris", true, "http://en.wikipedia.org/wiki/France", "Although ultimately a victor in World Wars I and II, France suffered extensive losses in its empire, wealth, manpower, and rank as a dominant nation-state. Nevertheless, France today is one of the most modern countries in the world and is a leader among European nations. Since 1958, it has constructed a presidential democracy resistant to the instabilities experienced in earlier parliamentary democracies. In recent years, its reconciliation and cooperation with Germany have proved central to the economic integration of Europe, including the introduction of a common exchange currency, the euro, in January 1999. At present, France is at the forefront of efforts to develop the EU's military capabilities to supplement progress toward an EU foreign policy."),  
-				new CountryRecord("Europe", "Italy", "IT", 301230, 58133509, 1698, new Date(1861 - 1900, 2, 17), "republic", 5, "Rome", true, "http://en.wikipedia.org/wiki/Italy", "Italy became a nation-state in 1861 when the regional states of the peninsula, along with Sardinia and Sicily, were united under King Victor EMMANUEL II. An era of parliamentary government came to a close in the early 1920s when Benito MUSSOLINI established a Fascist dictatorship. His disastrous alliance with Nazi Germany led to Italy's defeat in World War II. A democratic republic replaced the monarchy in 1946 and economic revival followed. Italy was a charter member of NATO and the European Economic Community (EEC). It has been at the forefront of European economic and political unification, joining the Economic and Monetary Union in 1999. Persistent problems include illegal immigration, organized crime, corruption, high unemployment, sluggish economic growth, and the low incomes and technical standards of southern Italy compared with the prosperous north."),  
-				new CountryRecord("Europe", "Russia", "RS", 17075200, 142893540, 1589, new Date(1991 - 1900, 7, 24), "federation", 3, "Moscow", true, "http://en.wikipedia.org/wiki/Russia", "Founded in the 12th century, the Principality of Muscovy, was able to emerge from over 200 years of Mongol domination (13th-15th centuries) and to gradually conquer and absorb surrounding principalities. In the early 17th century, a new Romanov Dynasty continued this policy of expansion across Siberia to the Pacific. Under PETER I (ruled 1682-1725), hegemony was extended to the Baltic Sea and the country was renamed the Russian Empire. During the 19th century, more territorial acquisitions were made in Europe and Asia. Repeated devastating defeats of the Russian army in World War I led to widespread rioting in the major cities of the Russian Empire and to the overthrow in 1917 of the imperial household. The Communists under Vladimir LENIN seized power soon after and formed the USSR. The brutal rule of Iosif STALIN (1928-53) strengthened communist rule and Russian dominance of the Soviet Union at a cost of tens of millions of lives. The Soviet economy and society stagnated in the following decades until General Secretary Mikhail GORBACHEV (1985-91) introduced glasnost (openness) and perestroika (restructuring) in an attempt to modernize Communism, but his initiatives inadvertently released forces that by December 1991 splintered the USSR into Russia and 14 other independent republics. Since then, Russia has struggled in its efforts to build a democratic political system and market economy to replace the strict social, political, and economic controls of the Communist period. While some progress has been made on the economic front, recent years have seen a recentralization of power under Vladimir PUTIN and the erosion of nascent democratic institutions. A determined guerrilla conflict still plagues Russia in Chechnya and threatens to destabilize the North Caucasus region."),  
-				new CountryRecord("South America", "Brazil", "BR", 8511965, 188078227, 1556, new Date(1822 - 1900, 8, 7), "federative republic", 3, "Brasilia", false, "http://en.wikipedia.org/wiki/Brazil", "Following three centuries under the rule of Portugal, Brazil became an independent nation in 1822 and a republic in 1889. By far the largest and most populous country in South America, Brazil overcame more than half a century of military intervention in the governance of the country when in 1985 the military regime peacefully ceded power to civilian rulers. Brazil continues to pursue industrial and agricultural growth and development of its interior. Exploiting vast natural resources and a large labor pool, it is today South America's leading economic power and a regional leader. Highly unequal income distribution remains a pressing problem."),  
-				new CountryRecord("North America", "Canada", "CA", 9984670, 33098932, 1114, new Date(1867 - 1900, 6, 1), "constitutional monarchy with parliamentary democracy and federation", 1, "Ottawa", true, "http://en.wikipedia.org/wiki/Canada", "A land of vast distances and rich natural resources, Canada became a self-governing dominion in 1867 while retaining ties to the British crown. Economically and technologically the nation has developed in parallel with the US, its neighbor to the south across an unfortified border. Canada's paramount political problem is meeting public demands for quality improvements in health care and education services after a decade of budget cuts. Canada also faces questions about integrity in government following revelations regarding a corruption scandal in the federal government that has helped revive the fortunes of separatists in predominantly francophone Quebec."),  
-				new CountryRecord("North America", "Mexico", "MX", 1972550, 107449525, 1067, new Date(1810 - 1900, 8, 16), "federal republic", 2, "Mexico (Distrito Federal)", false, "http://en.wikipedia.org/wiki/Mexico", "The site of advanced Amerindian civilizations, Mexico came under Spanish rule for three centuries before achieving independence early in the 19th century. A devaluation of the peso in late 1994 threw Mexico into economic turmoil, triggering the worst recession in over half a century. The nation continues to make an impressive recovery. Ongoing economic and social concerns include low real wages, underemployment for a large segment of the population, inequitable income distribution, and few advancement opportunities for the largely Amerindian population in the impoverished southern states. Elections held in July 2000 marked the first time since the 1910 Mexican Revolution that the opposition defeated the party in government, the Institutional Revolutionary Party (PRI). Vicente FOX of the National Action Party (PAN) was sworn in on 1 December 2000 as the first chief executive elected in free and fair elections."),  
-				new CountryRecord("Europe", "Spain", "SP", 504782, 40397842, 1029, new Date(1492 - 1900, 0, 1), "parliamentary monarchy", 4, "Madrid", false, "http://en.wikipedia.org/wiki/Spain", "Spain's powerful world empire of the 16th and 17th centuries ultimately yielded command of the seas to England. Subsequent failure to embrace the mercantile and industrial revolutions caused the country to fall behind Britain, France, and Germany in economic and political power. Spain remained neutral in World Wars I and II, but suffered through a devastating civil war (1936-39). A peaceful transition to democracy following the death of dictator Francisco FRANCO in 1975, and rapid economic modernization (Spain joined the EU in 1986), have given Spain one of the most dynamic economies in Europe and made it a global champion of freedom. Continuing challenges include Basque Fatherland and Liberty (ETA) terrorism and relatively high unemployment."),  
-				new CountryRecord("Asia", "South Korea", "KS", 98480, 48846823, 965.3, new Date(1945 - 1900, 7, 15), "republic", 5, "Seoul", false, "http://en.wikipedia.org/wiki/South_korea", "Korea was an independent kingdom for much of the past millennium. Following its victory in the Russo-Japanese War in 1905, Japan occupied Korea; five years later it formally annexed the entire peninsula. After World War II, a Republic of Korea (ROK) was set up in the southern half of the Korean Peninsula while a Communist-style government was installed in the north (the DPRK). During the Korean War (1950-53), US troops and UN forces fought alongside soldiers from the ROK to defend South Korea from DPRK attacks supported by China and the Soviet Union. An armistice was signed in 1953, splitting the peninsula along a demilitarized zone at about the 38th parallel. Thereafter, South Korea achieved rapid economic growth with per capita income rising to roughly 14 times the level of North Korea. In 1993, KIM Yo'ng-sam became South Korea's first civilian president following 32 years of military rule. South Korea today is a fully functioning modern democracy. In June 2000, a historic first North-South summit took place between the South's President KIM Tae-chung and the North's leader KIM Jong Il."),  
-				new CountryRecord("Asia", "Indonesia", "ID", 1919440, 245452739, 865.6, new Date(1945 - 1900, 7, 17), "republic", 5, "Jakarta", false, "http://en.wikipedia.org/wiki/Indonesia", "The Dutch began to colonize Indonesia in the early 17th century; the islands were occupied by Japan from 1942 to 1945. Indonesia declared its independence after Japan's surrender, but it required four years of intermittent negotiations, recurring hostilities, and UN mediation before the Netherlands agreed to relinquish its colony. Indonesia is the world's largest archipelagic state and home to the world's largest Muslim population. Current issues include: alleviating poverty, preventing terrorism, consolidating democracy after four decades of authoritarianism, implementing financial sector reforms, stemming corruption, and holding the military and police accountable for human rights violations. Indonesia was the nation worst hit by the December 2004 tsunami, which particularly affected Aceh province causing over 100,000 deaths and over $4 billion in damage. An additional earthquake in March 2005 created heavy destruction on the island of Nias. Reconstruction in these areas may take up to a decade. In 2005, Indonesia reached a historic peace agreement with armed separatists in Aceh, but it continues to face a low intensity separatist guerilla movement in Papua.")
-
-		};
+}
+class CarRecord extends TileRecord{
+	public CarRecord(String  str1, String  str2, String  str3, String  str4 )
+	{
+		setAttribute("name", str1);
+		setAttribute("image", str3);
+		setAttribute("price", str2);
 	}
 }
 class ThietBiRecord extends ListGridRecord {
@@ -182,152 +207,5 @@ class ThietBiRecord extends ListGridRecord {
 	public ThietBiRecord(ThietBiEntity ent) {
 		setAttribute("IdLoaiThietBi", ent.IdLoaiThietBi);
 		setAttribute("IdThietBi", ent.IdThietBi);		
-	}
-}
-class CountryRecord extends ListGridRecord {
-
-	public CountryRecord() {
-	}
-
-	public CountryRecord(String countryCode, String countryName, String capital, String continent) {
-		setCountryCode(countryCode);
-		setCountryName(countryName);
-		setCapital(capital);
-		setContinent(continent);
-	}
-
-
-	public CountryRecord(String countryCode, String countryName, int population) {
-		setCountryCode(countryCode);
-		setCountryName(countryName);
-		setPopulation(population);
-	}
-
-	public CountryRecord(String continent, String countryName, String countryCode, int area, int population, double gdp,
-			Date independence, String government, int governmentDesc, String capital, boolean memberG8, String article,
-			String background) {
-
-		setContinent(continent);
-		setCountryName(countryName);
-		setCountryCode(countryCode);
-		setArea(area);
-		setPopulation(population);
-		setGdp(gdp);
-		setIndependence(independence);
-		setGovernment(government);
-		setGovernmentDesc(governmentDesc);
-		setCapital(capital);
-		setMemberG8(memberG8);
-		setArticle(article);
-		setBackground(background);
-	}
-
-	public void setContinent(String continent) {
-		setAttribute("continent", continent);
-	}
-
-	public String getContinent() {
-		return getAttributeAsString("continent");
-	}
-
-	public void setCountryName(String countryName) {
-		setAttribute("countryName", countryName);
-	}
-
-	public String getCountryName() {
-		return getAttributeAsString("countryName");
-	}
-
-	public void setCountryCode(String countryCode) {
-		setAttribute("countryCode", countryCode);
-	}
-
-	public String getCountryCode() {
-		return getAttributeAsString("countryCode");
-	}
-
-	public void setArea(int area) {
-		setAttribute("area", area);
-	}
-
-	public int getArea() {
-		return getAttributeAsInt("area");
-	}
-
-	public void setPopulation(int population) {
-		setAttribute("population", population);
-	}
-
-	public int getPopulation() {
-		return getAttributeAsInt("population");
-	}
-
-	public void setGdp(double gdp) {
-		setAttribute("gdp", gdp);
-	}
-
-	public double getGdp() {
-		return getAttributeAsDouble("gdp");
-	}
-
-	public void setIndependence(Date independence) {
-		setAttribute("independence", independence);
-	}
-
-	public Date getIndependence() {
-		return getAttributeAsDate("independence");
-	}
-
-	public void setGovernment(String government) {
-		setAttribute("government", government);
-	}
-
-	public String getGovernment() {
-		return getAttributeAsString("government");
-	}
-
-	public void setGovernmentDesc(int governmentDesc) {
-		setAttribute("government_desc", governmentDesc);
-	}
-
-	public int getGovernmentDesc() {
-		return getAttributeAsInt("government_desc");
-	}
-
-	public void setCapital(String capital) {
-		setAttribute("capital", capital);
-	}
-
-	public String getCapital() {
-		return getAttributeAsString("capital");
-	}
-
-	public void setMemberG8(boolean memberG8) {
-		setAttribute("member_g8", memberG8);
-	}
-
-	public boolean getMemberG8() {
-		return getAttributeAsBoolean("member_g8");
-	}
-
-
-	public void setArticle(String article) {
-		setAttribute("article", article);
-	}
-
-	public String getArticle() {
-		return getAttributeAsString("article");
-	}
-
-	public void setBackground(String background) {
-		setAttribute("background", background);
-	}
-
-	public String getBackground() {
-		return getAttributeAsString("background");
-	}
-
-	public String getFieldValue(String field) {
-		return getAttributeAsString(field);
 	}
 }
