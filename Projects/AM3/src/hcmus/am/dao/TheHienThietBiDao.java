@@ -114,5 +114,56 @@ public class TheHienThietBiDao {
 		}
 		return ent;
 	}
+	
+	public static TheHienThietBiEntity selectTheHienThietBiMoiNhat(Integer idThietBi) {
+		TheHienThietBiEntity  ent = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		ResultSet rs = null;					
+		String  sql = "select th.IdTheHienThietBi, IdThietBi, IdTrangThai, LaTheHienCapNhatTuClient, IdNhomThietBi, IdNguoiDung, IdNhomNguoiDung " +
+				"from THE_HIEN_THIET_BI th " +
+				"where (th.LaTheHienCapNhatTuClient = 'false' " +
+				"or th.LaTheHienCapNhatTuClient is null) " +
+				"	and  th.IdThietBi = ? " +
+				"	and th.IdTheHienThietBi >= all ( " +
+				"		select th2.IdTheHienThietBi	" +
+				"	from THE_HIEN_THIET_BI th2 " +
+				"		where  th2.IdThietBi = ? " +
+						" and (th2.LaTheHienCapNhatTuClient = 'false' " +
+						"			or th2.LaTheHienCapNhatTuClient is null) " +
+						"	)";				
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, idThietBi);
+			stmt.setInt(2, idThietBi);
+			rs = stmt.executeQuery();			
+			if (rs.next()) {
+				ent = new TheHienThietBiEntity();
+//				[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
+				ent.IdTheHienThietBi= rs.getInt("IdTheHienThietBi");
+				
+//				[IdLoaiThietBi] [bigint] NOT NULL,
+				ent.IdThietBi= rs.getInt("IdThietBi");
+				
+//				[IdNhomThietBi] [bigint] NULL,
+				ent.IdTrangThai = rs.getInt("IdTrangThai");
+				
+//				[IdPhanCong] [bigint] NULL,
+				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
+				
+				ent.IdNguoiDung = rs.getInt("IdNguoiDung");
+				
+				ent.IdNhomNguoiDung = rs.getInt("IdNhomNguoiDung");
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}
+		return ent;
+	}
 
 }

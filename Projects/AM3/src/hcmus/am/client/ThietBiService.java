@@ -1,9 +1,10 @@
 package hcmus.am.client;
 
-import java.util.ArrayList;
-
 import hcmus.am.client.entity.NhomThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
+import hcmus.am.client.view.NhomThietBiTreeNode;
+
+import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -11,5 +12,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("thietbi")
 public interface ThietBiService extends RemoteService {
 	ArrayList<ThietBiEntity> SelectN();
-	ArrayList<NhomThietBiEntity> selectRootMenu();	
+	ArrayList<NhomThietBiEntity> selectMenuNhomThietBi();
+	NhomThietBiTreeNode[] selectTreeNhomThietBi();
 }

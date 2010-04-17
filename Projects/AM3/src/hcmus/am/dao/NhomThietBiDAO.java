@@ -1,6 +1,5 @@
 package hcmus.am.dao;
 
-import hcmus.am.client.entity.LoaiNguoiDungEntity;
 import hcmus.am.client.entity.NhomThietBiEntity;
 import hcmus.am.utils.ConnectionUtil;
 
@@ -16,7 +15,7 @@ public class NhomThietBiDAO {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdPhanCong from NHOM_THIET_BI where IdNhomThietBiCha is null";
+		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdNhomThietBiCha, IdPhanCong from NHOM_THIET_BI where IdNhomThietBiCha is null";
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -29,6 +28,7 @@ public class NhomThietBiDAO {
 				ent.MoTa = rs.getString("Mota");
 				ent.HinhAnh = rs.getString("HinhAnh");
 				ent.LaPhongMay = rs.getBoolean("LaPhongMay");
+				ent.IdNhomThietBiCha = rs.getInt("IdNhomThietBiCha");
 				ent.IdPhanCong = rs.getInt("IdPhanCong");
 				lst.add(ent);
 			}
@@ -48,7 +48,7 @@ public class NhomThietBiDAO {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdPhanCong from NHOM_THIET_BI where IdNhomThietBiCha = " + id.toString();
+		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdNhomThietBiCha, IdPhanCong from NHOM_THIET_BI where IdNhomThietBiCha = " + id.toString();
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -61,6 +61,7 @@ public class NhomThietBiDAO {
 				ent.MoTa = rs.getString("Mota");
 				ent.HinhAnh = rs.getString("HinhAnh");
 				ent.LaPhongMay = rs.getBoolean("LaPhongMay");
+				ent.IdNhomThietBiCha = rs.getInt("IdNhomThietBiCha");
 				ent.IdPhanCong = rs.getInt("IdPhanCong");
 				lst.add(ent);
 			}
@@ -79,7 +80,7 @@ public class NhomThietBiDAO {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdPhanCong from NHOM_THIET_BI where IdNhomThietBi = " + Id.toString();
+		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdNhomThietBiCha, IdPhanCong from NHOM_THIET_BI where IdNhomThietBi = " + Id.toString();
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -92,6 +93,7 @@ public class NhomThietBiDAO {
 				ent.MoTa = rs.getString("Mota");
 				ent.HinhAnh = rs.getString("HinhAnh");
 				ent.LaPhongMay = rs.getBoolean("LaPhongMay");
+				ent.IdNhomThietBiCha = rs.getInt("IdNhomThietBiCha");
 				ent.IdPhanCong = rs.getInt("IdPhanCong");			
 			}
 			
@@ -155,5 +157,37 @@ public class NhomThietBiDAO {
 	
 	public static Integer delete(NhomThietBiEntity ent ) {
 		return 0;
+	}
+	public static ArrayList<NhomThietBiEntity> selectAll() {
+		ArrayList<NhomThietBiEntity> lst = new ArrayList<NhomThietBiEntity>();
+		Connection conn = null;
+		Statement stmt = null;		
+		ResultSet rs = null;
+		String  sql = "select IdNhomThietBi, Ten,Mota,HinhAnh,LaPhongMay,IdNhomThietBiCha, IdPhanCong from NHOM_THIET_BI";
+		try {
+			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				NhomThietBiEntity ent = new NhomThietBiEntity();
+				ent.IdNhomThietBi = rs.getInt("IdNhomThietBi");
+				ent.Ten = rs.getString("Ten");
+				ent.MoTa = rs.getString("Mota");
+				ent.HinhAnh = rs.getString("HinhAnh");
+				ent.LaPhongMay = rs.getBoolean("LaPhongMay");
+				ent.IdNhomThietBiCha = rs.getInt("IdNhomThietBiCha");
+				ent.IdPhanCong = rs.getInt("IdPhanCong");
+				lst.add(ent);
+			}
+			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return lst;		
 	}
 }
