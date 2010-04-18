@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ThongSoThietBiDao {
 	public static ThongSoThietBiEntity selectById(Integer Id ) {
@@ -106,5 +107,36 @@ public class ThongSoThietBiDao {
 			if (conn != null) try { conn.close(); } catch (Exception e) { }
 		}		
 		return result;
+	}
+	public static ArrayList<ThongSoThietBiEntity> selectThongSoCuaTheHienThietBi(Integer IdTheHienThietBi ) {
+		ArrayList<ThongSoThietBiEntity> lst = new ArrayList<ThongSoThietBiEntity>();
+		Connection conn = null;
+		Statement stmt = null;		
+		ResultSet rs = null;
+		String  sql = "select [IdThongSoThietBi] ,	[IdThongSoLoaiThietBi] ,[IdTheHienThietBi], [GiaTri] " +
+				"from THONG_SO_THIET_BI " +
+				"where IdTheHienThietBi = " + IdTheHienThietBi.toString();
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);			
+			while (rs.next()) {
+				ThongSoThietBiEntity ent = new ThongSoThietBiEntity();
+				ent = new ThongSoThietBiEntity();				
+				ent.IdThongSoThietBi = rs.getInt("IdThongSoThietBi");
+				ent.IdThongSoLoaiThietBi = rs.getInt("IdThongSoLoaiThietBi");
+				ent.IdTheHienThietBi = rs.getInt("IdTheHienThietBi");
+				ent.GiaTri = rs.getString("GiaTri");
+				lst.add(ent);
+			}
+			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return lst;		
 	}
 }

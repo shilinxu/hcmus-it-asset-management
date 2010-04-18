@@ -8,8 +8,11 @@ public class TheHienThietBiEntity {
 	//	[IdTrangThai] [int] NULL,
 	public Integer IdTrangThai;
 //	[LaTheHienCapNhatTuClient] [bit] NULL,
-	public Boolean LaTheHienCapNhatTuClient; 
-		//[IdNhomThietBi] [bigint] NULL,
+	public Boolean LaTheHienCapNhatTuClient;
+	
+	//LaTheHienHienTai
+	public Integer LaTheHienHienTai;
+	//[IdNhomThietBi] [bigint] NULL,
 	public Integer IdNhomThietBi;
 	//[IdNguoiDung] [bigint] NULL,
 	public Integer IdNguoiDung;
