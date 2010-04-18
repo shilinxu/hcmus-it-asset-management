@@ -4,6 +4,7 @@ package hcmus.am.client;
 import hcmus.am.client.entity.NhomThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
 import hcmus.am.client.view.NhomThietBiTreeNode;
+import hcmus.am.client.view.ThietBiRecord;
 
 import java.util.ArrayList;
 
@@ -36,55 +37,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 public class AM3 implements EntryPoint {	
 	private final TrangThaiServiceAsync trangthaiService = GWT.create(TrangThaiService.class);
 	private final ThietBiServiceAsync thietbiService = GWT.create(ThietBiService.class);
-	public void onModuleLoad() {
-		/*		final Canvas canvas = new Canvas();
-
-		final ListGrid countryGrid = new ListGrid();
-		countryGrid.setWidth(500);
-		countryGrid.setHeight(224);
-		countryGrid.setShowAllRecords(true);
-		countryGrid.setCanEdit(true);
-		countryGrid.setEditEvent(ListGridEditEvent.CLICK);
-		countryGrid.setModalEditing(true);
-
-		ListGridField nameField = new ListGridField("countryName", "Country");
-		ListGridField capitalField = new ListGridField("capital", "Capital");
-		ListGridField continentField = new ListGridField("continent", "Continent");
-
-		countryGrid.setFields(new ListGridField[] {nameField, capitalField, continentField});
-
-		final ListGrid thietBiGrid = new ListGrid(); 
-		thietBiGrid.setWidth(500);
-		thietBiGrid.setHeight(224);
-		thietBiGrid.setShowAllRecords(true);
-		thietBiGrid.setCanEdit(true);
-		thietBiGrid.setEditEvent(ListGridEditEvent.CLICK);
-		thietBiGrid.setModalEditing(true);
-
-		ListGridField idThietBiField = new ListGridField("IdThietBi","thiet bi");
-		ListGridField idLoaiThietBiField = new ListGridField("IdLoaiThietBi","loai thiet bi");
-
-		thietBiGrid.setFields((new ListGridField[] {idThietBiField, idLoaiThietBiField}));
-
-		thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>(	) {
-
-			@Override
-			public void onSuccess(ArrayList<ThietBiEntity> result) {
-				thietBiGrid.setData(getThietBi(result));
-				//  canvas.redraw();
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("abc");
-			}
-		});
-
-		//  canvas.addChild(countryGrid);
-		canvas.addChild(thietBiGrid);
-
-		//canvas.draw();
-		 */
+	public void onModuleLoad() {	
 		final TreeGrid treeGrid = new TreeGrid();  
 		treeGrid.setWidth(300);  
 		treeGrid.setHeight(400);  
@@ -111,7 +64,7 @@ public class AM3 implements EntryPoint {
 		final Tree tree = new Tree();  
 		tree.setModelType(TreeModelType.PARENT);  
 		tree.setNameProperty("Ten");  
-		tree.setIdField("IdNhomThietBi");  
+		tree.setIdField("IdNhomThietBi");
 		tree.setParentIdField("IdNhomThietBiCha");
 		
 		thietbiService.selectMenuNhomThietBi(new AsyncCallback<ArrayList<NhomThietBiEntity>>() {
@@ -139,13 +92,28 @@ public class AM3 implements EntryPoint {
 
 			}
 		});
-		TileGrid tileGrid = new TileGrid();  
+		final TileGrid tileGrid = new TileGrid();  
 		tileGrid.setTileWidth(194);  
 		tileGrid.setTileHeight(165);  
 		tileGrid.setHeight(400);  
 		tileGrid.setWidth(800);  
 		tileGrid.setShowAllRecords(true);  
-		tileGrid.setData(getNewRecords());  
+		thietbiService.SelectN(new AsyncCallback<ArrayList<ThietBiEntity>>() {
+			
+			@Override
+			public void onSuccess(ArrayList<ThietBiEntity> result) {
+				tileGrid.setData(ThietBiRecord.getThietBiRecord(result));
+				//getNewRecords());  
+				
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+		})
+		;
 
 		DetailViewerField pictureField = new DetailViewerField("picture");  
 		pictureField.setType("image");  
@@ -184,13 +152,7 @@ public class AM3 implements EntryPoint {
 		}; 
 	}
 
-	public static ThietBiRecord[] getThietBi(ArrayList<ThietBiEntity> lst) {
-		ThietBiRecord[] lstRecord = new ThietBiRecord[lst.size()];
-		for (int i = 0; i < lst.size(); i++) {
-			lstRecord[i] = new ThietBiRecord(lst.get(i));
-		}
-		return lstRecord;
-	}
+
 }
 class CarRecord extends TileRecord{
 	public CarRecord(String  str1, String  str2, String  str3, String  str4 )
@@ -200,12 +162,4 @@ class CarRecord extends TileRecord{
 		setAttribute("price", str2);
 	}
 }
-class ThietBiRecord extends ListGridRecord {
-	public ThietBiRecord() {
 
-	}
-	public ThietBiRecord(ThietBiEntity ent) {
-		setAttribute("IdLoaiThietBi", ent.IdLoaiThietBi);
-		setAttribute("IdThietBi", ent.IdThietBi);		
-	}
-}

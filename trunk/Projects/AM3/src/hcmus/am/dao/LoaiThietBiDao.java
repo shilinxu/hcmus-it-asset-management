@@ -29,7 +29,7 @@ public class LoaiThietBiDao {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select IdLoaiThietBi, Ten, MoTa from LOAI_THIET_BI where LOWER(Ten) ='" + Name.toLowerCase() + "'";
+		String  sql = "select IdLoaiThietBi, Ten, MoTa, HinhAnh from LOAI_THIET_BI where LOWER(Ten) ='" + Name.toLowerCase() + "'";
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -40,6 +40,7 @@ public class LoaiThietBiDao {
 				ent.IdLoaiThietBi = rs.getInt("IdLoaiThietBi");
 				ent.Ten = rs.getString("Ten");
 				ent.MoTa = rs.getString("MoTa");
+				ent.HinhAnh = rs.getString("HinhAnh");
 			}
 			
 		} catch (Exception exception) {

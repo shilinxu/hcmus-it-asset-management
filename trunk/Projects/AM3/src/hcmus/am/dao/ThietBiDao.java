@@ -227,4 +227,51 @@ public class ThietBiDao {
 		}
 		return lst;
 	}
+	public static ArrayList<ThietBiEntity> selectThietBiTuNhomThietBi(Integer idNhomThietBi, Integer start, int n) {
+		ArrayList<ThietBiEntity>  lst = new ArrayList<ThietBiEntity>();
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		ResultSet rs = null;					
+		String  sql = "WITH TEMP AS " +
+				"( " +
+				"    SELECT *,  ROW_NUMBER() OVER (ORDER BY IDTHIETBI) AS RowNumber " +
+				"    FROM THIET_BI " +
+				"    WHERE idNhomThietBi = ? " +				
+				") " +				
+				"SELECT * " +
+				"FROM TEMP " +
+				"where TEMP.RowNumber between ? and ? ";			
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, idNhomThietBi);
+			stmt.setInt(2, start);
+			stmt.setInt(3, n);
+			rs = stmt.executeQuery();			
+			while (rs.next()) {
+				ThietBiEntity ent  = new ThietBiEntity();
+//				public Integer IdThietBi;
+//				[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
+				ent.IdThietBi = rs.getInt("IdThietBi");
+				
+//				[IdLoaiThietBi] [bigint] NOT NULL,
+				ent.IdLoaiThietBi = rs.getInt("IdLoaiThietBi");
+				
+/*//				[IdNhomThietBi] [bigint] NULL,
+				ent.IdNhomThietBi = rs.getInt("IdNhomThietBi");
+				
+//				[IdPhanCong] [bigint] NULL,
+				ent.IdPhanCong = rs.getInt("IdPhanCong");*/
+				
+				lst.add(ent);
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}
+		return lst;
+	}
 }

@@ -7,6 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class TheHienThietBiDao {
 	public static Integer update(TheHienThietBiEntity ent ) {
@@ -21,7 +22,7 @@ public class TheHienThietBiDao {
 		CallableStatement stmt = null;		
 		int ID = -1; // id of ThietBi.
 		ResultSet resultSet = null;
-		String  sql = "insert into THE_HIEN_THIET_BI(IdThietBi,IdTrangThai,LaTheHienCapNhatTuClient,IdNhomThietBi,IdNguoiDung,IdNhomNguoiDung) values (?, ?, ?, ?, ?, ?);select @@IDENTITY  as ID;";
+		String  sql = "insert into THE_HIEN_THIET_BI(IdThietBi,IdTrangThai,LaTheHienCapNhatTuClient,IdNhomThietBi,IdNguoiDung,IdNhomNguoiDung,LaTheHienHienTai) values (?, ?, ?, ?, ?, ?,?);select @@IDENTITY  as ID;";
 		try {			
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareCall(sql);
@@ -56,6 +57,12 @@ public class TheHienThietBiDao {
 			else
 				stmt.setInt(6, ent.IdNhomNguoiDung);
 			
+			if (ent.LaTheHienHienTai == null) 
+				stmt.setNull(7, java.sql.Types.BIT); 
+			else
+				stmt.setInt(7, ent.LaTheHienHienTai);
+			
+			
 			stmt.execute();	
 			int iUpdCount = stmt.getUpdateCount();
 			if (iUpdCount != 1) { //if ko insert thanh cong.
@@ -89,17 +96,19 @@ public class TheHienThietBiDao {
 			rs = stmt.executeQuery();			
 			if (rs.next()) {
 				ent = new TheHienThietBiEntity();
-//				[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
+
 				ent.IdTheHienThietBi= rs.getInt("IdTheHienThietBi");
-				
-//				[IdLoaiThietBi] [bigint] NOT NULL,
+
 				ent.IdThietBi= rs.getInt("IdThietBi");
 				
-//				[IdNhomThietBi] [bigint] NULL,
+
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				
-//				[IdPhanCong] [bigint] NULL,
+				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
+				
+				ent.IdNhomThietBi = rs.getInt("IdNhomThietBi");
 				
 				ent.IdNguoiDung = rs.getInt("IdNguoiDung");
 				
@@ -120,7 +129,7 @@ public class TheHienThietBiDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;		
 		ResultSet rs = null;					
-		String  sql = "select th.IdTheHienThietBi, IdThietBi, IdTrangThai, LaTheHienCapNhatTuClient, IdNhomThietBi, IdNguoiDung, IdNhomNguoiDung " +
+/*		String  sql = "select th.IdTheHienThietBi, th.IdThietBi, th.IdTrangThai,th.LaTheHienHienTai, th.LaTheHienCapNhatTuClient, th.IdNhomThietBi, th.IdNguoiDung, th.IdNhomNguoiDung " +
 				"from THE_HIEN_THIET_BI th " +
 				"where (th.LaTheHienCapNhatTuClient = 'false' " +
 				"or th.LaTheHienCapNhatTuClient is null) " +
@@ -131,26 +140,30 @@ public class TheHienThietBiDao {
 				"		where  th2.IdThietBi = ? " +
 						" and (th2.LaTheHienCapNhatTuClient = 'false' " +
 						"			or th2.LaTheHienCapNhatTuClient is null) " +
-						"	)";				
+						"	)";		*/
+		String sql = "select * from THE_HIEN_THIET_BI " +
+				"		where LaTheHienHienTai = 'true' " +
+				"		and IdThietBi = ? ";
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idThietBi);
-			stmt.setInt(2, idThietBi);
+			stmt.setInt(1, idThietBi);			
 			rs = stmt.executeQuery();			
 			if (rs.next()) {
 				ent = new TheHienThietBiEntity();
-//				[IdThietBi] [bigint] IDENTITY(1,1) NOT NULL,
+
 				ent.IdTheHienThietBi= rs.getInt("IdTheHienThietBi");
-				
-//				[IdLoaiThietBi] [bigint] NOT NULL,
+
 				ent.IdThietBi= rs.getInt("IdThietBi");
 				
-//				[IdNhomThietBi] [bigint] NULL,
+
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				
-//				[IdPhanCong] [bigint] NULL,
+				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
+				
+				ent.IdNhomThietBi = rs.getInt("IdNhomThietBi");
 				
 				ent.IdNguoiDung = rs.getInt("IdNguoiDung");
 				
@@ -164,6 +177,62 @@ public class TheHienThietBiDao {
 			if (conn != null) try { conn.close(); } catch (Exception e) { }
 		}
 		return ent;
+	}
+	public static ArrayList<TheHienThietBiEntity> selectTheHienThietBiMoiNhatCuaNhomThietBi(Integer idNhomThietBi) {
+		ArrayList<TheHienThietBiEntity>  lst = new ArrayList<TheHienThietBiEntity>();
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		ResultSet rs = null;					
+/*		String  sql = "select th.IdTheHienThietBi, th.IdThietBi, th.IdTrangThai,th.LaTheHienHienTai, th.LaTheHienCapNhatTuClient, th.IdNhomThietBi, th.IdNguoiDung, th.IdNhomNguoiDung " +
+				"from THE_HIEN_THIET_BI th " +
+				"where (th.LaTheHienCapNhatTuClient = 'false' " +
+				"or th.LaTheHienCapNhatTuClient is null) " +
+				"	and  th.IdThietBi = ? " +
+				"	and th.IdTheHienThietBi >= all ( " +
+				"		select th2.IdTheHienThietBi	" +
+				"	from THE_HIEN_THIET_BI th2 " +
+				"		where  th2.IdThietBi = ? " +
+						" and (th2.LaTheHienCapNhatTuClient = 'false' " +
+						"			or th2.LaTheHienCapNhatTuClient is null) " +
+						"	)";		*/
+		String sql = "select * from THE_HIEN_THIET_BI " +
+				"		where LaTheHienHienTai = 'true' " +
+				"		and IdNhomThietBi = ? ";
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, idNhomThietBi);			
+			rs = stmt.executeQuery();			
+			while (rs.next()) {
+				TheHienThietBiEntity ent =  new TheHienThietBiEntity();
+
+				ent.IdTheHienThietBi= rs.getInt("IdTheHienThietBi");
+
+				ent.IdThietBi= rs.getInt("IdThietBi");
+				
+
+				ent.IdTrangThai = rs.getInt("IdTrangThai");
+				
+				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+
+				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
+				
+				ent.IdNhomThietBi = rs.getInt("IdNhomThietBi");
+				
+				ent.IdNguoiDung = rs.getInt("IdNguoiDung");
+				
+				ent.IdNhomNguoiDung = rs.getInt("IdNhomNguoiDung");
+				
+				lst.add(ent);
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch (Exception e) { }
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}
+		return lst;
 	}
 
 }
