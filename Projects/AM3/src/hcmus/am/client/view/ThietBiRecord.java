@@ -1,5 +1,6 @@
 package hcmus.am.client.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import hcmus.am.client.entity.ThietBiEntity;
@@ -7,7 +8,7 @@ import hcmus.am.client.entity.ThietBiEntity;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
-public class ThietBiRecord extends ListGridRecord {
+public class ThietBiRecord extends ListGridRecord  implements Serializable{
 	public ThietBiRecord() {
 
 	}

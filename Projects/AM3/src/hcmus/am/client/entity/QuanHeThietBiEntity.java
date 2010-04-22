@@ -1,8 +1,9 @@
 package hcmus.am.client.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class QuanHeThietBiEntity {
+public class QuanHeThietBiEntity implements Serializable {
 	//[IdTheHienThietBiCha] [bigint] NOT NULL,
 	public Integer IdTheHienThietBiCha;
 	//[IdTheHienThietBiCon] [bigint] NOT NULL,
