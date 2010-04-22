@@ -18,7 +18,7 @@ public class TheHienThietBi_selectTheHienThietBiMoiNhat {
 		//ent.IdTrangThai = 2;
 		//ent.IdThietBi = 1;
 		//ent.LaTheHienCapNhatTuClient = true;
-		ArrayList<TheHienThietBiEntity> lst= TheHienThietBiDao.selectTheHienThietBiMoiNhatCuaNhomThietBi(2);
+		ArrayList<TheHienThietBiEntity> lst= TheHienThietBiDao.selectTheHienThietBiMoiNhatCuaNhomThietBi(3);
 		assertTrue(lst.size() >= 2 );
 	}
 

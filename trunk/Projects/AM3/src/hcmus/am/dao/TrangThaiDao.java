@@ -42,7 +42,7 @@ public class TrangThaiDao {
 		Connection conn = null;
 		Statement stmt = null;		
 		ResultSet rs = null;
-		String  sql = "select IdTrangThai, Ten from TRANG_THAI where IdTrangThai = " + IDDeThi.toString();
+		String  sql = "select IdTrangThai, Ten, HinhAnh from TRANG_THAI where IdTrangThai = " + IDDeThi.toString();
 		try {
 			
 			conn = ConnectionUtil.getConnection();
@@ -52,6 +52,7 @@ public class TrangThaiDao {
 				ent = new TrangThaiEntity();
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				ent.Ten = rs.getString("Ten");
+				ent.HinhAnh = rs.getString("HinhAnh");
 			}
 			
 		} catch (Exception exception) {

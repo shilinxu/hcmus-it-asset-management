@@ -58,7 +58,7 @@ public class ThietBiServiceImpl  extends RemoteServiceServlet implements ThietBi
 
 	@Override
 	public ThietBiView[] selectThietBiView(Integer IdNhomThietBi) {
-		//ArrayList<ThietBiEntity> lst = ThietBiDao.//
+		/*//ArrayList<ThietBiEntity> lst = ThietBiDao.//
 		ArrayList<TheHienThietBiEntity> lst= TheHienThietBiDao.selectTheHienThietBiMoiNhatCuaNhomThietBi(IdNhomThietBi);
 		ThietBiView[] rs = new ThietBiView[lst.size()];
 		for (int i = 0 ; i < lst.size(); i++) {
@@ -79,7 +79,8 @@ public class ThietBiServiceImpl  extends RemoteServiceServlet implements ThietBi
 				rs[i].trangThai = TrangThaiDao.selectById(curr.IdTrangThai);
 		} 
 		
-		return rs;
+		return rs;*/
+		return ThietBiDao.selectThietBiView(IdNhomThietBi);
 	}
 	
 }

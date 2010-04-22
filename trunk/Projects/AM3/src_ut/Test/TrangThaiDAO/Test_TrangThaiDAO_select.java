@@ -16,7 +16,7 @@ public class Test_TrangThaiDAO_select {
 	@Test
 	public void testSelect2() {
 		TrangThaiEntity ent = TrangThaiDao.selectById(1);
-		assertTrue (ent.IdTrangThai == 1);
+		assertTrue (ent.IdTrangThai == 1 && ent.HinhAnh  != null);
 	}
 
 }

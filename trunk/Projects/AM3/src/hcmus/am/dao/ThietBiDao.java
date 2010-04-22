@@ -1,6 +1,10 @@
 package hcmus.am.dao;
 
+import hcmus.am.client.entity.TheHienThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
+import hcmus.am.client.entity.ThongSoThietBiEntity;
+import hcmus.am.client.view.ThietBiView;
+import hcmus.am.client.view.ThongSoThietBiView;
 import hcmus.am.utils.ConnectionUtil;
 
 import java.sql.CallableStatement;
@@ -273,5 +277,42 @@ public class ThietBiDao {
 			if (conn != null) try { conn.close(); } catch (Exception e) { }
 		}
 		return lst;
+	}
+	public static ThietBiView[] selectThietBiView(Integer IdNhomThietBi) {
+		//ArrayList<ThietBiEntity> lst = ThietBiDao.//
+		ArrayList<TheHienThietBiEntity> lst= TheHienThietBiDao.selectTheHienThietBiMoiNhatCuaNhomThietBi(IdNhomThietBi);
+		ThietBiView[] rs = new ThietBiView[lst.size()];
+		for (int i = 0 ; i < lst.size(); i++) {
+			TheHienThietBiEntity curr = lst.get(i);
+			rs[i] = new ThietBiView();
+			rs[i].theHienMoiNhat = curr;			
+			if (curr.IdThietBi != null) {
+				rs[i].thietBi = ThietBiDao.selectById(curr.IdThietBi);
+				//loai thiet bi.
+				if (rs[i].thietBi != null) {
+					rs[i].loaiThietBi = LoaiThietBiDao.selectById(rs[i].thietBi.IdLoaiThietBi);
+				}
+			}
+			//nguoi dung & nhom nguoi dung.
+			if (curr.IdNguoiDung != null) {
+				rs[i].nguoiDung = NguoiDungDao.selectById(curr.IdNguoiDung);
+			}
+			if (curr.IdNhomNguoiDung != null) {
+				rs[i].loaiNguoiDung = NhomNguoiDungDao.selectById(curr.IdNhomNguoiDung);
+			}
+			
+			ArrayList<ThongSoThietBiEntity> thongsoList = ThongSoThietBiDao.selectThongSoCuaTheHienThietBi(curr.IdTheHienThietBi);
+			ThongSoThietBiView[] lstThongSoView = new ThongSoThietBiView[thongsoList.size()];  
+			for (int j = 0; j < thongsoList.size(); j++) {
+				lstThongSoView[j] = new ThongSoThietBiView();
+				lstThongSoView[j].thongSoThietBi = thongsoList.get(j);
+				lstThongSoView[j].thongSoLoaiThietBi = ThongSoLoaiThietBiDAO.selectById(thongsoList.get(j).IdThongSoLoaiThietBi);
+			}
+			rs[i].lstThongSoThietBiView = lstThongSoView;
+			if (curr.IdTrangThai != null)
+				rs[i].trangThai = TrangThaiDao.selectById(curr.IdTrangThai);
+		} 
+		
+		return rs;
 	}
 }

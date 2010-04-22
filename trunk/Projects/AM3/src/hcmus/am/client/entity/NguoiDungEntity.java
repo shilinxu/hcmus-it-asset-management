@@ -1,6 +1,8 @@
 package hcmus.am.client.entity;
 
-public class NguoiDungEntity {
+import java.io.Serializable;
+
+public class NguoiDungEntity implements Serializable {
 //	[IdNguoiDung] [bigint] IDENTITY(1,1) NOT NULL,
 	public Integer IdNguoiDung;
 //	[TenDangNhap] [nchar](50) NOT NULL,
