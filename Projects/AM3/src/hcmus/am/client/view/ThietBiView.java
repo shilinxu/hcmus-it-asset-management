@@ -4,6 +4,7 @@ package hcmus.am.client.view;
 import hcmus.am.client.entity.LoaiNguoiDungEntity;
 import hcmus.am.client.entity.LoaiThietBiEntity;
 import hcmus.am.client.entity.NguoiDungEntity;
+import hcmus.am.client.entity.NhomNguoiDungEntity;
 import hcmus.am.client.entity.TheHienThietBiEntity;
 import hcmus.am.client.entity.ThietBiEntity;
 import hcmus.am.client.entity.TrangThaiEntity;
@@ -16,7 +17,7 @@ public class ThietBiView implements Serializable{
 	public TheHienThietBiEntity theHienMoiNhat;
 	public ThongSoThietBiView[] lstThongSoThietBiView;
 	public NguoiDungEntity nguoiDung;
-	public LoaiNguoiDungEntity loaiNguoiDung;
+	public NhomNguoiDungEntity nhomNguoiDung;
 	public TrangThaiEntity trangThai;
 	public LoaiThietBiEntity loaiThietBi;	
 	public static ThietBiTileRecord[] getThietBiTileRecord(ThietBiView[] lstView) {

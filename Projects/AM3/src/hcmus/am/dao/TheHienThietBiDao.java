@@ -7,15 +7,85 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TheHienThietBiDao {
 	public static Integer update(TheHienThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "update THE_HIEN_THIET_BI " +
+				"set IdThietBi = ? , IdTrangThai = ?, LaTheHienCapNhatTuClient = ?, IdNhomThietBi = ?, IdNguoiDung = ?, IdNhomNguoiDung = ?, LaTheHienHienTai = ?  " +
+				"where IdTheHienThietBi = ?";		
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			if (ent.IdThietBi != null)
+				stmt.setInt(1, ent.IdThietBi);
+			else 
+				stmt.setNull(1, java.sql.Types.INTEGER);
+			
+			if (ent.IdTrangThai != null)
+				stmt.setInt(2, ent.IdTrangThai);
+			else 
+				stmt.setNull(2, java.sql.Types.SMALLINT);
+			
+			if (ent.LaTheHienCapNhatTuClient != null)
+				stmt.setBoolean(3, ent.LaTheHienCapNhatTuClient);
+			else 
+				stmt.setNull(3, java.sql.Types.BIT);
+		
+			if (ent.IdNhomThietBi != null)
+				stmt.setInt(4, ent.IdNhomThietBi);
+			else 
+				stmt.setNull(4, java.sql.Types.INTEGER);;
+			
+				
+			if (ent.IdNguoiDung != null)
+				stmt.setInt(5, ent.IdNguoiDung);
+			else 
+				stmt.setNull(5, java.sql.Types.INTEGER);
+			
+			if (ent.IdNhomNguoiDung != null)
+				stmt.setInt(6, ent.IdNhomNguoiDung);
+			else 
+				stmt.setNull(6, java.sql.Types.INTEGER);
+			
+			if (ent.LaTheHienHienTai != null)
+				stmt.setBoolean(7, ent.LaTheHienHienTai);
+			else 
+				stmt.setNull(7, java.sql.Types.BIT);
+			
+			stmt.setInt(8, ent.IdTheHienThietBi);
+
+			
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	
 	public static Integer delete(TheHienThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		Statement stmt = null;		
+		int rs = 0;
+		String  sql = "delete THE_HIEN_THIET_BI where IdTheHienThietBi = " + ent.IdTheHienThietBi;
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();			
+			rs = stmt.executeUpdate(sql);			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	public static Integer insert(TheHienThietBiEntity ent) {
 		Connection conn = null;
@@ -60,7 +130,7 @@ public class TheHienThietBiDao {
 			if (ent.LaTheHienHienTai == null) 
 				stmt.setNull(7, java.sql.Types.BIT); 
 			else
-				stmt.setInt(7, ent.LaTheHienHienTai);
+				stmt.setBoolean(7, ent.LaTheHienHienTai);
 			
 			
 			stmt.execute();	
@@ -104,7 +174,7 @@ public class TheHienThietBiDao {
 
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				
-				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+				ent.LaTheHienHienTai = rs.getBoolean("LaTheHienHienTai");
 
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
 				
@@ -159,7 +229,7 @@ public class TheHienThietBiDao {
 
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				
-				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+				ent.LaTheHienHienTai = rs.getBoolean("LaTheHienHienTai");
 
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
 				
@@ -213,7 +283,7 @@ public class TheHienThietBiDao {
 
 				ent.IdTrangThai = rs.getInt("IdTrangThai");
 				
-				ent.LaTheHienHienTai = rs.getInt("LaTheHienHienTai");
+				ent.LaTheHienHienTai = rs.getBoolean("LaTheHienHienTai");
 
 				ent.LaTheHienCapNhatTuClient = rs.getBoolean("LaTheHienCapNhatTuClient");
 				
