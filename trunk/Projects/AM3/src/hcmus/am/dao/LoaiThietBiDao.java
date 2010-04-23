@@ -4,6 +4,7 @@ import hcmus.am.client.entity.LoaiThietBiEntity;
 import hcmus.am.utils.ConnectionUtil;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -38,15 +39,69 @@ public class LoaiThietBiDao {
 	}
 	
 	public static Integer insert(LoaiThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "insert into LOAI_THIET_BI(Ten, MoTa, HinhAnh) values(?,?,?)";
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, ent.Ten);
+			stmt.setString(2, ent.MoTa);
+			stmt.setString(3, ent.HinhAnh);
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;		
 	}
 	
 	public static Integer update(LoaiThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "update LOAI_THIET_BI " +
+				"set Ten = ? , MoTa = ?, HinhAnh = ? " +
+				"where IdLoaiThietBi= ? ";
+			try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, ent.Ten);
+			stmt.setString(2, ent.MoTa);
+			stmt.setString(3, ent.HinhAnh);
+			stmt.setInt(4, ent.IdLoaiThietBi);			
+					
+			rs = stmt.executeUpdate();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	
 	public static Integer delete(LoaiThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "delete LOAI_THIET_BI where IdLoaiThietBi = ?";
+		
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);		
+			stmt.setInt(1, ent.IdLoaiThietBi);			
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	public static LoaiThietBiEntity selectByName(String Name) {		
 		LoaiThietBiEntity ent = null;

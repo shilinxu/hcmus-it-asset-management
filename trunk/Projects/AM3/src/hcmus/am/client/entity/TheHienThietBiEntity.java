@@ -13,7 +13,7 @@ public class TheHienThietBiEntity implements Serializable {
 	public Boolean LaTheHienCapNhatTuClient;
 	
 	//LaTheHienHienTai
-	public Integer LaTheHienHienTai;
+	public Boolean LaTheHienHienTai;
 	//[IdNhomThietBi] [bigint] NULL,
 	public Integer IdNhomThietBi;
 	//[IdNguoiDung] [bigint] NULL,

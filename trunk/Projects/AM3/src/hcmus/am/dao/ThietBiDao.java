@@ -11,17 +11,49 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ThietBiDao {
 
 	
 	public static Integer update(ThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;		
+		int rs = 0;
+		String  sql = "update THIET_BI " +
+				"set IdLoaiThietBi = ? where IdThietBi = ?";		
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, ent.IdThietBi);
+			stmt.setInt(2, ent.IdLoaiThietBi);
+			rs = stmt.executeUpdate();			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	
 	public static Integer delete(ThietBiEntity ent ) {
-		return 0;
+		Connection conn = null;
+		Statement stmt = null;		
+		int rs = 0;
+		String  sql = "delete THIET_BI where IdThietBi = " + ent.IdThietBi;
+		try {			
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();			
+			rs = stmt.executeUpdate(sql);			
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {			
+			if (stmt != null) try { stmt.close(); } catch (Exception e) { }
+			if (conn != null) try { conn.close(); } catch (Exception e) { }
+		}		
+		return rs;	
 	}
 	/**
 	 * insert a ThietBi into DB.
@@ -298,7 +330,7 @@ public class ThietBiDao {
 				rs[i].nguoiDung = NguoiDungDao.selectById(curr.IdNguoiDung);
 			}
 			if (curr.IdNhomNguoiDung != null) {
-				rs[i].loaiNguoiDung = NhomNguoiDungDao.selectById(curr.IdNhomNguoiDung);
+				rs[i].nhomNguoiDung  = NhomNguoiDungDao.selectById(curr.IdNhomNguoiDung);
 			}
 			
 			ArrayList<ThongSoThietBiEntity> thongsoList = ThongSoThietBiDao.selectThongSoCuaTheHienThietBi(curr.IdTheHienThietBi);
