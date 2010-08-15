@@ -36,7 +36,7 @@
 [http://lh6.ggpht.com/__Yv21HQis74/TGdQ69srGrI/AAAAAAAABUI/w1BeC0hfXUY/s800/db_phanquyen.jpg]
 
  * Cấu hình để SQL Server 2005 cho phép truy cập vào cơ sở dữ liệu bằng chứng thực dựa trên SQL authentication thông qua giao thức TCP/IP ở cổng 1433 (hoặc một cổng khác thỏa mãn yêu cầu).
-[http://lh3.ggpht.com/__Yv21HQis74/TGdQ8Cm_1uI/AAAAAAAABUQ/nVsebEtJQqs/s144/tcp-ip.1433.jpg]
+[http://lh3.ggpht.com/__Yv21HQis74/TGdQ8Cm_1uI/AAAAAAAABUQ/nVsebEtJQqs/s800/tcp-ip.1433.jpg]
 
 =Thiết lập cấu hình trang web truy cập vào csdl=
  * File cấu hình truy cấp cơ sở dữ liệu đặt tại
