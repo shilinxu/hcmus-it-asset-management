@@ -1,6 +1,8 @@
 #summary Hướng dẫn cài đặt ocs inventory agent.
 #labels Phase-Deploy,Featured
-
+= Chuẩn bị phần mềm=
+[http://www.ocsinventory-ng.org/index.php?page=downloads OCS Inventory NG Agents]
+[http://www.ocsinventory-ng.org/index.php?page=downloads OCS Inventory NG Packager]
 = Cách 1: cài đặt thủ công =
 
 Xem hướng dẫn chi tiết tại [http://wiki.ocsinventory-ng.org/index.php/Documentation:Agent#Manually_installing_Service_version_of_Agent. OCS Inventory wiki]
@@ -18,4 +20,4 @@ Lưu ý về một số thông số:
   
 =Cách 2: Tạo gói cài đặt silent mode để cài đặt tự động=
  
-Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Tools:Packager#Manual OCS Inventory wiki (Tool Packager)]
+Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Tools:Packager#Manual OCS Inventory wiki (Tools:Packager)]
