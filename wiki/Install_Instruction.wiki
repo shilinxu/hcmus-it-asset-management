@@ -62,4 +62,6 @@ CONNECTION_URL=jdbc:microsoft:sqlserver://localhost:1433;User=hfam_web_account;P
 
 =Xem log=
  * Nếu không thể đăng nhập được, có thể xác định lỗi dựa vào log được ghi lại tại
-{{{C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs}}}
+{{{
+C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs
+}}}
