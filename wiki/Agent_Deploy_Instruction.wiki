@@ -8,6 +8,7 @@ Xem hướng dẫn chi tiết tại [http://wiki.ocsinventory-ng.org/index.php/D
 
 
 [http://lh6.ggpht.com/__Yv21HQis74/TGdQ9C8-0VI/AAAAAAAABUc/lqlOOr4MQZk/s800/ocs_installthucong.jpg]
+
 Lưu ý về một số thông số:
 ||Thông số|| Ghi chú||
 ||Server Address|| Là IP hoặc domain  name của máy chủ cài đặt trang web. Ví dụ: 172.29.65.186||
