@@ -1,4 +1,5 @@
 #summary Cài đặt môi trường lập trình để tạo project từ source code.
+#labels Phase-Implementation,Phase-Deploy,Featured
 = Các bước =
 
  * Download và cài đặt Eclipse bản mới nhất từ http://www.eclipse.com
