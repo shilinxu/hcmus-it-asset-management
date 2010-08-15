@@ -50,13 +50,13 @@ CONNECTION_URL=jdbc:microsoft:sqlserver://localhost:1433;User=hfam_web_account;P
 
   * Tiến hành restart lại Apache Tomcat server. Click vào biểu tượng apache tomcat 6 trên file hệ thống , chọn stop, sau đó start
 
-  *Truy cập vào http://localhost:8080
+  * Truy cập vào http://localhost:8080
 
-  *Đăng nhập vào hệ thống bằng các tài khoản mặc định
+  * Đăng nhập vào hệ thống bằng các tài khoản mặc định
 
 ||Tàikhoản|| Mật khẩu|| Quyền hạn||
 ||hhhung|| 123|| Quản lý thiết bị||
 ||lqvu|| 123|| Quản trị hệ thống||
  
 
-  *Nếu không thể đăng nhập được, có thể xác định lỗi dựa vào log được ghi lại tại {{{C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs}}}
+  * Nếu không thể đăng nhập được, có thể xác định lỗi dựa vào log được ghi lại tại {{{C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs}}}
