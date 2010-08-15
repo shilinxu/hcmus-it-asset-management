@@ -1,7 +1,10 @@
 #summary Cài đặt môi trường lập trình để tạo project từ source code.
+= Các bước =
 
  * Download và cài đặt Eclipse bản mới nhất từ http://www.eclipse.com
 
  * Cài đặt Google Plugin for Eclipse. Xem hướng dẫn chi tiết tại [http://code.google.com/eclipse/docs/getting_started.html Google Plugin for Eclipse]
 
- * Download gói source code [http://code.google.com/p/hcmus-it-asset-management/downloads/list hfam_source_v001.zip]. Giải nén vào một thư mục. Dùng chức năng import của eclipse để import gói source code vào một project mới.
+ * Download gói source code [http://code.google.com/p/hcmus-it-asset-management/downloads/list hfam_source_v001.zip]. 
+
+ * Giải nén source code vào một thư mục. Dùng chức năng import của eclipse để import gói source code vào một project mới.
