@@ -10,7 +10,7 @@
 =Cài đặt java web server=
  * Download và cài đặt Apache tomcat server . Cấu hình để server tự động chạy mỗi khi khởi động máy chủ.
 
-<automatic.jpg>
+<img href = "http://picasaweb.google.com/lh/photo/W2aWGgG_OAHIqlfLGWJWp1gqB3wnwfLR87tb3kc5dug?feat=directlink"/>
 
  *          Nếu cài đặt vào thư mục mặc định thì thư mục publish web sẽ là đường dẫn  C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps .Tiến hành test thử web server hoạt động được bằng cách truy cập vào đường dẫn web mặc định http://localhost:8080
 
