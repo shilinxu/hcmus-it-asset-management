@@ -6,6 +6,7 @@
 Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Documentation:Agent#Manually_installing_Service_version_of_Agent. OCS Inventory wiki]
 
 Lưu ý về một số thông số:
+
 [http://lh6.ggpht.com/__Yv21HQis74/TGdQ9C8-0VI/AAAAAAAABUc/lqlOOr4MQZk/s800/ocs_installthucong.jpg]
 
 ||Thông số|| Ghi chú||
