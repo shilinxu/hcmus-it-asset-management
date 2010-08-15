@@ -6,7 +6,7 @@
  # [http://tomcat.apache.org/download-60.cgi Apache Tomcat] 
  # [http://www.microsoft.com/downloads/details.aspx?familyid=220549b5-0b07-4448-8848-dcc397514b41 Sql Server 2005 trở lên] (bao gồm gói giao diện quản trị cơ sở dữ liệu  SQL Server Management Studio)
 
-=Cài đặt java web server=
+=Cài đặt Java Web Server và publish trang web=
  * Download và cài đặt Apache tomcat server . Cấu hình để server tự động chạy mỗi khi khởi động máy chủ.
 [http://lh4.ggpht.com/__Yv21HQis74/TGdQ8WbrD6I/AAAAAAAABUU/2mLgBFkWJyI/s800/tomcat_automatic.jpg]
 
