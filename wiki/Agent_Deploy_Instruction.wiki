@@ -1,5 +1,5 @@
+#summary Hướng dẫn cài đặt ocs inventory agent.
 #labels Phase-Deploy,Featured
-#Hướng dẫn cài đặt ocs inventory agent.
 
 = Cách 1: cài đặt thủ công =
 
