@@ -18,4 +18,4 @@ Lưu ý về một số thông số:
   
 =Cách 2: Tạo gói cài đặt silent mode để cài đặt tự động=
  
-Xem hướng dẫn tại []
+Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Tools:Packager#Manual OCS Inventory wiki (Tool Packager)]
