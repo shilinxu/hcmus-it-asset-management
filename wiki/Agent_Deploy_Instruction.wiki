@@ -22,4 +22,9 @@ Lưu ý về một số thông số:
   
 =Cách 2: Tạo gói cài đặt silent mode để cài đặt tự động=
  
-Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Tools:Packager#Manual OCS Inventory wiki (Tools:Packager)]
+ * Tạo gói cài đặt silent mode, xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Tools:Packager#Manual OCS Inventory wiki (Tools:Packager)] , (_lưu ý: thông số cấu hình agent tương tự như cách 1_)
+ * Khi đã có gói cài đặt silent mode, có thể sử dụng một số công cụ sau để cài đặt tự động.
+  * Active Directory GPO.
+  * Login Script
+  * phần mềm Net Support.
+  * ...
