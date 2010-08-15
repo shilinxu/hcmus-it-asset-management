@@ -10,31 +10,28 @@
  * Download và cài đặt Apache tomcat server . Cấu hình để server tự động chạy mỗi khi khởi động máy chủ.
 [http://lh4.ggpht.com/__Yv21HQis74/TGdQ8WbrD6I/AAAAAAAABUU/2mLgBFkWJyI/s800/tomcat_automatic.jpg]
 
- * Nếu cài đặt vào thư mục mặc định thì thư mục publish web sẽ là đường dẫn 
-{{{C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps}}}
+ * Nếu cài đặt vào thư mục mặc định thì thư mục publish web sẽ là 'C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps'
+ * Tiến hành test thử web server hoạt động được bằng cách truy cập vào đường dẫn web mặc định http://localhost:8080
 
- * Tiến hành test thử web server hoạt động được bằng cách truy cập vào đường dẫn web mặc định 
-{{{http://localhost:8080}}}
-
- * Download gói cài đặt trang web hfam_v001.zip, Xóa hoặc đổi tên thư mục ROOT trong thư mục pushlish web của Apache Tomcat , Tạo một thư mục ROOT mới và giải nén hams_v001.zip, sau đó copy vào thư mục publish web .
+ * Download gói cài đặt trang web hfam_web_v100.zip, Xóa hoặc đổi tên thư mục ROOT mặc định trong thư mục pushlish web của Apache Tomcat , Tạo một thư mục ROOT mới và giải nén và vào thư mục publish web. (lưu ý: Nếu không thể giải nén trực tiếp vào thư  mục này, Có thể thử cách giải nén hfam_web_v100.zip vào một thư mục khác rồi copy vào thư mục này (yêu cầu quyền administrator).
 [http://lh4.ggpht.com/__Yv21HQis74/TGdQ6CuENqI/AAAAAAAABUA/xbsKwtRqIO8/s800/hinh3.jpg]
 
  * Truy cập http://localhost:8080 để kiểm tra server hoạt động.
 
 =Cài đặt cơ sở dữ liệu=
 
- * Cài đặt cơ sở dữ liệu SQL SERVER 2005 trở lên nếu chưa có, (bao gồm  SQL Server Management Studio Express)
+ * Cài đặt cơ sở dữ liệu SQL SERVER 2005 trở lên nếu chưa có (bao gồm  SQL Server Management Studio Express)
 
  * Khởi động SQL SERVER 2005 dưới quyền quản trị (Run as Administrator). 
 
- * Download cơ sở dữ liệu hfam_database.zip, Giải nèn và tiến hành attach vào hệ quản trị cơ sở dữ liệu.
+ * Download cơ sở dữ liệu hfam_database.zip, giải nèn và tiến hành attach vào hệ quản trị cơ sở dữ liệu.
 
 [http://lh5.ggpht.com/__Yv21HQis74/TGdQ7diMJmI/AAAAAAAABUM/3XiDXKEGRxQ/s800/attach%20database.jpg]
 
- * Cấu hình để SQL SERVER chấp nhận  kiểu server authentication là  SQL server and Windows Authentication mode (database >> properties>>Security )
+ * Cấu hình để SQL SERVER chấp nhận  kiểu server authentication là  SQL server and Windows Authentication mode (database >> properties>>Security). 
 [http://lh4.ggpht.com/__Yv21HQis74/TGdQ6Zv3Z_I/AAAAAAAABUE/U4KD7h6EZ10/s800/db_createuser.jpg]
 
- * Tạo tài khoản truy cập cơ sở dữ liệu mới có quyền read, write vào database hamdb. 
+ * Tạo tài khoản truy cập cơ sở dữ liệu mới có quyền read, write vào database *hcmuns-asset-manage*. 
 [http://lh6.ggpht.com/__Yv21HQis74/TGdQ69srGrI/AAAAAAAABUI/w1BeC0hfXUY/s800/db_phanquyen.jpg]
 
  * Cấu hình để SQL Server 2005 cho phép truy cập vào cơ sở dữ liệu bằng chứng thực dựa trên SQL authentication thông qua giao thức TCP/IP ở cổng 1433 (hoặc một cổng khác thỏa mãn yêu cầu).
@@ -52,15 +49,14 @@ CONNECTION_URL=jdbc:microsoft:sqlserver://localhost:1433;User=hfam_web_account;P
 
 =Truy cập trang web=
 
- * Tiến hành restart lại Apache Tomcat server. Click vào biểu tượng apache tomcat 6 trên file hệ thống , chọn stop, sau đó start
+ * Tiến hành restart lại Apache Tomcat server ( Click vào biểu tượng apache tomcat 6 trên file hệ thống , chọn stop, sau đó start)
 
  * Truy cập vào http://localhost:8080
 
  * Đăng nhập vào hệ thống bằng các tài khoản mặc định
-
 ||Tàikhoản|| Mật khẩu|| Quyền hạn||
 ||hhhung|| 123|| Quản lý thiết bị||
 ||lqvu|| 123|| Quản trị hệ thống||
  
  * Nếu không thể đăng nhập được, có thể xác định lỗi dựa vào log được ghi lại tại
-{{{C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs}}}
+'C:\Program Files\Apache Software Foundation\Tomcat 6.0\logs'
