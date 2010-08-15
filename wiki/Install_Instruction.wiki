@@ -1,10 +1,10 @@
 #summary Hướng dẫn cài đặt trên hệ điều hành Window 7, Apache Tomcat 6, SQL Server 2005 Express
 #labels Featured,Phase-Deploy
 =Chuẩn bị=
- # hfam_web_v100.zip
- # hfam_database.zip
- # Apache Tomcat 6
- # Sql Server 2005 trở lên (bao gồm gói giao diện quản trị cơ sở dữ liệu  SQL Server Management Studio)
+ # hfam_web_v100.zip [http://code.google.com/p/hcmus-it-asset-management/downloads/list]link
+ # hfam_database.zip [http://code.google.com/p/hcmus-it-asset-management/downloads/list]link
+ # Apache Tomcat 6 [http://tomcat.apache.org/download-60.cgi]link
+ # Sql Server 2005 trở lên (bao gồm gói giao diện quản trị cơ sở dữ liệu  SQL Server Management Studio) [http://www.microsoft.com/downloads/details.aspx?familyid=220549b5-0b07-4448-8848-dcc397514b41]link
 
 =Cài đặt java web server=
  * Download và cài đặt Apache tomcat server . Cấu hình để server tự động chạy mỗi khi khởi động máy chủ.
