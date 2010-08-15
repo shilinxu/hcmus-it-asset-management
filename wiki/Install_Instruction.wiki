@@ -1,13 +1,13 @@
 #summary Hướng dẫn này được thực hiện trên hệ điều hành window 7. sử dụng web server: Apache Tomcat 6, hệ quản trị cơ sở dữ liệu SQL Server 2005
 =Chuẩn bị=
 
-# web hfam_v001.zip
+#  web hfam_v001.zip
 
-# hfam_database.zip
+#  hfam_database.zip
 
-# apache tomcat webserver 6
+#  apache tomcat webserver 6
 
-# sql server 2005 trở lên (bao gồm gói giao diện quản trị cơ sở dữ liệu  SQL Server Management Studio)
+#  sql server 2005 trở lên (bao gồm gói giao diện quản trị cơ sở dữ liệu  SQL Server Management Studio)
  
 
  
