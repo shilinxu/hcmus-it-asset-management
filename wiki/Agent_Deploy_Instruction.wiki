@@ -1,7 +1,7 @@
 #labels Phase-Deploy,Featured
 #Hướng dẫn cài đặt ocs inventory agent.
 
-=Cách 1: cài đặt thủ công=
+= Cách 1: cài đặt thủ công =
 
 Xem hướng dẫn tại [http://wiki.ocsinventory-ng.org/index.php/Documentation:Agent#Manually_installing_Service_version_of_Agent. OCS Inventory wiki]
 
