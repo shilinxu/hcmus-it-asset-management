@@ -1,6 +1,6 @@
 #summary Hướng dẫn cài đặt trên hệ điều hành Window 7, Apache Tomcat 6, SQL Server 2005 Express
 #labels Featured,Phase-Deploy
-Mục lục các bước
+Mục lục nội dung
 <wiki:toc max_depth="1" />
 =Chuẩn bị=
  # [http://code.google.com/p/hcmus-it-asset-management/downloads/list hfam_web_v100.zip]
